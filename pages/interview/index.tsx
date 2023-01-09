@@ -1,25 +1,25 @@
 import Head from 'next/head';
 
-const HomePage = () => {
+const InterviewPage = () => {
 	return (
 		<>
 			<Head>
-				<title>One-To-One</title>
-				<meta name='description' content='Interviewing Service' />
+				<title>Find Interview</title>
+				<meta name='description' content='Find Interview' />
 				<meta
 					name='viewport'
 					content='width=device-width, initial-scale=1'
 				/>
 			</Head>
 			<main>
-				<h1>Home Page</h1>
+				<h1>Interview Page</h1>
 			</main>
 		</>
 	);
 };
 
-export default HomePage;
+export default InterviewPage;
 
 // export function getStaticProps() {
-// 	return
+// 	return;
 // }
