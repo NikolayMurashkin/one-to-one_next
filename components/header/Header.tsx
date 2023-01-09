@@ -18,7 +18,12 @@ const Header = () => {
 				<Link href='/'>Home</Link>
 				<Link href='/interview'>Find Interview</Link>
 			</nav>
-			<Link href='/profile'>
+			<Link
+				href={{
+					pathname: '/profile/[userId]',
+					query: { userId: 1 },
+				}}
+			>
 				<Image
 					src={'/images/profile.png'}
 					alt={'profile'}

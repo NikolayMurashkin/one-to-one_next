@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { FaStar } from 'react-icons/fa';
 import { useState } from 'react';
 
-import { TRatingProps } from './Rating.props';
 import styles from './Rating.module.scss';
 
 const Rating = () => {
@@ -23,7 +22,7 @@ const Rating = () => {
 							onClick={() => setRating(ratingValue)}
 						/>
 						<FaStar
-							size={24}
+							size={15}
 							className={styles.star}
 							color={
 								ratingValue <= (hover || rating)

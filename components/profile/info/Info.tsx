@@ -1,20 +1,20 @@
 import Image from 'next/image';
 
 import styles from './Info.module.scss';
-import Rating from '../ui/rating/Rating';
+import Rating from '../../ui/rating/Rating';
 
 const Info = () => {
 	return (
-		<section>
+		<section className={styles.wrapper}>
 			<Image
-				src={'/images/avatar.jpg'}
+				src={'/images/avatar.png'}
 				alt='avatar'
-				width={50}
-				height={50}
+				width={132}
+				height={132}
 			/>
-			<div>
+			<div className={styles.info}>
 				<h5>Leonov Vasily</h5>
-				<div>
+				<div className={styles.rating}>
 					<span>User Raiting</span>
 					<Rating />
 				</div>
