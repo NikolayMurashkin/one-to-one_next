@@ -1,8 +1,29 @@
+import classNames from 'classnames';
+
 import styles from './Tabs.module.scss';
-import { TTabs } from './Tabs.props';
+import { TTabsProps } from './Tabs.props';
 
-const Tab: React.FC<TTabs> = ({ label }) => {
-	return <span className={styles.label}>{label}</span>;
+export const Tabs: React.FC<TTabsProps> = ({ selectedId, tabs, onClick }) => {
+	return (
+		<div className={styles.tabs}>
+			{tabs &&
+				tabs.map((tab) => (
+					<div
+						className={classNames(styles.tab, {
+							[styles.tab__selected]: tab.id === selectedId,
+						})}
+						key={tab.id}
+						onClick={() => onClick(tab.id)}
+					>
+						<span
+							className={classNames(styles.tabLabel, {
+								tabLabel__selected: tab.id === selectedId,
+							})}
+						>
+							{tab.label}
+						</span>
+					</div>
+				))}
+		</div>
+	);
 };
-
-export default Tab;

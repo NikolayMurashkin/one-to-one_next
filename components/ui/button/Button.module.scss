@@ -1,10 +1,15 @@
 .button {
 	text-align: center;
 	padding: 10px;
+	color: var(--white);
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 17px;
+	border-radius: 5px;
 }
 
 .primary {
-	background: #ba8989;
+	background: var(--red);
 }
 .secondary {
 	background: #a9a6a6;

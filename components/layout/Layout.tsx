@@ -6,9 +6,9 @@ import styles from './Layout.module.scss';
 export default function Layout({ children }: TLayoutProps) {
 	return (
 		<div className={styles.wrapper}>
-			<Header />
+			{/* <Header /> */}
 			{children}
-			<Footer />
+			{/* <Footer /> */}
 		</div>
 	);
 }

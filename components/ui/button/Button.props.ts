@@ -1,4 +1,4 @@
 export type TButtonProps = {
 	text: string;
-	color: 'primary' | 'secondary';
+	color: 'primary' | 'secondary' | 'ghost';
 };

@@ -13,9 +13,9 @@
 
 .tabs {
 	display: flex;
-	justify-content: start;
+	justify-content: flex-start;
 	column-gap: 35px;
-	align-items: start;
+	align-items: flex-start;
 }
 .interview {
 	display: flex;

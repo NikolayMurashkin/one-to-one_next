@@ -1,4 +1,7 @@
 import Head from 'next/head';
+import Link from 'next/link';
+
+import styles from './index.module.scss';
 
 const HomePage = () => {
 	return (
@@ -11,8 +14,11 @@ const HomePage = () => {
 					content='width=device-width, initial-scale=1'
 				/>
 			</Head>
-			<main>
+			<main className={styles.main}>
 				<h1>Home Page</h1>
+				<Link href={'/login'}>Login</Link>
+				<Link href={'/register'}>Register</Link>
+				<Link href={'/interview'}>Find Interview</Link>
 			</main>
 		</>
 	);

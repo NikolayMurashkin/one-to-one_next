@@ -1,5 +1,10 @@
 import Head from 'next/head';
 
+import styles from './index.module.scss';
+import Header from './../../components/header/Header';
+import { InterviewInfoList } from './../../components/interview/InterviewInfoList';
+import { InterviewTabs } from './../../components/interview/InterviewTabs';
+
 const InterviewPage = () => {
 	return (
 		<>
@@ -11,8 +16,10 @@ const InterviewPage = () => {
 					content='width=device-width, initial-scale=1'
 				/>
 			</Head>
-			<main>
-				<h1>Interview Page</h1>
+			<main className={styles.main}>
+				<Header />
+				<InterviewInfoList />
+				<InterviewTabs />
 			</main>
 		</>
 	);

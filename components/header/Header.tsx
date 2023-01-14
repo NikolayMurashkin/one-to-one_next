@@ -14,21 +14,22 @@ const Header = () => {
 					height={80}
 				/>
 			</Link>
-			<nav className={styles.nav}>
-				<Link href='/'>Home</Link>
-				<Link href='/interview'>Find Interview</Link>
-			</nav>
+
 			<Link
 				href={{
 					pathname: '/profile/[userId]',
 					query: { userId: 1 },
 				}}
 			>
+				<div className={styles.personInfo}>
+					<span className={styles.name}>Леонов Василий</span>
+					<span className={styles.email}>nagibator@gmail.com</span>
+				</div>
 				<Image
 					src={'/images/profile.png'}
 					alt={'profile'}
-					width={50}
-					height={50}
+					width={37}
+					height={37}
 				/>
 			</Link>
 		</header>

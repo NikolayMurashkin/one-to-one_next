@@ -1,5 +1,6 @@
 .wrapper {
 	height: 100vh;
-	display: grid;
-	grid-template-rows: 80px auto 95px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }
