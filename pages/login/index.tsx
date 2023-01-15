@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from './index.module.scss';
-import { Input } from '../../components/authentication/Input';
 import Button from '../../components/ui/button/Button';
+import { Input } from './../../components/ui/input/Input';
 
 const LoginPage = () => {
 	return (
