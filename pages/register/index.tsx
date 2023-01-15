@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import styles from './index.module.scss';
-import { Input } from '../../components/authentication/Input';
 import Button from '../../components/ui/button/Button';
+import { Input } from './../../components/ui/input/Input';
 
-const LoginPage = () => {
+const RegisterPage = () => {
 	const router = useRouter();
 
 	const registerHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -51,4 +51,4 @@ const LoginPage = () => {
 	);
 };
 
-export default LoginPage;
+export default RegisterPage;
