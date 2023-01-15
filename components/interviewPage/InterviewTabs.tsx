@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 import styles from './InterviewTabs.module.scss';
-import { Tabs } from './../ui/tabs/Tabs';
+import { Tabs } from '../ui/tabs/Tabs';
 import { TTab } from '../ui/tabs/Tabs.props';
-import { SearchInterview } from './SearchInterview';
-import { MyInterview } from './MyInterview';
+import { SearchInterview } from './searchInterview/SearchInterview';
+import { MyInterview } from './myInterview/MyInterview';
 
 export const InterviewTabs = () => {
 	const tabs: TTab[] = [

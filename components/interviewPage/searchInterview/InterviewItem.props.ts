@@ -1,4 +1,4 @@
-export type TTabItemProps = {
+export type TInteviewItemProps = {
 	buttonText: string;
 	color: 'primary' | 'secondary' | 'ghost';
 	stack: string;

@@ -10,6 +10,7 @@ const Button: React.FC<TButtonProps> = ({ text, color }) => {
 				[styles.primary]: color === 'primary',
 				[styles.secondary]: color === 'secondary',
 				[styles.ghost]: color === 'ghost',
+				[styles.ghostRed]: color === 'ghost-red',
 			})}
 		>
 			{text}

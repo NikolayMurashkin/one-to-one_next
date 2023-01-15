@@ -1,5 +1,6 @@
 .interviewTabs {
 	padding: 0 15px;
+	position: relative;
 
 	.tab {
 		border: 1px solid var(--black);
@@ -15,7 +16,6 @@
 		padding: 10px 10px 10px 10px;
 		height: 385px;
 		overflow-y: auto;
-		position: relative;
 		&::-webkit-scrollbar {
 			width: 28px;
 			height: 0;

@@ -29,3 +29,13 @@
 	padding: 5px;
 	width: 139px;
 }
+.ghostRed {
+	outline: 1px solid var(--orange);
+	letter-spacing: 0.2em;
+	text-transform: capitalize;
+	color: var(--orange);
+	font-size: 12px;
+	line-height: 15px;
+	padding: 5px;
+	width: 88px;
+}

@@ -2,8 +2,8 @@ import Head from 'next/head';
 
 import styles from './index.module.scss';
 import Header from './../../components/header/Header';
-import { InterviewInfoList } from './../../components/interview/InterviewInfoList';
-import { InterviewTabs } from './../../components/interview/InterviewTabs';
+import { InterviewInfoList } from '../../components/interviewPage/InterviewInfoList';
+import { InterviewTabs } from '../../components/interviewPage/InterviewTabs';
 
 const InterviewPage = () => {
 	return (

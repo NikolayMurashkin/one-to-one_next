@@ -1,8 +1,8 @@
-import styles from './TabItem.module.scss';
-import Button from './../ui/button/Button';
-import { TTabItemProps } from './TabItem.props';
+import styles from './InterviewItem.module.scss';
+import Button from '../../ui/button/Button';
+import { TInteviewItemProps } from './InterviewItem.props';
 
-export const TabItem: React.FC<TTabItemProps> = ({
+export const InterviewItem: React.FC<TInteviewItemProps> = ({
 	buttonText,
 	color,
 	stack,
@@ -11,7 +11,7 @@ export const TabItem: React.FC<TTabItemProps> = ({
 	grade,
 }) => {
 	return (
-		<section className={styles.tabItem}>
+		<section className={styles.InteviewItem}>
 			<span className={styles.text}>{date}</span>
 			<span className={styles.text}>{stack}</span>
 			<span className={styles.text}>{name}</span>

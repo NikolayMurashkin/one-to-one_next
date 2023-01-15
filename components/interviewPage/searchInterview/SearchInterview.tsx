@@ -1,14 +1,14 @@
-import styles from './MyInterview.module.scss';
-import { TabItem } from './TabItem';
-import { SortList } from './SortList';
+import styles from './SearchInterview.module.scss';
+import { InterviewItem } from './InterviewItem';
+import { SortList } from '../SortList';
 
-export const MyInterview = () => {
+export const SearchInterview = () => {
 	return (
 		<>
-			<SortList tabId={1} />
+			<SortList tabId={2} className='searchInterview' />
 			<ul className={styles.list}>
 				<li className={styles.item}>
-					<TabItem
+					<InterviewItem
 						buttonText='Заявка отправлена!'
 						color='secondary'
 						stack='Python'
@@ -18,7 +18,7 @@ export const MyInterview = () => {
 					/>
 				</li>
 				<li className={styles.item}>
-					<TabItem
+					<InterviewItem
 						buttonText='Откликнуться'
 						color='ghost'
 						stack='PascalABC.NET'
@@ -28,7 +28,7 @@ export const MyInterview = () => {
 					/>
 				</li>
 				<li className={styles.item}>
-					<TabItem
+					<InterviewItem
 						buttonText='Откликнуться'
 						color='ghost'
 						stack='Java'
@@ -38,7 +38,7 @@ export const MyInterview = () => {
 					/>
 				</li>
 				<li className={styles.item}>
-					<TabItem
+					<InterviewItem
 						buttonText='Откликнуться'
 						color='ghost'
 						stack='C#'
@@ -48,7 +48,7 @@ export const MyInterview = () => {
 					/>
 				</li>
 				<li className={styles.item}>
-					<TabItem
+					<InterviewItem
 						buttonText='Откликнуться'
 						color='ghost'
 						stack='C++'
@@ -58,7 +58,7 @@ export const MyInterview = () => {
 					/>
 				</li>
 				<li className={styles.item}>
-					<TabItem
+					<InterviewItem
 						buttonText='Откликнуться'
 						color='ghost'
 						stack='PHP'
@@ -68,7 +68,7 @@ export const MyInterview = () => {
 					/>
 				</li>
 				<li className={styles.item}>
-					<TabItem
+					<InterviewItem
 						buttonText='Откликнуться'
 						color='ghost'
 						stack='Javascript'
@@ -78,7 +78,7 @@ export const MyInterview = () => {
 					/>
 				</li>
 				<li className={styles.item}>
-					<TabItem
+					<InterviewItem
 						buttonText='Откликнуться'
 						color='ghost'
 						stack='Javascript'
@@ -88,7 +88,7 @@ export const MyInterview = () => {
 					/>
 				</li>
 				<li className={styles.item}>
-					<TabItem
+					<InterviewItem
 						buttonText='Откликнуться'
 						color='ghost'
 						stack='Javascript'
@@ -98,7 +98,7 @@ export const MyInterview = () => {
 					/>
 				</li>
 				<li className={styles.item}>
-					<TabItem
+					<InterviewItem
 						buttonText='Откликнуться'
 						color='ghost'
 						stack='Javascript'
