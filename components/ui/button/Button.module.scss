@@ -6,11 +6,26 @@
 	font-size: 14px;
 	line-height: 17px;
 	border-radius: 5px;
+	font-family: inherit;
 }
 
 .primary {
 	background: var(--red);
 }
 .secondary {
-	background: #a9a6a6;
+	background: var(--green);
+	font-size: 12px;
+	line-height: 15px;
+	color: rgba(255, 255, 255, 0.8);
+	padding: 5px;
+	width: 139px;
+}
+.ghost {
+	background: var(--white);
+	font-size: 12px;
+	line-height: 15px;
+	color: var(--black);
+	outline: 1px solid rgba(0, 0, 0, 0.2);
+	padding: 5px;
+	width: 139px;
 }
