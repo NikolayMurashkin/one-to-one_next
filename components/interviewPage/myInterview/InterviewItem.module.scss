@@ -16,23 +16,10 @@
 		flex: 0 0 15%;
 		justify-content: center;
 	}
-	// .text:nth-child(2) {
-	// 	flex: 0 0 10%;
-	// }
-	// .text:nth-child(3) {
-	// 	flex: 0 0 10%;
-	// }
-	// .text:nth-child(4) {
-	// 	flex: 0 0 10%;
-	// }
-	// .text:nth-child(5) {
-	// 	flex: 0 0 10%;
-	// }
 
 	.status {
 		display: flex;
 		align-items: center;
-		// flex: 1 1 124px;
 		column-gap: 5px;
 		justify-content:flex-end;
 		flex: 0 0 9%;
@@ -40,10 +27,3 @@
 	button {
 		flex: 0 0 9%;
 	}
-	button:not(:last-child) {
-		// margin-right: 90px;
-	}
-	// button:last-child {
-	// 	flex: 1 1 124px;
-	// }
-}
