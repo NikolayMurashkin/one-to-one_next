@@ -1,9 +1,11 @@
-import styles from './TabContent.module.scss';
+import styles from './MyInterview.module.scss';
 import { TabItem } from './TabItem';
+import { SortList } from './SortList';
 
-export const TabContent = () => {
+export const MyInterview = () => {
 	return (
-		<section>
+		<>
+			<SortList tabId={1} />
 			<ul className={styles.list}>
 				<li className={styles.item}>
 					<TabItem
@@ -106,6 +108,6 @@ export const TabContent = () => {
 					/>
 				</li>
 			</ul>
-		</section>
+		</>
 	);
 };

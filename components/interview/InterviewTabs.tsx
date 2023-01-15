@@ -3,7 +3,8 @@ import { useState } from 'react';
 import styles from './InterviewTabs.module.scss';
 import { Tabs } from './../ui/tabs/Tabs';
 import { TTab } from '../ui/tabs/Tabs.props';
-import { TabContent } from './TabContent';
+import { SearchInterview } from './SearchInterview';
+import { MyInterview } from './MyInterview';
 
 export const InterviewTabs = () => {
 	const tabs: TTab[] = [
@@ -26,10 +27,9 @@ export const InterviewTabs = () => {
 				tabs={tabs}
 			/>
 			<div className={styles.tab}>
-				<div>filters</div>
 				<div className={styles.content}>
-					{selectedTabId === tabs[0].id && <div>TAB CONTENT 1</div>}
-					{selectedTabId === tabs[1].id && <TabContent />}
+					{selectedTabId === tabs[0].id && <MyInterview />}
+					{selectedTabId === tabs[1].id && <SearchInterview />}
 					{selectedTabId === tabs[2].id && <div>TAB CONTENT 3</div>}
 				</div>
 			</div>
