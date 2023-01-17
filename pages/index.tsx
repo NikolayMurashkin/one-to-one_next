@@ -1,5 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Header from '../components/header/Header';
+import { InterviewInfoList } from '../components/interviewPage/InterviewInfoList';
+import { InterviewTabs } from '../components/interviewPage/InterviewTabs';
 
 import styles from './index.module.scss';
 
@@ -15,10 +18,8 @@ const HomePage = () => {
 				/>
 			</Head>
 			<main className={styles.main}>
-				<h1>Home Page</h1>
-				<Link href={'/login'}>Login</Link>
-				<Link href={'/register'}>Register</Link>
-				<Link href={'/interview'}>Find Interview</Link>
+				<InterviewInfoList />
+				<InterviewTabs />
 			</main>
 		</>
 	);

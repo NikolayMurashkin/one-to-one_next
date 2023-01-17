@@ -8,7 +8,11 @@
 	top: 0;
 	width: 100%;
 	background: var(--white);
+	z-index: 999;
 	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+	.logo {
+		flex: 1 0 auto;
+	}
 
 	.personInfo {
 		display: flex;
@@ -29,14 +33,18 @@
 			opacity: 0.5;
 		}
 	}
+	.profile {
+		display: flex;
+		align-items: center;
+		column-gap: 8px;
+		font-size: 20px;
+		margin-right: 12px;
+	}
 
 	a {
 		display: flex;
 		align-items: center;
 		column-gap: 8px;
 		font-size: 20px;
-		&:hover {
-			color: burlywood;
-		}
 	}
 }
