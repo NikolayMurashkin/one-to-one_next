@@ -39,9 +39,11 @@
 }
 
 .myInterview {
-	justify-content: space-between;
+	// justify-content: space-between;
+	column-gap: 7.3%;
+	
 	.sortItem {
 		justify-content: center;
-		flex-basis: 14%;
+		flex-basis: 10%;
 	}
 }

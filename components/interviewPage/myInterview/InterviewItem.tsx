@@ -1,7 +1,12 @@
+import Image from 'next/image';
+import classNames from 'classnames/bind';
+
+import Link from 'next/link';
+
 import Button from '../../ui/button/Button';
 import styles from './InterviewItem.module.scss';
 import { TInterviewItemProps } from './InterviewItem.props';
-import Image from 'next/image';
+import { ChatIcon } from './../../../public/icons/ChatIcon';
 
 export const InterviewItem: React.FC<TInterviewItemProps> = ({
 	status,
@@ -10,15 +15,27 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 	date,
 	grade,
 }) => {
+	const cx = classNames.bind(styles);
 	return (
-		<section className={styles.interviewItem}>
+		<section
+			className={cx('interviewItem', {
+				ready: status === 'ready',
+				pending: status === 'pending',
+				complete: status === 'complete',
+			})}
+		>
 			<span className={styles.text}>{date}</span>
 			<span className={styles.text}>{stack}</span>
 			<span className={styles.text}>{name}</span>
 			<span className={styles.text}>{grade}</span>
-			<Button color={'ghost'} text={'Подробнее'} />
+			<span>
+				<Button color={'ghost'} text={'Подробнее'} />
+			</span>
 			{status === 'ready' && (
-				<Button color={'ghost-red'} text={'Начать >'} />
+				<Link href={'/session'} className={styles.button}>
+					<ChatIcon />
+					<span>Начать сессию!</span>
+				</Link>
 			)}
 			{status === 'complete' && (
 				<span className={styles.status}>
