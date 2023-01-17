@@ -27,21 +27,17 @@
 }
 
 .searchInterview {
+	justify-content: flex-start;
+
 	.sortItem {
-		flex-basis: 20%;
-	}
-	.sortItem:nth-child(2) {
-		flex-basis: 23%;
-	}
-	.sortItem:nth-child(3) {
-		flex-basis: 22.5%;
+		justify-content: center;
+		flex-basis: 20.5%;
 	}
 }
 
 .myInterview {
-	// justify-content: space-between;
 	column-gap: 7.3%;
-	
+
 	.sortItem {
 		justify-content: center;
 		flex-basis: 10%;

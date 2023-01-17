@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import styles from './Button.module.scss';
 import { TButtonProps } from './Button.props';
 
-const Button: React.FC<TButtonProps> = ({ text, color }) => {
+const Button: React.FC<TButtonProps> = ({ text, color, disabled }) => {
 	return (
 		<button
 			className={classNames(styles.button, {
@@ -12,6 +12,7 @@ const Button: React.FC<TButtonProps> = ({ text, color }) => {
 				[styles.ghost]: color === 'ghost',
 				[styles.ghostRed]: color === 'ghost-red',
 			})}
+			disabled={disabled}
 		>
 			{text}
 		</button>

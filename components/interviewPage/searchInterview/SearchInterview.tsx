@@ -107,6 +107,66 @@ export const SearchInterview = () => {
 						grade='Senior'
 					/>
 				</li>
+				<li className={styles.item}>
+					<InterviewItem
+						buttonText='Заявка отправлена!'
+						color='secondary'
+						stack='Python'
+						date='11.01.2023 10:00 MSK'
+						name='Артем Кашаков'
+						grade='Middle'
+					/>
+				</li>
+				<li className={styles.item}>
+					<InterviewItem
+						buttonText='Откликнуться'
+						color='ghost'
+						stack='PascalABC.NET'
+						date='13.01.2023 10:00 MSK'
+						name='Артем Кашаков'
+						grade='Junoir'
+					/>
+				</li>
+				<li className={styles.item}>
+					<InterviewItem
+						buttonText='Откликнуться'
+						color='ghost'
+						stack='Java'
+						date='17.01.2023 10:00 MSK'
+						name='Полина Султанова'
+						grade='Senior'
+					/>
+				</li>
+				<li className={styles.item}>
+					<InterviewItem
+						buttonText='Заявка отправлена!'
+						color='secondary'
+						stack='Python'
+						date='11.01.2023 10:00 MSK'
+						name='Артем Кашаков'
+						grade='Middle'
+					/>
+				</li>
+				<li className={styles.item}>
+					<InterviewItem
+						buttonText='Откликнуться'
+						color='ghost'
+						stack='PascalABC.NET'
+						date='13.01.2023 10:00 MSK'
+						name='Артем Кашаков'
+						grade='Junoir'
+					/>
+				</li>
+				<li className={styles.item}>
+					<InterviewItem
+						buttonText='Откликнуться'
+						color='ghost'
+						stack='Java'
+						date='17.01.2023 10:00 MSK'
+						name='Полина Султанова'
+						grade='Senior'
+					/>
+				</li>
 			</ul>
 		</>
 	);

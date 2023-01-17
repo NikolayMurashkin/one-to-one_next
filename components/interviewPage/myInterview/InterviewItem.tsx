@@ -29,7 +29,11 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 			<span className={styles.text}>{name}</span>
 			<span className={styles.text}>{grade}</span>
 			<span>
-				<Button color={'ghost'} text={'Подробнее'} />
+				<Button
+					color={'ghost'}
+					text={'Подробнее'}
+					disabled={status === 'ready' || status === 'pending'}
+				/>
 			</span>
 			{status === 'ready' && (
 				<Link href={'/session'} className={styles.button}>

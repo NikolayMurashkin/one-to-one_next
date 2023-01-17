@@ -16,7 +16,13 @@ export const InterviewItem: React.FC<TInteviewItemProps> = ({
 			<span className={styles.text}>{stack}</span>
 			<span className={styles.text}>{name}</span>
 			<span className={styles.text}>{grade}</span>
-			<Button color={color} text={buttonText} />
+			<span>
+				<Button
+					color={color}
+					text={buttonText}
+					disabled={buttonText === 'Заявка отправлена!'}
+				/>
+			</span>
 		</section>
 	);
 };
