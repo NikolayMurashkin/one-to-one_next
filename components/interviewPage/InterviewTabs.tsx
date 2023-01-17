@@ -5,6 +5,7 @@ import { Tabs } from '../ui/tabs/Tabs';
 import { TTab } from '../ui/tabs/Tabs.props';
 import { SearchInterview } from './searchInterview/SearchInterview';
 import { MyInterview } from './myInterview/MyInterview';
+import { MyQuestions } from './myQuestions/MyQuestions';
 
 export const InterviewTabs = () => {
 	const tabs: TTab[] = [
@@ -31,7 +32,7 @@ export const InterviewTabs = () => {
 				<div className={styles.content}>
 					{selectedTabId === tabs[0].id && <MyInterview />}
 					{selectedTabId === tabs[1].id && <SearchInterview />}
-					{selectedTabId === tabs[2].id && <div>TAB CONTENT 3</div>}
+					{selectedTabId === tabs[2].id && <MyQuestions />}
 					{selectedTabId === tabs[3].id && <div>TAB CONTENT 4</div>}
 				</div>
 			</div>

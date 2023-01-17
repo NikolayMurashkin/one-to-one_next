@@ -1,0 +1,60 @@
+.section {
+	details[open] summary ~ * {
+		animation: sweep 0.5s ease-in-out;
+	}
+	details[close] summary ~ * {
+		animation: sweepClose 0.5s ease-in-out;
+	}
+
+	@keyframes sweep {
+		0% {
+			opacity: 0;
+			transform: translateX(-10px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+	@keyframes sweepClose {
+		0% {
+			opacity: 1;
+			transform: translateX(0px);
+		}
+		100% {
+			opacity: 0;
+			transform: translateX(-10px);
+		}
+	}
+}
+
+.interviewItem {
+	background: #ffffff;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+	border-radius: 5px;
+	padding: 10px 15px;
+	font-size: 12px;
+	line-height: 15px;
+	transition: all 3s ease-in;
+	.question {
+		list-style: none;
+		span:first-child {
+			cursor: pointer;
+		}
+		.title {
+			display: flex;
+			justify-content: space-between;
+			padding-right: 80px;
+		}
+	}
+	.details {
+		margin-top: 10px;
+		display: flex;
+		column-gap: 60px;
+		.answer {
+			color: var(--gray);
+		}
+		.text {
+		}
+	}
+}
