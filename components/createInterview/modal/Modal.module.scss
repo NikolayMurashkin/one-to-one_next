@@ -1,0 +1,52 @@
+.interview {
+	position: absolute;
+	top: 103px;
+	bottom: 103px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: papayawhip;
+
+	padding: 20px 30px;
+	width: 376px;
+	height: 522px;
+	background: var(--white);
+	border-radius: 10px;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.plusIcon {
+	cursor: default;
+}
+.plusActive {
+	cursor: pointer;
+}
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.title {
+	font-size: 20px;
+	line-height: 24px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+
+	&__top {
+		display: flex;
+	}
+
+	&__bottom {
+		display: flex;
+	}
+}

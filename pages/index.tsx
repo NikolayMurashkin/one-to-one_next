@@ -7,6 +7,7 @@ import { InterviewTabs } from '../components/interviewPage/InterviewTabs';
 import { fetcher } from '../heplers/api-utils';
 import styles from './index.module.scss';
 import { TIndexProps } from '../types/index.props';
+import { Modal } from '../components/createInterview/modal/Modal';
 
 const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 	const { data, error } = useSWR(
@@ -26,10 +27,6 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 		<>
 			<Head>
 				<title>One-To-One</title>
-				<meta
-					http-equiv='Content-Security-Policy'
-					content='upgrade-insecure-requests'
-				/>
 				<meta name='description' content='Interviewing Service' />
 				<meta
 					name='viewport'
