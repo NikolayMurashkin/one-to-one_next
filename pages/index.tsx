@@ -6,7 +6,7 @@ import { InterviewInfoList } from '../components/interviewPage/InterviewInfoList
 import { InterviewTabs } from '../components/interviewPage/InterviewTabs';
 import { fetcher } from '../heplers/api-utils';
 import styles from './index.module.scss';
-import { TIndexProps } from './index.props';
+import { TIndexProps } from '../types/index.props';
 
 const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 	const { data, error } = useSWR(
