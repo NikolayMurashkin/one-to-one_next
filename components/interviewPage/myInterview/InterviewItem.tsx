@@ -17,7 +17,7 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 }) => {
 	const cx = classNames.bind(styles);
 	return (
-		<section
+		<li
 			className={cx('interviewItem', {
 				ready: status === 'ready',
 				pending: status === 'pending',
@@ -63,6 +63,6 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 					Ожидание
 				</span>
 			)}
-		</section>
+		</li>
 	);
 };

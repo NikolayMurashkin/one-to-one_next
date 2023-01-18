@@ -3,6 +3,6 @@ export type TInteviewItemProps = {
 	color: 'primary' | 'secondary' | 'ghost';
 	stack: string;
 	name: string;
-	date: string;
+	date: string | undefined;
 	grade: string;
 };

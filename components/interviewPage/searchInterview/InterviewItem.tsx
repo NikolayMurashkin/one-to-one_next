@@ -11,7 +11,7 @@ export const InterviewItem: React.FC<TInteviewItemProps> = ({
 	grade,
 }) => {
 	return (
-		<section className={styles.InteviewItem}>
+		<li className={styles.InteviewItem}>
 			<span className={styles.text}>{date}</span>
 			<span className={styles.text}>{stack}</span>
 			<span className={styles.text}>{name}</span>
@@ -23,6 +23,6 @@ export const InterviewItem: React.FC<TInteviewItemProps> = ({
 					disabled={buttonText === 'Заявка отправлена!'}
 				/>
 			</span>
-		</section>
+		</li>
 	);
 };

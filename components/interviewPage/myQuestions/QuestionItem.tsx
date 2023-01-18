@@ -1,13 +1,13 @@
-import styles from './InterviewItem.module.scss';
-import { TInterviewItemProps } from './InterviewItem.props';
+import styles from './QuestionItem.module.scss';
+import { TQuestionItemProps } from './QuestionItem.props';
 
-export const InterviewItem: React.FC<TInterviewItemProps> = ({
+export const QuestionItem: React.FC<TQuestionItemProps> = ({
 	question,
 	answer,
 	technology,
 }) => {
 	return (
-		<section className={styles.section}>
+		<li className={styles.section}>
 			<details className={styles.interviewItem}>
 				<summary className={styles.question}>
 					<div className={styles.title}>
@@ -20,6 +20,6 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 					<p className={styles.text}>{answer}</p>
 				</div>
 			</details>
-		</section>
+		</li>
 	);
 };

@@ -5,10 +5,9 @@ import { SortItem } from './SortItem';
 
 type TSortListProps = {
 	tabId: string | number;
-	className: 'myInterview' | 'myQuestions' | 'searchInterview';
 };
 
-export const SortList: React.FC<TSortListProps> = ({ tabId, className }) => {
+export const SortList: React.FC<TSortListProps> = ({ tabId}) => {
 	const cx = classNames.bind(styles);
 	return (
 		<>
@@ -57,6 +56,22 @@ export const SortList: React.FC<TSortListProps> = ({ tabId, className }) => {
 					</li>
 					<li className={styles.sortItem}>
 						<SortItem text='Технология' />
+					</li>
+				</ul>
+			)}
+			{tabId == 4 && (
+				<ul className={cx('sortList', 'statistic')}>
+					<li className={styles.sortItem}>
+						<SortItem text='Технология' />
+					</li>
+					<li className={styles.sortItem}>
+						<SortItem text='Средний балл' />
+					</li>
+					<li className={styles.sortItem}>
+						<SortItem text='Набрано баллов' />
+					</li>
+					<li className={styles.sortItem}>
+						<SortItem text='Пройдено вопросов' />
 					</li>
 				</ul>
 			)}

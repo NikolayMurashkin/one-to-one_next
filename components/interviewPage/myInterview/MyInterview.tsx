@@ -1,265 +1,39 @@
-import { SortList } from '../SortList';
+import useSWR from 'swr';
+
 import styles from './MyInterview.module.scss';
 import { InterviewItem } from './InterviewItem';
+import { fetcher, getDate } from '../../../heplers/api-utils';
+import { TOneToOne } from '../searchInterview/SearchInterview.props';
 
 export const MyInterview = () => {
+	const { data, error } = useSWR(
+		'http://158.160.51.32:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
+		fetcher
+	);
+
+	if (!data) {
+		return <p>Загрузка дааных...</p>;
+	}
+
+	if (error) {
+		return <p>Что-то пошло не так! Мы скоро всё исправим!</p>;
+	}
+
 	return (
-		<>
-			<SortList tabId={1} className='myInterview' />
-			<ul className={styles.list}>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='pending'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='ready'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-				<li className={styles.item}>
-					<InterviewItem
-						date='11.01.2023 10:00 MSK'
-						grade='Middle'
-						name='Артем Кашаков'
-						stack='Python'
-						status='complete'
-					/>
-				</li>
-			</ul>
-		</>
+		<ul className={styles.list}>
+			{data &&
+				data.items.map((item: TOneToOne) => {
+					return (
+						<InterviewItem
+							key={item.id}
+							date={getDate(data, item.dateTime)}
+							grade={item.level}
+							name={item.technology.name}
+							stack={item.technology.name}
+							status={'complete'}
+						/>
+					);
+				})}
+		</ul>
 	);
 };

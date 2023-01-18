@@ -1,10 +1,18 @@
 import Image from 'next/image';
 import { FaStar } from 'react-icons/fa';
 import { useState } from 'react';
+import classNames from 'classnames/bind';
 
 import styles from './Rating.module.scss';
 
-const Rating = () => {
+type TRatingProps = {
+	readOnly: boolean;
+	count?: number;
+};
+
+const Rating: React.FC<TRatingProps> = ({ readOnly, count = 0 }) => {
+	const cx = classNames.bind(styles);
+
 	const [rating, setRating] = useState(0);
 	const [hover, setHover] = useState(0);
 
@@ -19,18 +27,32 @@ const Rating = () => {
 							type='radio'
 							name='rating'
 							value={ratingValue}
-							onClick={() => setRating(ratingValue)}
+							onClick={() => {
+								if (!readOnly) {
+									setRating(ratingValue);
+								}
+							}}
 						/>
 						<FaStar
-							size={15}
-							className={styles.star}
+							size={20}
+							className={cx('star', {
+								readOnly: readOnly === true,
+							})}
 							color={
-								ratingValue <= (hover || rating)
+								ratingValue <= (hover || rating || count)
 									? '#ffc107'
 									: '#e4e5e9'
 							}
-							onMouseEnter={() => setHover(ratingValue)}
-							onMouseLeave={() => setHover(0)}
+							onMouseEnter={() => {
+								if (!readOnly) {
+									setHover(ratingValue);
+								}
+							}}
+							onMouseLeave={() => {
+								if (!readOnly) {
+									setHover(0);
+								}
+							}}
 						/>
 					</label>
 				);

@@ -6,12 +6,18 @@ import { TTab } from '../ui/tabs/Tabs.props';
 import { SearchInterview } from './searchInterview/SearchInterview';
 import { MyInterview } from './myInterview/MyInterview';
 import { MyQuestions } from './myQuestions/MyQuestions';
+import { Statistic } from './statistic/Statistic';
+import { SortList } from './SortList';
+import { TInterviewTabsProps } from './InterviewTabs.props';
 
-export const InterviewTabs = () => {
+export const InterviewTabs: React.FC<TInterviewTabsProps> = ({
+	interviewsLength,
+	questionsLength,
+}) => {
 	const tabs: TTab[] = [
-		{ id: '1', label: 'Мои собеседования (11)' },
+		{ id: '1', label: `Мои собеседования (${interviewsLength})` },
 		{ id: '2', label: 'Поиск собеседований' },
-		{ id: '3', label: 'Мои вопросы (50)' },
+		{ id: '3', label: `Мои вопросы (${questionsLength})` },
 		{ id: '4', label: 'Моя статистика' },
 	];
 
@@ -29,11 +35,12 @@ export const InterviewTabs = () => {
 				tabs={tabs}
 			/>
 			<div className={styles.tab}>
+				<SortList tabId={selectedTabId} />
 				<div className={styles.content}>
 					{selectedTabId === tabs[0].id && <MyInterview />}
 					{selectedTabId === tabs[1].id && <SearchInterview />}
 					{selectedTabId === tabs[2].id && <MyQuestions />}
-					{selectedTabId === tabs[3].id && <div>TAB CONTENT 4</div>}
+					{selectedTabId === tabs[3].id && <Statistic />}
 				</div>
 			</div>
 		</section>

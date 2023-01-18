@@ -3,7 +3,7 @@
 	position: relative;
 
 	.tab {
-		border: 1px solid rgba(0, 0, 0, 0.1);
+		border: 1px solid rgba(0, 0, 0, 0.5);
 		border-top: none;
 		border-bottom-left-radius: 10px 10px;
 		border-bottom-right-radius: 10px 10px;
@@ -15,9 +15,10 @@
 	.content {
 		border: 1px solid rgba(0, 0, 0, 0.1);
 		border-radius: 10px;
-		padding: 10px 10px 10px 10px;
+		padding: 0px 10px 10px 10px;
+		margin-top: 25px;
 		overflow-y: auto;
-		max-height: calc(100vh - 290px);
+		max-height: calc(100vh - 320px);
 		&::-webkit-scrollbar {
 			width: 28px;
 			height: 0;

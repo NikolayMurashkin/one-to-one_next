@@ -1,12 +1,27 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import Header from '../components/header/Header';
+import { GetStaticProps } from 'next/types';
+import useSWR from 'swr';
+
 import { InterviewInfoList } from '../components/interviewPage/InterviewInfoList';
 import { InterviewTabs } from '../components/interviewPage/InterviewTabs';
-
+import { fetcher } from '../heplers/api-utils';
 import styles from './index.module.scss';
+import { TIndexProps } from './index.props';
 
-const HomePage = () => {
+const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
+	const { data, error } = useSWR(
+		'http://158.160.51.32:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
+		fetcher
+	);
+
+	if (!data) {
+		return <p>Загрузка дааных...</p>;
+	}
+
+	if (error) {
+		return <p>Что-то пошло не так! Мы скоро всё исправим!</p>;
+	}
+
 	return (
 		<>
 			<Head>
@@ -19,7 +34,10 @@ const HomePage = () => {
 			</Head>
 			<main className={styles.main}>
 				<InterviewInfoList />
-				<InterviewTabs />
+				<InterviewTabs
+					interviewsLength={interviews}
+					questionsLength={questions}
+				/>
 			</main>
 		</>
 	);
@@ -27,6 +45,18 @@ const HomePage = () => {
 
 export default HomePage;
 
-// export function getStaticProps() {
-// 	return
-// }
+export const getStaticProps: GetStaticProps = async () => {
+	const getAllInterviews = await fetcher(
+		'http://158.160.51.32:8080/one-to-one/api/v1/one-to-one'
+	);
+	const getAllQuestions = await fetcher(
+		'http://158.160.51.32:8080/one-to-one/api/v1/user/1/question'
+	);
+
+	return {
+		props: {
+			interviews: getAllInterviews.totalItems,
+			questions: getAllQuestions.totalItems,
+		},
+	};
+};
