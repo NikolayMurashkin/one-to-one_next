@@ -26,6 +26,10 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 		<>
 			<Head>
 				<title>One-To-One</title>
+				<meta
+					http-equiv='Content-Security-Policy'
+					content='upgrade-insecure-requests'
+				/>
 				<meta name='description' content='Interviewing Service' />
 				<meta
 					name='viewport'
