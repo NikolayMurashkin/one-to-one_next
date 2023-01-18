@@ -10,7 +10,7 @@ import { TIndexProps } from '../types/index.props';
 
 const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 	const { data, error } = useSWR(
-		'https://158.160.51.32:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
+		'http://158.160.51.32:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
 		fetcher
 	);
 
