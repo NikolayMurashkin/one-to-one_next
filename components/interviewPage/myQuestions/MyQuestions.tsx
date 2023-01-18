@@ -7,7 +7,7 @@ import { TQuestionItem } from './MyQuestions.props';
 
 export const MyQuestions = () => {
 	const { data, error } = useSWR(
-		'http://158.160.51.32:8080/one-to-one/api/v1/user/1/question',
+		'https://158.160.51.32:8080/one-to-one/api/v1/user/1/question',
 		fetcher
 	);
 
