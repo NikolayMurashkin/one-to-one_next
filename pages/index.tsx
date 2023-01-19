@@ -12,24 +12,11 @@ import { useEffect, useState } from 'react';
 import { Datepicker } from '../components/createInterview/datepicker/Datepicker';
 
 const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
-	const [interviewItems, setInterviewItems] = useState();
-	const [questionItems, setQquestionItems] = useState();
-
 	const { data, error } = useSWR(
 		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
 		fetcher
 	);
-
-	useEffect(() => {
-		fetch('http://51.250.8.47:8080/one-to-one/api/v1/one-to-one')
-			.then((res) => res.json())
-			.then((data) => setInterviewItems(data));
-		fetch('http://51.250.8.47:8080/one-to-one/api/v1/user/1/question')
-			.then((res) => res.json())
-			.then((data) => setQquestionItems(data));
-	}, []);
-
-	if (!data || !interviewItems || !questionItems) {
+	if (!data) {
 		return <p>Загрузка дааных...</p>;
 	}
 
@@ -50,8 +37,8 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 			<main className={styles.main}>
 				<InterviewInfoList />
 				<InterviewTabs
-					interviewsLength={interviewItems}
-					questionsLength={questionItems}
+					interviewsLength={interviews}
+					questionsLength={questions}
 				/>
 				<Datepicker />
 			</main>
@@ -61,18 +48,18 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 
 export default HomePage;
 
-// export const getStaticProps: GetStaticProps = async () => {
-// 	const getAllInterviews = await fetch(
-// 		'../../one-to-one/api/v1/one-to-one'
-// 	).then((res) => res.json());
-// 	const getAllQuestions = await fetch(
-// 		'../../one-to-one/api/v1/user/1/question'
-// 	).then((res) => res.json());
+export const getStaticProps: GetStaticProps = async () => {
+	const getAllInterviews = await fetcher(
+		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one'
+	);
+	const getAllQuestions = await fetcher(
+		'http://51.250.8.47:8080/one-to-one/api/v1/user/1/question'
+	).then((res) => res.json());
 
-// 	return {
-// 		props: {
-// 			interviews: getAllInterviews.totalItems,
-// 			questions: getAllQuestions.totalItems,
-// 		},
-// 	};
-// };
+	return {
+		props: {
+			interviews: getAllInterviews.totalItems,
+			questions: getAllQuestions.totalItems,
+		},
+	};
+};
