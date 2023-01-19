@@ -39,6 +39,7 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 					interviewsLength={interviews}
 					questionsLength={questions}
 				/>
+				Date
 			</main>
 		</>
 	);
@@ -48,10 +49,10 @@ export default HomePage;
 
 export const getStaticProps: GetStaticProps = async () => {
 	const getAllInterviews = await fetcher(
-		'http://158.160.51.32:8080/one-to-one/api/v1/one-to-one'
+		'../one-to-one/api/v1/one-to-one'
 	);
 	const getAllQuestions = await fetcher(
-		'http://158.160.51.32:8080/one-to-one/api/v1/user/1/question'
+		'../one-to-one/api/v1/user/1/question'
 	);
 
 	return {
