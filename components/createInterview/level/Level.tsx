@@ -5,19 +5,19 @@ import Select from 'react-select';
 import { fetcher } from '../../../heplers/api-utils';
 import styles from './Technology.module.scss';
 
-export const Level = () => {
+export const Level = ({ setLevel }) => {
 	const levels = [
 		{
 			name: 'Junior',
-			value: 'Junior',
+			value: '1',
 		},
 		{
 			name: 'Middle',
-			value: 'Middle',
+			value: '2',
 		},
 		{
 			name: 'Senior',
-			value: 'Senior',
+			value: '3',
 		},
 	];
 	const noOptionsText = 'Уровень не найден!';
@@ -32,10 +32,11 @@ export const Level = () => {
 			placeholder='Выбрать'
 			options={levels.map((level) => {
 				return {
-					value: level.value.toUpperCase(),
+					value: level.value,
 					label: level.name.toUpperCase(),
 				};
 			})}
+			onChange={setLevel}
 		/>
 	);
 };

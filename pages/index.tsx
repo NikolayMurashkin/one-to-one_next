@@ -60,5 +60,6 @@ export const getStaticProps: GetStaticProps = async () => {
 			interviews: getAllInterviews.totalItems,
 			questions: getAllQuestions.totalItems,
 		},
+		revalidate: 60,
 	};
 };

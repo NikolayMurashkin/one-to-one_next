@@ -6,7 +6,7 @@ import { ru } from 'date-fns/locale';
 import styles from './Datepicker.module.scss';
 import { CalendarIcon } from '../../../public/icons/CalendarIcon';
 
-export const Datepicker = () => {
+export const Datepicker = ({ setDate }) => {
 	const [selected, setSelected] = useState<Date>();
 	const [calendarIsOpen, setCalendarIsOpen] = useState<boolean>(false);
 
@@ -38,6 +38,7 @@ export const Datepicker = () => {
 					selected={selected}
 					onSelect={(e) => {
 						onSelectHanler();
+						setDate(e)
 						setSelected(e);
 					}}
 					className={styles.calendar}

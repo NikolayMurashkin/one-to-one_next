@@ -11,28 +11,57 @@ import { Technology } from '../technology/Technology';
 import { Timepicker } from '../timepicker/Timepicker';
 import { Level } from '../level/Level';
 import Button from './../../ui/button/Button';
+import { json } from 'stream/consumers';
 
 export const Modal: React.FC<TModalProps> = ({
 	tab,
 	selectedTab,
 }): JSX.Element => {
 	const cx = classNames.bind(styles);
-
-	// let subtitle;
 	const [modalIsOpen, setIsOpen] = useState(false);
+	const [date, setDate] = useState('');
+	const [stack, setStack] = useState('');
+	const [time, setTime] = useState('');
+	const [level, setLevel] = useState('');
+	const [comment, setComment] = useState('');
 
 	function openModal() {
 		setIsOpen(true);
 	}
-
-	function afterOpenModal() {
-		// references are now sync'd and can be accessed.
-		// subtitle.style.color = '#f00';
-	}
-
 	function closeModal() {
 		setIsOpen(false);
 	}
+
+	const submitCreateInterview = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		const newTime = time.split(':');
+		const seconds = (+newTime[0] + 7) * 60 * 60 + +newTime[1] * 60;
+		const milliseconds = seconds * 1000;
+
+		const newDate = new Date(date);
+		newDate.setDate(newDate.getDate());
+		newDate.setTime(newDate.getTime() + milliseconds);
+
+		console.log(comment);
+
+		const data = {
+			dateTime: newDate.toISOString(),
+			levelId: +level.value,
+			comment,
+			initiatorId: 1,
+			technologyId: +stack.value,
+		};
+
+		fetch('http://51.250.8.47:8080/one-to-one/api/v1/one-to-one', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(data),
+		});
+		setIsOpen(false);
+	};
+
 	if (tab === '1') {
 		return (
 			<>
@@ -46,7 +75,6 @@ export const Modal: React.FC<TModalProps> = ({
 				<ReactModal
 					ariaHideApp={false}
 					isOpen={modalIsOpen}
-					onAfterOpen={afterOpenModal}
 					onRequestClose={closeModal}
 					contentLabel='Example Modal'
 					className={cx('interview')}
@@ -55,17 +83,20 @@ export const Modal: React.FC<TModalProps> = ({
 					<div className={cx('header')}>
 						<h2 className={cx('title')}>Создание собеседования</h2>
 					</div>
-					<form className={cx('form')}>
+					<form
+						className={cx('form')}
+						onSubmit={(e) => submitCreateInterview(e)}
+					>
 						<div className={cx('form__top')}>
 							<div>
 								<span className={cx('form__label')}>
 									Дата собеседования
 								</span>
-								<Datepicker />
+								<Datepicker setDate={setDate} />
 							</div>
 							<div>
 								<span className={cx('form__label')}>Стек</span>
-								<Technology />
+								<Technology setStack={setStack} />
 							</div>
 						</div>
 						<div className={cx('form__bottom')}>
@@ -73,13 +104,13 @@ export const Modal: React.FC<TModalProps> = ({
 								<span className={cx('form__label')}>
 									Время собеседования
 								</span>
-								<Timepicker />
+								<Timepicker setTime={setTime} />
 							</div>
 							<div>
 								<span className={cx('form__label')}>
 									Уровень
 								</span>
-								<Level />
+								<Level setLevel={setLevel} />
 							</div>
 						</div>
 						<label htmlFor='comment' className={cx('form__label')}>
@@ -92,6 +123,7 @@ export const Modal: React.FC<TModalProps> = ({
 							cols={30}
 							rows={10}
 							className={cx('form__comment')}
+							onChange={(e) => setComment(e.target.value)}
 						/>
 						<Button
 							color='secondary'
@@ -116,7 +148,6 @@ export const Modal: React.FC<TModalProps> = ({
 				<ReactModal
 					ariaHideApp={false}
 					isOpen={modalIsOpen}
-					onAfterOpen={afterOpenModal}
 					onRequestClose={closeModal}
 					className={cx('question')}
 					overlayClassName={cx('overlay')}

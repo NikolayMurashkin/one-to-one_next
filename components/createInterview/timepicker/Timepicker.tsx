@@ -1,3 +1,17 @@
-export const Timepicker = () => {
-	return <div>23:42</div>;
+import styles from './Timepicker.module.scss';
+import { useState } from 'react';
+
+export const Timepicker = ({ setTime }) => {
+	return (
+		<>
+			<input
+				type='time'
+				name=''
+				id=''
+				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+					setTime(e.target.value)
+				}
+			/>
+		</>
+	);
 };
