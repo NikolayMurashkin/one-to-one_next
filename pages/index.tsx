@@ -8,14 +8,28 @@ import { fetcher } from '../heplers/api-utils';
 import styles from './index.module.scss';
 import { TIndexProps } from '../types/index.props';
 import { Modal } from '../components/createInterview/modal/Modal';
+import { useEffect, useState } from 'react';
+import { Datepicker } from '../components/createInterview/datepicker/Datepicker';
 
 const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
+	const [interviewItems, setInterviewItems] = useState();
+	const [questionItems, setQquestionItems] = useState();
+
 	const { data, error } = useSWR(
 		'http://158.160.51.32:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
 		fetcher
 	);
 
-	if (!data) {
+	useEffect(() => {
+		fetch('../../one-to-one/api/v1/one-to-one')
+			.then((res) => res.json())
+			.then((data) => setInterviewItems(data));
+		fetch('../../one-to-one/api/v1/user/1/question')
+			.then((res) => res.json())
+			.then((data) => setQquestionItems(data));
+	}, []);
+
+	if (!data || !interviewItems || !questionItems) {
 		return <p>Загрузка дааных...</p>;
 	}
 
@@ -36,10 +50,10 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 			<main className={styles.main}>
 				<InterviewInfoList />
 				<InterviewTabs
-					interviewsLength={interviews}
-					questionsLength={questions}
+					interviewsLength={interviewItems}
+					questionsLength={questionItems}
 				/>
-				Date
+				<Datepicker />
 			</main>
 		</>
 	);
@@ -47,18 +61,18 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 
 export default HomePage;
 
-export const getStaticProps: GetStaticProps = async () => {
-	const getAllInterviews = await fetch(
-		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one'
-	).then((res) => res.json());
-	const getAllQuestions = await fetch(
-		'http://51.250.8.47:8080/one-to-one/api/v1/user/1/question'
-	).then((res) => res.json());
+// export const getStaticProps: GetStaticProps = async () => {
+// 	const getAllInterviews = await fetch(
+// 		'../../one-to-one/api/v1/one-to-one'
+// 	).then((res) => res.json());
+// 	const getAllQuestions = await fetch(
+// 		'../../one-to-one/api/v1/user/1/question'
+// 	).then((res) => res.json());
 
-	return {
-		props: {
-			interviews: getAllInterviews.totalItems,
-			questions: getAllQuestions.totalItems,
-		},
-	};
-};
+// 	return {
+// 		props: {
+// 			interviews: getAllInterviews.totalItems,
+// 			questions: getAllQuestions.totalItems,
+// 		},
+// 	};
+// };
