@@ -54,12 +54,19 @@ export const Modal: React.FC<TModalProps> = ({
 				>
 					<div className={cx('header')}>
 						<h2 className={cx('title')}>Создание собеседования</h2>
-
 					</div>
 					<form className={cx('form')}>
 						<div className={cx('form__top')}>
-							<Datepicker />
-							<Technology />
+							<div>
+								<span className={cx('form__label')}>
+									Дата собеседования
+								</span>
+								<Datepicker />
+							</div>
+							<div>
+								<span className={cx('form__label')}>Стек</span>
+								<Technology />
+							</div>
 						</div>
 						{/* <div className={cx('form__bottom')}>
 							<Timepicker />

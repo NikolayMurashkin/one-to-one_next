@@ -40,7 +40,6 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 					interviewsLength={interviews}
 					questionsLength={questions}
 				/>
-				<Datepicker />
 			</main>
 		</>
 	);
