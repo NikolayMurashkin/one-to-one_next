@@ -1,3 +1,3 @@
 export const Timepicker = () => {
-	return <p>Timepicker</p>;
+	return <div>23:42</div>;
 };

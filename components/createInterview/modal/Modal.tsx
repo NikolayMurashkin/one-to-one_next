@@ -68,25 +68,36 @@ export const Modal: React.FC<TModalProps> = ({
 								<Technology />
 							</div>
 						</div>
-						{/* <div className={cx('form__bottom')}>
-							<Timepicker />
-							<Level />
+						<div className={cx('form__bottom')}>
+							<div>
+								<span className={cx('form__label')}>
+									Время собеседования
+								</span>
+								<Timepicker />
+							</div>
+							<div>
+								<span className={cx('form__label')}>
+									Уровень
+								</span>
+								<Level />
+							</div>
 						</div>
-						<label htmlFor=''>
+						<label htmlFor='comment' className={cx('form__label')}>
 							Комментарий
-							<textarea
-								placeholder='Укажите здесь свои контакты для связи и предпочитаемую платформу для проведения звонка'
-								name=''
-								id=''
-								cols={30}
-								rows={10}
-							></textarea>
 						</label>
+						<textarea
+							placeholder='Укажите здесь свои контакты для связи и предпочитаемую платформу для проведения звонка'
+							name=''
+							id='comment'
+							cols={30}
+							rows={10}
+							className={cx('form__comment')}
+						/>
 						<Button
 							color='secondary'
 							text='Сохранить'
 							disabled={false}
-						/> */}
+						/>
 					</form>
 				</ReactModal>
 			</>

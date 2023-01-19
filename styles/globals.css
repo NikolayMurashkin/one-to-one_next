@@ -117,11 +117,6 @@ h6 {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 2px;
 }
-
-.react-select__value-container {
-	/* display: flex; */
-}
-
 .react-select__placeholder {
 	font-size: 12px;
 	line-height: 15px;
@@ -133,7 +128,6 @@ h6 {
 	margin: 0 !important;
 	padding-bottom: 0 !important;
 	padding-top: 0 !important;
-	/* display: none !important; */
 }
 
 .react-select__indicators {}
@@ -150,11 +144,5 @@ h6 {
 	color: var(--orange) !important;
 }
 
-.react-select__indicator svg {
-	/* width: 12px;
-	height: 6px; */
-}
-
-.react-select__menu {}
-
 /*===================React Select=======================*/
+
