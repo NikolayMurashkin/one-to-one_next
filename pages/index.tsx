@@ -48,12 +48,12 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 export default HomePage;
 
 export const getStaticProps: GetStaticProps = async () => {
-	const getAllInterviews = await fetcher(
+	const getAllInterviews = await fetch(
 		'http://localhost:8080/one-to-one/api/v1/one-to-one'
-	);
-	const getAllQuestions = await fetcher(
+	).then((res) => res.json());
+	const getAllQuestions = await fetch(
 		'http://localhost:8080/one-to-one/api/v1/user/1/question'
-	);
+	).then((res) => res.json());
 
 	return {
 		props: {
