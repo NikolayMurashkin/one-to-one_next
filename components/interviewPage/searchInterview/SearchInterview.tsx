@@ -7,7 +7,7 @@ import { fetcher, getDate } from '../../../heplers/api-utils';
 
 export const SearchInterview = () => {
 	const { data, error } = useSWR(
-		'http://158.160.51.32:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
+		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
 		fetcher
 	);
 
