@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	);
 	const getAllQuestions = await fetcher(
 		'http://51.250.8.47:8080/one-to-one/api/v1/user/1/question'
-	).then((res) => res.json());
+	);
 
 	return {
 		props: {
