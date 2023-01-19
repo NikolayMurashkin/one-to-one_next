@@ -16,15 +16,15 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 	const [questionItems, setQquestionItems] = useState();
 
 	const { data, error } = useSWR(
-		'http://localhost:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
+		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
 		fetcher
 	);
 
 	useEffect(() => {
-		fetch('http://localhost:8080/one-to-one/api/v1/one-to-one')
+		fetch('http://51.250.8.47:8080/one-to-one/api/v1/one-to-one')
 			.then((res) => res.json())
 			.then((data) => setInterviewItems(data));
-		fetch('http://localhost:8080/one-to-one/api/v1/user/1/question')
+		fetch('http://51.250.8.47:8080/one-to-one/api/v1/user/1/question')
 			.then((res) => res.json())
 			.then((data) => setQquestionItems(data));
 	}, []);
