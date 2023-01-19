@@ -49,10 +49,10 @@ export default HomePage;
 
 export const getStaticProps: GetStaticProps = async () => {
 	const getAllInterviews = await fetcher(
-		'../../one-to-one/api/v1/one-to-one'
+		'http://localhost:8080/one-to-one/api/v1/one-to-one'
 	);
 	const getAllQuestions = await fetcher(
-		'../../one-to-one/api/v1/user/1/question'
+		'http://localhost:8080/one-to-one/api/v1/user/1/question'
 	);
 
 	return {
