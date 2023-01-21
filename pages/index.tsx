@@ -1,19 +1,14 @@
 import Head from 'next/head';
-import { GetServerSideProps, GetStaticProps } from 'next/types';
-import useSWR from 'swr';
 
 import { InterviewInfoList } from '../components/interviewPage/InterviewInfoList';
 import { InterviewTabs } from '../components/interviewPage/InterviewTabs';
-import { fetcher } from '../heplers/api-utils';
 import styles from './index.module.scss';
 import { TIndexProps } from '../types/index.props';
+import { useGetAllOneToOneQuery } from '../redux';
 
-const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
-	const { data, error } = useSWR(
-		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one',
-		fetcher
-	);
-	if (!data) {
+const HomePage: React.FC<TIndexProps> = () => {
+	const { data: interviews, error } = useGetAllOneToOneQuery();
+	if (!interviews) {
 		return <p>Загрузка...</p>;
 	}
 
@@ -33,30 +28,10 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 			</Head>
 			<main className={styles.main}>
 				<InterviewInfoList />
-				<InterviewTabs
-					interviewsLength={interviews}
-					questionsLength={questions}
-				/>
+				<InterviewTabs/>
 			</main>
 		</>
 	);
 };
 
 export default HomePage;
-
-export const getServerSideProps: GetServerSideProps = async () => {
-	
-	const getAllInterviews = await fetcher(
-		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one'
-	);
-	const getAllQuestions = await fetcher(
-		'http://51.250.8.47:8080/one-to-one/api/v1/user/1/question'
-	);
-
-	return {
-		props: {
-			interviews: getAllInterviews.totalItems,
-			questions: getAllQuestions.totalItems,
-		},
-	};
-};

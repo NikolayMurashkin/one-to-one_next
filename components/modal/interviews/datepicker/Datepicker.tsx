@@ -4,7 +4,7 @@ import 'react-day-picker/dist/style.css';
 import { ru } from 'date-fns/locale';
 
 import styles from './Datepicker.module.scss';
-import { CalendarIcon } from '../../../public/icons/CalendarIcon';
+import { CalendarIcon } from '../../../../public/icons/CalendarIcon';
 
 type TDatepickerProps = {
 	setDate: React.Dispatch<React.SetStateAction<Date | undefined>>;

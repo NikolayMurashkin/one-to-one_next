@@ -1,19 +1,15 @@
-import useSWR from 'swr';
 
 import styles from './MyInterview.module.scss';
 import { InterviewItem } from './InterviewItem';
-import { fetcher, getDate } from '../../../heplers/api-utils';
-import { TOneToOne } from '../searchInterview/SearchInterview.props';
+import { getDate } from '../../../heplers/api-utils';
+import { useGetMyOneToOneQuery } from '../../../redux';
 
 export const MyInterview = () => {
+	const { data: interviews, error } = useGetMyOneToOneQuery();
 
-	const { data, error } = useSWR(
-		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one',
-		fetcher
-	);
 
-	if (!data) {
-		return <p>Загрузка дааных...</p>;
+	if (!interviews) {
+		return <p>Загрузка...</p>;
 	}
 
 	if (error) {
@@ -22,8 +18,8 @@ export const MyInterview = () => {
 
 	return (
 		<ul className={styles.list}>
-			{data.items &&
-				data.items.filter((item: TOneToOne) => item.status !== 'OPEN').map((item: TOneToOne) => {
+			{interviews.items &&
+				interviews.items.filter((item) => item.status !== 'OPEN').map((item) => {
 					return (
 						<InterviewItem
 							key={item.id}

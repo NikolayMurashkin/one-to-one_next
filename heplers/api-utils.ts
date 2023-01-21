@@ -1,7 +1,7 @@
-import { TOneToOne } from '../components/interviewPage/searchInterview/SearchInterview.props';
+import { IOneToOne } from '../redux';
 
 
-type TOptions = {
+type Options = {
 	year: 'numeric';
 	month: 'long';
 	day: 'numeric';
@@ -9,9 +9,9 @@ type TOptions = {
 	minute: '2-digit';
 };
 
-export const getDate = (data: TOneToOne, newDate: string): string => {
+export const getDate = (data: IOneToOne, newDate: string): string => {
 	if (data) {
-		const options: TOptions = {
+		const options: Options = {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric',

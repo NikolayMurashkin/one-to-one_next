@@ -1,6 +1,7 @@
 import styles from './InterviewItem.module.scss';
 import Button from '../../ui/button/Button';
 import { TInteviewItemProps } from './InterviewItem.props';
+import { useAcceptOneToOneMutation } from '../../../redux';
 
 export const InterviewItem: React.FC<TInteviewItemProps> = ({
 	buttonText,
@@ -10,6 +11,8 @@ export const InterviewItem: React.FC<TInteviewItemProps> = ({
 	date,
 	grade,
 }) => {
+	const [acceptInterviewHanlder] = useAcceptOneToOneMutation();
+
 	return (
 		<li className={styles.InteviewItem}>
 			<span className={styles.text}>{date}</span>
@@ -22,6 +25,7 @@ export const InterviewItem: React.FC<TInteviewItemProps> = ({
 					text={buttonText}
 					disabled={buttonText === 'Заявка отправлена!'}
 				/>
+				{/* <button onClick={}>Откликнуться</button> */}
 			</span>
 		</li>
 	);

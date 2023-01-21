@@ -1,11 +1,19 @@
 import classNames from 'classnames/bind';
 
 import styles from './Tabs.module.scss';
-import { TTabsProps } from './Tabs.props';
+import { TabsProps } from './Tabs.props';
 import { Modal } from '../../modal/Modal';
+import { useAppDispatch } from '../../../hooks/redux';
+import { setSelectedTab } from '../../../slices/tabSlice';
 
-export const Tabs: React.FC<TTabsProps> = ({ selectedId, tabs, onClick }) => {
+export const Tabs: React.FC<TabsProps> = ({ selectedId, tabs }) => {
+	const dispatch = useAppDispatch();
+
 	const cx = classNames.bind(styles);
+
+	const setTabHanlder = (tab: number) => {
+		dispatch(setSelectedTab(tab));
+	};
 
 	return (
 		<div className={styles.tabs}>
@@ -22,11 +30,11 @@ export const Tabs: React.FC<TTabsProps> = ({ selectedId, tabs, onClick }) => {
 								tabLabel__selected: tab.id === selectedId,
 							})}
 						>
-							<span onClick={() => onClick(tab.id)}>
+							<span onClick={() => setTabHanlder(tab.id)}>
 								{tab.label}
 							</span>
 						</div>
-						{tab.id === '1' || tab.id === '3' ? (
+						{tab.id === 1 || tab.id === 3 ? (
 							<Modal tab={tab.id} selectedTab={selectedId} />
 						) : null}
 					</div>

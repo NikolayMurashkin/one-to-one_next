@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import classNames from 'classnames/bind';
-
 import Link from 'next/link';
 
 import Button from '../../ui/button/Button';

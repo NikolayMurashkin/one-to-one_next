@@ -1,7 +1,7 @@
 import styles from './QuestionItem.module.scss';
-import { TQuestionItemProps } from './QuestionItem.props';
+import { QuestionItemProps } from '../../../redux';
 
-export const QuestionItem: React.FC<TQuestionItemProps> = ({
+export const QuestionItem: React.FC<QuestionItemProps> = ({
 	question,
 	answer,
 	technology,

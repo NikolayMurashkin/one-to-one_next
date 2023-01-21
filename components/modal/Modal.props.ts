@@ -1,4 +1,4 @@
 export type TModalProps = {
-	tab: string;
+	tab: number;
 	selectedTab: number | string;
 };

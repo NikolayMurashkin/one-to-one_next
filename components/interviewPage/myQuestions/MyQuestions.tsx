@@ -1,18 +1,13 @@
-import useSWR from 'swr';
+import { useGetAllQuestionsQuery} from '../../../redux/';
 
 import styles from './MyQuestions.module.scss';
 import { QuestionItem } from './QuestionItem';
-import { fetcher } from '../../../heplers/api-utils';
-import { TQuestionItem } from './MyQuestions.props';
 
 export const MyQuestions = () => {
-	const { data, error } = useSWR(
-		'http://51.250.8.47:8080/one-to-one/api/v1/user/1/question',
-		fetcher
-	);
+	const { data, error } = useGetAllQuestionsQuery(1);
 
 	if (!data) {
-		return <p>Загрузка дааных...</p>;
+		return <p>Загрузка...</p>;
 	}
 
 	if (error) {
@@ -22,13 +17,13 @@ export const MyQuestions = () => {
 	return (
 		<ul className={styles.list}>
 			{data &&
-				data.items.map((item: TQuestionItem) => {
+				data.items.map((item) => {
 					return (
 						<QuestionItem
 							key={item.id}
 							answer={item.answer}
 							question={item.question}
-							technology={item.technology.name}
+							technology={item.technology?.name}
 						/>
 					);
 				})}

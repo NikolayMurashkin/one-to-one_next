@@ -1,10 +1,9 @@
-export type TTab = {
-	id: string | number;
+export type Tab = {
+	id: number;
 	label?: string | number;
 };
 
-export type TTabsProps = {
-	selectedId: string | number;
-	tabs: TTab[];
-	onClick: (id: string | number) => void;
+export type TabsProps = {
+	selectedId: number;
+	tabs: Tab[];
 };
