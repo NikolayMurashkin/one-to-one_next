@@ -84,13 +84,16 @@ export const Modal: React.FC<TModalProps> = ({
 		e.stopPropagation();
 
 		const newArr: TQuestion[] = [];
-		// if (newArr.length <= 0) {
-		// 	fetch('http://51.250.8.47:8080/one-to-one/api/v1/one-to-one', {
-		// 		method: 'POST',
-		// 		headers: { 'Content-Type': 'application/json' },
-		// 		body: JSON.stringify({questions: questionsList}),
-		// 	});
-		// }
+		if (question.length <= 0 || answer.length <= 0) {
+			fetch(
+				'http://51.250.8.47:8080/one-to-one/api/v1/user/1/question/create',
+				{
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ questions: questionsList }),
+				}
+			);
+		}
 		const data = {
 			userId: 1,
 			questions: newArr.concat(questionsList, [
