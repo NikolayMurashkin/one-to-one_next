@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Tabs.module.scss';
 import { TTabsProps } from './Tabs.props';
-import { Modal } from '../../createInterview/modal/Modal';
+import { Modal } from '../../modal/Modal';
 
 export const Tabs: React.FC<TTabsProps> = ({ selectedId, tabs, onClick }) => {
 	const cx = classNames.bind(styles);

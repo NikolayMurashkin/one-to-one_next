@@ -2,17 +2,28 @@ import { useState } from 'react';
 import ReactModal from 'react-modal';
 import classNames from 'classnames/bind';
 
-import HomePage from '../../../pages';
-import { PlusIcon } from '../../../public/icons/PlusIcon';
+import { PlusIcon } from '../../public/icons/PlusIcon';
 import styles from './Modal.module.scss';
 import { TModalProps } from './Modal.props';
-import { Datepicker } from '../datepicker/Datepicker';
-import { Technology } from '../technology/Technology';
-import { Timepicker } from '../timepicker/Timepicker';
-import { Level } from '../level/Level';
-import Button from './../../ui/button/Button';
-import { json } from 'stream/consumers';
+import { Datepicker } from '../createInterview/datepicker/Datepicker';
+import { Technology } from '../createInterview/technology/Technology';
+import { Timepicker } from '../createInterview/timepicker/Timepicker';
+import { Level } from '../createInterview/level/Level';
+import Button from '../ui/button/Button';
 import { SingleValue } from 'react-select';
+import { QuestionItem } from '../interviewPage/myQuestions/QuestionItem';
+
+type TQuestion = {
+	id?: number;
+	question: string;
+	answer: string;
+	technology?: {
+		id: number | undefined;
+		name: string;
+	};
+	technologyId?: number | undefined;
+	userId: number | undefined;
+};
 
 export const Modal: React.FC<TModalProps> = ({
 	tab,
@@ -29,6 +40,9 @@ export const Modal: React.FC<TModalProps> = ({
 		SingleValue<{ value: number; label: string }>
 	>({ value: 1, label: 'Junior' });
 	const [comment, setComment] = useState('');
+	const [question, setQuestion] = useState('');
+	const [answer, setAnswer] = useState('');
+	const [questionsList, setQuestionsList] = useState<TQuestion[]>([]);
 
 	function openModal() {
 		setIsOpen(true);
@@ -63,6 +77,60 @@ export const Modal: React.FC<TModalProps> = ({
 			body: JSON.stringify(data),
 		});
 		setIsOpen(false);
+	};
+
+	const sendQuestionsHandler = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		const newArr: TQuestion[] = [];
+		// if (newArr.length <= 0) {
+		// 	fetch('http://51.250.8.47:8080/one-to-one/api/v1/one-to-one', {
+		// 		method: 'POST',
+		// 		headers: { 'Content-Type': 'application/json' },
+		// 		body: JSON.stringify({questions: questionsList}),
+		// 	});
+		// }
+		const data = {
+			userId: 1,
+			questions: newArr.concat(questionsList, [
+				{
+					question,
+					answer,
+					userId: 1,
+					technologyId: stack !== null ? stack.value : 1,
+				},
+			]),
+		};
+
+		fetch(
+			'http://51.250.8.47:8080/one-to-one/api/v1/user/1/question/create',
+			{
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(data),
+			}
+		);
+		setQuestion('');
+		setAnswer('');
+		setIsOpen(false);
+	};
+
+	const addOneMoreQuestionHandler = () => {
+		const newArr: TQuestion[] = [];
+		setQuestionsList(
+			newArr.concat(questionsList, [
+				{
+					question,
+					answer,
+					userId: 1,
+					technologyId: stack !== null ? stack.value : 1,
+				},
+			])
+		);
+
+		setQuestion('');
+		setAnswer('');
 	};
 
 	if (tab === '1') {
@@ -156,7 +224,55 @@ export const Modal: React.FC<TModalProps> = ({
 					overlayClassName={cx('overlay')}
 					contentLabel='Example Modal'
 				>
-					<h1>My Questions</h1>
+					<form
+						className={cx('questions')}
+						onSubmit={sendQuestionsHandler}
+					>
+						<div className={cx('questions__top')}>
+							<PlusIcon
+								onClick={addOneMoreQuestionHandler}
+								color='#808080'
+							/>
+							<Button color='secondary' text='Сохранить' />
+						</div>
+						<div className={cx('questions__body')}>
+							<div className={cx('questions__question')}>
+								<textarea
+									placeholder='Вопрос'
+									value={question}
+									cols={1}
+									rows={1}
+									className={cx('questions__input')}
+									onChange={(e) =>
+										setQuestion(e.target.value)
+									}
+								/>
+								<Technology setStack={setStack} />
+							</div>
+							<textarea
+								placeholder='Ответ'
+								className={cx('questions__input')}
+								cols={1}
+								rows={4}
+								value={answer}
+								onChange={(e) => setAnswer(e.target.value)}
+							/>
+						</div>
+						{questionsList && (
+							<ul className={cx('questions__added')}>
+								{questionsList.map((question) => {
+									return (
+										<QuestionItem
+											key={question.technologyId}
+											answer={question.answer}
+											question={question.question}
+											technology={question.technologyId?.toString()}
+										/>
+									);
+								})}
+							</ul>
+						)}
+					</form>
 				</ReactModal>
 			</>
 		);
