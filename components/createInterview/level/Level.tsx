@@ -1,23 +1,27 @@
 import React from 'react';
-import useSWR from 'swr';
-import Select from 'react-select';
+import Select, { SingleValue } from 'react-select';
 
-import { fetcher } from '../../../heplers/api-utils';
-import styles from './Technology.module.scss';
 
-export const Level = ({ setLevel }) => {
+type TLevelProps = {
+	setLevel: React.Dispatch<
+		React.SetStateAction<SingleValue<{ value: number; label: string }>>
+	>;
+};
+
+
+export const Level: React.FC<TLevelProps> = ({ setLevel }) => {
 	const levels = [
 		{
 			name: 'Junior',
-			value: '1',
+			value: 1,
 		},
 		{
 			name: 'Middle',
-			value: '2',
+			value: 2,
 		},
 		{
 			name: 'Senior',
-			value: '3',
+			value: 3,
 		},
 	];
 	const noOptionsText = 'Уровень не найден!';
@@ -25,7 +29,7 @@ export const Level = ({ setLevel }) => {
 	return (
 		<Select
 			noOptionsMessage={({ inputValue }) =>
-				!inputValue ? noOptionsText : 'Технология не найден!'
+				!inputValue ? noOptionsText : 'Уровень не найден!'
 			}
 			className='react-select'
 			classNamePrefix='react-select'
@@ -36,7 +40,9 @@ export const Level = ({ setLevel }) => {
 					label: level.name.toUpperCase(),
 				};
 			})}
-			onChange={setLevel}
+			onChange={(option) => {
+				setLevel(option);
+			}}
 		/>
 	);
 };

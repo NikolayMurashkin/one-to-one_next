@@ -6,7 +6,11 @@ import { ru } from 'date-fns/locale';
 import styles from './Datepicker.module.scss';
 import { CalendarIcon } from '../../../public/icons/CalendarIcon';
 
-export const Datepicker = ({ setDate }) => {
+type TDatepickerProps = {
+	setDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
+};
+
+export const Datepicker: React.FC<TDatepickerProps> = ({ setDate }) => {
 	const [selected, setSelected] = useState<Date>();
 	const [calendarIsOpen, setCalendarIsOpen] = useState<boolean>(false);
 
@@ -36,10 +40,10 @@ export const Datepicker = ({ setDate }) => {
 				<DayPicker
 					mode='single'
 					selected={selected}
-					onSelect={(e) => {
+					onSelect={(day) => {
 						onSelectHanler();
-						setDate(e)
-						setSelected(e);
+						setDate(day);
+						setSelected(day);
 					}}
 					className={styles.calendar}
 					locale={ru}

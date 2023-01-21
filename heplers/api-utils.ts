@@ -1,9 +1,5 @@
-import { TSearchInterviewProps } from '../components/interviewPage/searchInterview/SearchInterview.props';
+import { TOneToOne } from '../components/interviewPage/searchInterview/SearchInterview.props';
 
-type TGetDateProps = {
-	data: TSearchInterviewProps;
-	newDate: string;
-};
 
 type TOptions = {
 	year: 'numeric';
@@ -13,10 +9,7 @@ type TOptions = {
 	minute: '2-digit';
 };
 
-export const getDate = (
-	data: TGetDateProps,
-	newDate: string
-): string | undefined => {
+export const getDate = (data: TOneToOne, newDate: string): string => {
 	if (data) {
 		const options: TOptions = {
 			year: 'numeric',
@@ -27,6 +20,8 @@ export const getDate = (
 		};
 		const date = new Date(newDate).toLocaleDateString('ru-RU', options);
 		return `${date} MSK`;
+	} else {
+		return '';
 	}
 };
 

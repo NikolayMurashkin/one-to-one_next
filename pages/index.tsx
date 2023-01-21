@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { GetStaticProps } from 'next/types';
+import { GetServerSideProps, GetStaticProps } from 'next/types';
 import useSWR from 'swr';
 
 import { InterviewInfoList } from '../components/interviewPage/InterviewInfoList';
@@ -7,17 +7,14 @@ import { InterviewTabs } from '../components/interviewPage/InterviewTabs';
 import { fetcher } from '../heplers/api-utils';
 import styles from './index.module.scss';
 import { TIndexProps } from '../types/index.props';
-import { Modal } from '../components/createInterview/modal/Modal';
-import { useEffect, useState } from 'react';
-import { Datepicker } from '../components/createInterview/datepicker/Datepicker';
 
 const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 	const { data, error } = useSWR(
-		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
+		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one',
 		fetcher
 	);
 	if (!data) {
-		return <p>Загрузка дааных...</p>;
+		return <p>Загрузка...</p>;
 	}
 
 	if (error) {
@@ -47,7 +44,8 @@ const HomePage: React.FC<TIndexProps> = ({ interviews, questions }) => {
 
 export default HomePage;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
+	
 	const getAllInterviews = await fetcher(
 		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one'
 	);
@@ -60,6 +58,5 @@ export const getStaticProps: GetStaticProps = async () => {
 			interviews: getAllInterviews.totalItems,
 			questions: getAllQuestions.totalItems,
 		},
-		revalidate: 60,
 	};
 };

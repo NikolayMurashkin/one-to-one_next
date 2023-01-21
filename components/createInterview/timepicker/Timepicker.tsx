@@ -1,7 +1,11 @@
 import styles from './Timepicker.module.scss';
 import { useState } from 'react';
 
-export const Timepicker = ({ setTime }) => {
+type TTimepickerProps = {
+	setTime: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const Timepicker: React.FC<TTimepickerProps> = ({ setTime }) => {
 	return (
 		<>
 			<input

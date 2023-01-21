@@ -6,8 +6,9 @@ import { fetcher, getDate } from '../../../heplers/api-utils';
 import { TOneToOne } from '../searchInterview/SearchInterview.props';
 
 export const MyInterview = () => {
+
 	const { data, error } = useSWR(
-		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
+		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one',
 		fetcher
 	);
 
@@ -21,16 +22,16 @@ export const MyInterview = () => {
 
 	return (
 		<ul className={styles.list}>
-			{data &&
-				data.items.map((item: TOneToOne) => {
+			{data.items &&
+				data.items.filter((item: TOneToOne) => item.status !== 'OPEN').map((item: TOneToOne) => {
 					return (
 						<InterviewItem
 							key={item.id}
-							date={getDate(data, item.dateTime)}
+							date={getDate(item, item.dateTime)}
 							grade={item.level}
 							name={item.technology.name}
 							stack={item.technology.name}
-							status={'complete'}
+							status={item.status}
 						/>
 					);
 				})}

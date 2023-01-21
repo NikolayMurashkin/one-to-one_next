@@ -1,7 +1,7 @@
 export type TInterviewItemProps = {
 	stack: string;
 	name: string;
-	date: string | undefined;
+	date: string;
 	grade: string;
-	status: 'pending' | 'ready' | 'complete';
+	status: string;
 };

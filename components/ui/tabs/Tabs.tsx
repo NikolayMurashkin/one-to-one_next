@@ -2,13 +2,11 @@ import classNames from 'classnames/bind';
 
 import styles from './Tabs.module.scss';
 import { TTabsProps } from './Tabs.props';
-import { PlusIcon } from './../../../public/icons/PlusIcon';
 import { Modal } from '../../createInterview/modal/Modal';
 
 export const Tabs: React.FC<TTabsProps> = ({ selectedId, tabs, onClick }) => {
 	const cx = classNames.bind(styles);
 
-	const openModalHandler = () => {};
 	return (
 		<div className={styles.tabs}>
 			{tabs &&

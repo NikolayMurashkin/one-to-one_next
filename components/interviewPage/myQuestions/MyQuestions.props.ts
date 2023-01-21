@@ -10,5 +10,6 @@ export type TQuestionItem = {
 };
 
 export type TMyQuestionsProps = {
+	totalItems: number;
 	questionsList: TQuestionItem[];
 };

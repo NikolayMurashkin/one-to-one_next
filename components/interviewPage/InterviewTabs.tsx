@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useSWR from 'swr';
 
 import styles from './InterviewTabs.module.scss';
 import { Tabs } from '../ui/tabs/Tabs';
@@ -9,19 +10,41 @@ import { MyQuestions } from './myQuestions/MyQuestions';
 import { Statistic } from './statistic/Statistic';
 import { SortList } from './SortList';
 import { TInterviewTabsProps } from './InterviewTabs.props';
+import { fetcher } from '../../heplers/api-utils';
+import { TOneToOne } from './searchInterview/SearchInterview.props';
 
 export const InterviewTabs: React.FC<TInterviewTabsProps> = ({
 	interviewsLength,
 	questionsLength,
 }) => {
+	const [selectedTabId, setSelectedTabId] = useState<string | number>('1');
+	const { data: interview } = useSWR(
+		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one',
+		fetcher
+	);
+	const { data: questions } = useSWR(
+		'http://51.250.8.47:8080/one-to-one/api/v1/user/1/question',
+		fetcher
+	);
+
 	const tabs: TTab[] = [
-		{ id: '1', label: `Мои собеседования (${interviewsLength})` },
+		{
+			id: '1',
+			label: `Мои собеседования (${
+				interview.items.filter(
+					(item: TOneToOne) => item.status !== 'OPEN'
+				).length
+			})`,
+		},
 		{ id: '2', label: 'Поиск собеседований' },
-		{ id: '3', label: `Мои вопросы (${questionsLength})` },
+		{
+			id: '3',
+			label: `Мои вопросы (${questions && questions.totalItems})`,
+		},
 		{ id: '4', label: 'Моя статистика' },
 	];
 
-	const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+	
 
 	const tabClickHandler = (id: string | number) => {
 		setSelectedTabId(id);

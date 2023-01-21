@@ -19,9 +19,9 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 	return (
 		<li
 			className={cx('interviewItem', {
-				ready: status === 'ready',
-				pending: status === 'pending',
-				complete: status === 'complete',
+				ready: status === 'ACCEPT',
+				pending: +date == new Date().getDate(),
+				complete: status === 'CLOSED',
 			})}
 		>
 			<span className={styles.text}>{date}</span>
@@ -32,16 +32,18 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 				<Button
 					color={'ghost'}
 					text={'Подробнее'}
-					disabled={status === 'ready' || status === 'pending'}
+					disabled={
+						status === 'ACCEPT' || +date == new Date().getDate()
+					}
 				/>
 			</span>
-			{status === 'ready' && (
+			{status === 'ACCEPT' && (
 				<Link href={'/session'} className={styles.button}>
 					<ChatIcon />
 					<span>Начать сессию!</span>
 				</Link>
 			)}
-			{status === 'complete' && (
+			{status === 'CLOSED' && (
 				<span className={styles.status}>
 					<Image
 						src='/icons/complete.svg'

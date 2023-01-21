@@ -12,6 +12,7 @@ import { Timepicker } from '../timepicker/Timepicker';
 import { Level } from '../level/Level';
 import Button from './../../ui/button/Button';
 import { json } from 'stream/consumers';
+import { SingleValue } from 'react-select';
 
 export const Modal: React.FC<TModalProps> = ({
 	tab,
@@ -19,10 +20,14 @@ export const Modal: React.FC<TModalProps> = ({
 }): JSX.Element => {
 	const cx = classNames.bind(styles);
 	const [modalIsOpen, setIsOpen] = useState(false);
-	const [date, setDate] = useState('');
-	const [stack, setStack] = useState('');
+	const [date, setDate] = useState<Date | undefined>();
+	const [stack, setStack] = useState<
+		SingleValue<{ value: number; label: string }>
+	>({ value: 1, label: 'Junior' });
 	const [time, setTime] = useState('');
-	const [level, setLevel] = useState('');
+	const [level, setLevel] = useState<
+		SingleValue<{ value: number; label: string }>
+	>({ value: 1, label: 'Junior' });
 	const [comment, setComment] = useState('');
 
 	function openModal() {
@@ -40,18 +45,16 @@ export const Modal: React.FC<TModalProps> = ({
 		const seconds = (+newTime[0] + 7) * 60 * 60 + +newTime[1] * 60;
 		const milliseconds = seconds * 1000;
 
-		const newDate = new Date(date);
-		newDate.setDate(newDate.getDate());
-		newDate.setTime(newDate.getTime() + milliseconds);
-
-		console.log(comment);
+		const newDate = date && new Date(date.toString());
+		newDate?.setDate(newDate.getDate());
+		newDate?.setTime(newDate.getTime() + milliseconds);
 
 		const data = {
-			dateTime: newDate.toISOString(),
-			levelId: +level.value,
+			dateTime: newDate?.toISOString(),
+			levelId: level !== null && level.value,
 			comment,
 			initiatorId: 1,
-			technologyId: +stack.value,
+			technologyId: stack !== null && stack.value,
 		};
 
 		fetch('http://51.250.8.47:8080/one-to-one/api/v1/one-to-one', {
