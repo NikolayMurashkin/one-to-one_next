@@ -13,20 +13,21 @@ export const InterviewItem: React.FC<TInteviewItemProps> = ({
 	grade,
 	id,
 }) => {
-	const interviewRef = useRef(null);
+	const interviewRef = useRef<HTMLLIElement>(null);
 	const [acceptInterview] = useAcceptOneToOneMutation();
 
 	const acceptInterviewHanlder = (body: AcceptOneToOne) => {
 		acceptInterview(body);
 
-		const refStyle = interviewRef.current.style;
-
-		refStyle.opacity = 0;
-		refStyle.transition = 'all .5s ease';
-		refStyle.transform = 'translateY(-30px)';
-		setTimeout(() => {
-			refStyle.display = 'none';
-		}, 310);
+		const refStyle = interviewRef.current?.style;
+		if (refStyle) {
+			refStyle.opacity = '0';
+			refStyle.transition = 'all .5s ease';
+			refStyle.transform = 'translateY(-30px)';
+			setTimeout(() => {
+				refStyle.display = 'none';
+			}, 310);
+		}
 	};
 
 	return (
