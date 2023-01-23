@@ -4,14 +4,12 @@ import styles from './SearchInterview.module.scss';
 import { InterviewItem } from './InterviewItem';
 import { TOneToOne } from './SearchInterview.props';
 import { fetcher, getDate } from '../../../heplers/api-utils';
+import { useGetAllOneToOneQuery } from '../../../redux';
 
 export const SearchInterview = () => {
-	const { data, error } = useSWR(
-		'http://51.250.8.47:8080/one-to-one/api/v1/one-to-one?search=status:OPEN',
-		fetcher
-	);
+	const { data: allInterviews, error } = useGetAllOneToOneQuery();
 
-	if (!data) {
+	if (!allInterviews) {
 		return <p>Загрузка дааных...</p>;
 	}
 
@@ -21,8 +19,8 @@ export const SearchInterview = () => {
 
 	return (
 		<ul className={styles.list}>
-			{data &&
-				data.items.map((item: TOneToOne) => {
+			{allInterviews &&
+				allInterviews.items.map((item) => {
 					return (
 						<InterviewItem
 							key={item.id}
@@ -34,10 +32,11 @@ export const SearchInterview = () => {
 							color={
 								item.status === 'OPEN' ? 'ghost' : 'secondary'
 							}
-							date={getDate(data, item.dateTime)}
+							date={getDate(item, item.dateTime)}
 							grade={item.level}
 							name={item.technology.name}
 							stack={item.technology.name}
+							id={item.id}
 						/>
 					);
 				})}

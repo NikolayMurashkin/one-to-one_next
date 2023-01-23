@@ -39,7 +39,7 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 			{status === 'ACCEPT' && (
 				<Link href={'/session'} className={styles.button}>
 					<ChatIcon />
-					<span>Начать сессию!</span>
+					<span>Подключить</span>
 				</Link>
 			)}
 			{status === 'CLOSED' && (

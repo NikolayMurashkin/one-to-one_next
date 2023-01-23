@@ -5,4 +5,5 @@ export type TInteviewItemProps = {
 	name: string;
 	date: string | undefined;
 	grade: string;
+	id: number | undefined
 };

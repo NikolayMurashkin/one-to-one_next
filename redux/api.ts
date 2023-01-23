@@ -91,7 +91,7 @@ export const api = createApi({
 					: [{ type: 'OneToOne', id: 'OneToOneList' }],
 		}),
 		getAllOneToOne: builder.query<OnetoOneResponse, void>({
-			query: () => `/one-to-one?search=status:OPEN`,
+			query: () => `/one-to-one?size=50&search=status:OPEN`,
 			providesTags: (result) =>
 				result
 					? [
