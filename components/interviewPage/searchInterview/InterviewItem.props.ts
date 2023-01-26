@@ -2,8 +2,8 @@ export type TInteviewItemProps = {
 	buttonText: string;
 	color: 'primary' | 'secondary' | 'ghost';
 	stack: string;
-	name: string;
+	initiatorId: number;
 	date: string | undefined;
 	grade: string;
-	id: number | undefined
+	id: number | undefined;
 };

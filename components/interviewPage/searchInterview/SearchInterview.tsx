@@ -34,7 +34,7 @@ export const SearchInterview = () => {
 							}
 							date={getDate(item, item.dateTime)}
 							grade={item.level}
-							name={item.technology.name}
+							initiatorId={item.initiatorId}
 							stack={item.technology.name}
 							id={item.id}
 						/>

@@ -4,14 +4,19 @@ import { useRef } from 'react';
 import styles from './Input.module.scss';
 import { TInputProps } from './Input.props';
 
-export const Input: React.FC<TInputProps> = ({ type, placeholder, label }) => {
-	const inputPasswordRef = useRef<HTMLInputElement>(null);
+export const Input: React.FC<TInputProps> = ({
+	type,
+	placeholder,
+	label,
+	inputRef,
+}) => {
+	// const inputPasswordRef = useRef<HTMLInputElement>(null);
 
 	const showPasswordHandler = () => {
-		if (inputPasswordRef.current?.type === 'password') {
-			inputPasswordRef.current.type = 'text';
-		} else if (inputPasswordRef.current !== null) {
-			inputPasswordRef.current.type = 'password';
+		if (inputRef.current?.type === 'password') {
+			inputRef.current.type = 'text';
+		} else if (inputRef.current !== null) {
+			inputRef.current.type = 'password';
 		}
 	};
 	return (
@@ -25,7 +30,7 @@ export const Input: React.FC<TInputProps> = ({ type, placeholder, label }) => {
 				type={type}
 				placeholder={placeholder}
 				className={styles.input}
-				ref={inputPasswordRef}
+				ref={inputRef}
 			/>
 			{type === 'password' && (
 				<Image

@@ -14,11 +14,13 @@ import {
 	CloseOneToOne,
 	CreateOneToOne,
 	QuestionRequest,
+	IUser,
+	CreateUser,
 } from './types';
 
 export const api = createApi({
 	reducerPath: 'api',
-	tagTypes: ['Questions', 'Technologies', 'OneToOne'],
+	tagTypes: ['Questions', 'Technologies', 'OneToOne', 'User'],
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'http://51.250.8.47:8080/one-to-one/api/v1',
 	}),
@@ -127,6 +129,18 @@ export const api = createApi({
 			}),
 			invalidatesTags: [{ type: 'OneToOne', id: 'OneToOneList' }],
 		}),
+		getUserById: builder.query<IUser, number>({
+			query: (id) => `/user/${id}`,
+			providesTags: ['User'],
+		}),
+		createUser: builder.mutation<IUser, CreateUser>({
+			query: (body) => ({
+				url: `/user`,
+				method: 'POST',
+				body,
+			}),
+			invalidatesTags: [{ type: 'User', id: 'UserInfo' }],
+		}),
 	}),
 });
 
@@ -141,5 +155,7 @@ export const {
 	useAcceptOneToOneMutation,
 	useCloseOneToOneMutation,
 	useCreateOneToOneMutation,
-	useGetMyOneToOneQuery
+	useGetMyOneToOneQuery,
+	useGetUserByIdQuery,
+	useCreateUserMutation
 } = api;

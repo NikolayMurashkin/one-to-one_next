@@ -129,3 +129,22 @@ export type LevelState = {
 	};
 };
 /* ===========Level========== */
+
+/* ===========User========== */
+export interface IUser {
+	id: number;
+	login: string;
+	email: string;
+	name: string;
+	surName: string;
+}
+
+export type CreateUser = {
+	login: string | undefined;
+	email: string | undefined;
+	password: string | undefined;
+	name: string | undefined;
+	surName: string | undefined;
+};
+
+/* ===========User========== */
