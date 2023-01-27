@@ -55,7 +55,7 @@ const Session = () => {
 								<QuestionItem
 									question={question.question}
 									key={question.id}
-									stack={question.technology.name}
+									stack={question.technology?.name}
 								/>
 							);
 						})}

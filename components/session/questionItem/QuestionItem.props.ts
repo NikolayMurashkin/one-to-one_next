@@ -1,4 +1,4 @@
 export type QuestionItemProps = {
-	stack: string;
+	stack: string | undefined;
 	question: string;
 };

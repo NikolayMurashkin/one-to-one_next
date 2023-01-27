@@ -18,7 +18,7 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 					return (
 						<QuestionItem
 							key={question.id}
-							stack={question.technology.name}
+							stack={question.technology?.name}
 							question={question.question}
 							answer={question.answer}
 						/>

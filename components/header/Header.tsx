@@ -19,43 +19,43 @@ const Header = () => {
 	const logoutHandler = () => {
 		localStorage.clear();
 	};
-
-	if (user) {
-		return (
-			<header className={styles.header}>
-				<Link href='/' className={styles.logo}>
-					<LogoIcon />
-				</Link>
-				<div className={styles.profile}>
-					<div className={styles.personInfo}>
-						<span
-							className={styles.name}
-						>{`${user.name} ${user.surName}`}</span>
-						<span className={styles.email}>{user.email}</span>
-					</div>
-					<Image
-						src={'/images/profile.png'}
-						alt={'profile'}
-						width={37}
-						height={37}
-					/>
-				</div>
-				<Link
-					href={{
-						pathname: '/login',
-					}}
-				>
-					<Image
-						onClick={logoutHandler}
-						src={'/icons/log-out.svg'}
-						alt={'profile'}
-						width={37}
-						height={37}
-					/>
-				</Link>
-			</header>
-		);
+	if (!user) {
+		return <p>Загрузка...</p>;
 	}
+	return (
+		<header className={styles.header}>
+			<Link href='/' className={styles.logo}>
+				<LogoIcon />
+			</Link>
+			<div className={styles.profile}>
+				<div className={styles.personInfo}>
+					<span
+						className={styles.name}
+					>{`${user.name} ${user.surName}`}</span>
+					<span className={styles.email}>{user.email}</span>
+				</div>
+				<Image
+					src={'/images/profile.png'}
+					alt={'profile'}
+					width={37}
+					height={37}
+				/>
+			</div>
+			<Link
+				href={{
+					pathname: '/login',
+				}}
+			>
+				<Image
+					onClick={logoutHandler}
+					src={'/icons/log-out.svg'}
+					alt={'profile'}
+					width={37}
+					height={37}
+				/>
+			</Link>
+		</header>
+	);
 };
 
 export default Header;

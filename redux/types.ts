@@ -3,7 +3,7 @@ export interface IQuestion {
 	id?: number;
 	question: string;
 	answer: string;
-	technology: {
+	technology?: {
 		id: number | undefined;
 		name: string;
 	};
