@@ -5,13 +5,19 @@ import { useRouter } from 'next/router';
 import styles from './index.module.scss';
 import Button from '../../components/ui/button/Button';
 import { Input } from './../../components/ui/input/Input';
+import { useRef } from 'react';
 
 const LoginPage = () => {
 	const router = useRouter();
 
+	const emailRef = useRef<HTMLInputElement>(null);
+	const passwordRef = useRef<HTMLInputElement>(null);
+	const formRef = useRef<HTMLFormElement>(null);
+
 	const submitLoginHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		event.stopPropagation();
+		formRef.current?.clear();
 		router.push('/');
 	};
 
@@ -23,16 +29,22 @@ const LoginPage = () => {
 				height={80}
 				alt='One-To-One Logo'
 			/>
-			<form className={styles.form} onSubmit={submitLoginHandler}>
+			<form
+				className={styles.form}
+				onSubmit={submitLoginHandler}
+				ref={formRef}
+			>
 				<Input
 					type='email'
 					placeholder='Введите адрес почты'
 					label='Почта'
+					inputRef={emailRef}
 				/>
 				<Input
 					type='password'
 					placeholder='Введите пароль'
 					label='Пароль'
+					inputRef={passwordRef}
 				/>
 				<Link href={'/register'} className={styles.forgotPassword}>
 					Забыли пароль?

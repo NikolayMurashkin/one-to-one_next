@@ -1,10 +1,22 @@
+import { useEffect, useState } from 'react';
 import { useGetAllQuestionsQuery} from '../../../redux/';
 
 import styles from './MyQuestions.module.scss';
 import { QuestionItem } from './QuestionItem';
 
 export const MyQuestions = () => {
-	const { data, error } = useGetAllQuestionsQuery(1);
+	const [userId, setUserId] = useState<number>(1);
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const userJson = localStorage.getItem('userInfo');
+			const user = userJson !== null ? JSON.parse(userJson) : {};
+			setUserId(user.id);
+		}
+	}, []);
+	console.log(userId);
+
+	const { data, error } = useGetAllQuestionsQuery(userId);
 
 	if (!data) {
 		return <p>Загрузка...</p>;

@@ -15,6 +15,7 @@ import {
 	CreateOneToOne,
 	QuestionRequest,
 	IUser,
+	IGetFullUserStatistics,
 } from './types';
 
 export const api = createApi({
@@ -132,6 +133,11 @@ export const api = createApi({
 			query: (id) => `/user/${id}`,
 			providesTags: ['User'],
 		}),
+		getFullUserStatistics: builder.query<IGetFullUserStatistics, number>({
+			query: (userId) =>
+				`/user/one-to-one/feedback/${userId}/full-statistics`,
+			providesTags: ['User'],
+		}),
 	}),
 });
 
@@ -148,4 +154,5 @@ export const {
 	useCreateOneToOneMutation,
 	useGetMyOneToOneQuery,
 	useGetUserByIdQuery,
+	useGetFullUserStatisticsQuery
 } = api;

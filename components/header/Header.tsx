@@ -15,6 +15,10 @@ const Header = () => {
 		}
 	}, []);
 
+	const logoutHandler = () => {
+		localStorage.clear();
+	};
+
 	if (user) {
 		return (
 			<header className={styles.header}>
@@ -46,6 +50,7 @@ const Header = () => {
 					}}
 				>
 					<Image
+						onClick={logoutHandler}
 						src={'/icons/log-out.svg'}
 						alt={'profile'}
 						width={37}

@@ -139,4 +139,26 @@ export interface IUser {
 	surName: string;
 }
 
+export interface IUserStatisticItem {
+	id: number;
+	userStatistics: {
+		id: number;
+		user: IUser;
+		totalOneToOneCount: number;
+		totalQuestionCount: number;
+		totalPoint: number;
+	};
+	technology: {
+		id: number;
+		name: string;
+	};
+	questionCount: number;
+	totalPoint: number;
+}
+
+export interface IGetFullUserStatistics {
+	totalItems: number;
+	items: IUserStatisticItem[];
+}
+
 /* ===========User========== */

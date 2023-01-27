@@ -1,17 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import styles from './index.module.scss';
 import Button from '../../components/ui/button/Button';
 import { Input } from './../../components/ui/input/Input';
-import { useCreateUserMutation } from '../../redux';
-import { setUser } from '../../slices/userSlice';
-import { useAppDispatch } from './../../hooks/redux';
 
 const RegisterPage = () => {
-	const [userId, setUserId] = useState();
 	const router = useRouter();
 
 	const loginRef = useRef<HTMLInputElement>(null);
@@ -19,6 +15,7 @@ const RegisterPage = () => {
 	const passwordRef = useRef<HTMLInputElement>(null);
 	const nameRef = useRef<HTMLInputElement>(null);
 	const surNameRef = useRef<HTMLInputElement>(null);
+	const formRef = useRef<HTMLFormElement>(null)
 
 	const registerHandler = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -44,8 +41,8 @@ const RegisterPage = () => {
 			.then((data) => {
 				window.localStorage.setItem('userInfo', JSON.stringify(data));
 			});
-		
-		// router.push('/register/success');
+		formRef.current?.reset();
+		router.push('/register/success');
 	};
 
 	return (
@@ -56,7 +53,11 @@ const RegisterPage = () => {
 				height={80}
 				alt='One-To-One Logo'
 			/>
-			<form className={styles.form} onSubmit={registerHandler}>
+			<form
+				className={styles.form}
+				onSubmit={registerHandler}
+				ref={formRef}
+			>
 				<Input
 					type='text'
 					placeholder='Введите логин'
