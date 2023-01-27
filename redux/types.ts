@@ -3,16 +3,16 @@ export interface IQuestion {
 	id?: number;
 	question: string;
 	answer: string;
-	technology?: {
+	technology: {
 		id: number | undefined;
 		name: string;
 	};
-	technologyId?: number | undefined;
+	technologyId: number | undefined;
 	userId: number | undefined;
 }
 export type GetAllQuestionResponse = {
 	items: IQuestion[];
-	totalItems: string;
+	totalItems?: string;
 };
 export type GetQuestionsById = {
 	items: IQuestion[];

@@ -19,7 +19,7 @@ const HomePage: React.FC<TIndexProps> = () => {
 	return (
 		<>
 			<Head>
-				<title>One-To-One</title>
+				<title>Check-Me</title>
 				<meta name='description' content='Interviewing Service' />
 				<meta
 					name='viewport'
@@ -28,7 +28,7 @@ const HomePage: React.FC<TIndexProps> = () => {
 			</Head>
 			<main className={styles.main}>
 				<InterviewInfoList />
-				<InterviewTabs/>
+				<InterviewTabs />
 			</main>
 		</>
 	);

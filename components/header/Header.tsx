@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from './Header.module.scss';
 import { IUser } from '../../redux';
 import { useState, useEffect } from 'react';
+import { LogoIcon } from './../../public/icons/LogoIcon';
 
 const Header = () => {
 	const [user, setUser] = useState<IUser>();
@@ -23,12 +24,7 @@ const Header = () => {
 		return (
 			<header className={styles.header}>
 				<Link href='/' className={styles.logo}>
-					<Image
-						src={'/images/logo.jpg'}
-						alt={'Logo'}
-						width={100}
-						height={80}
-					/>
+					<LogoIcon />
 				</Link>
 				<div className={styles.profile}>
 					<div className={styles.personInfo}>
