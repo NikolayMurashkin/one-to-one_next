@@ -6,15 +6,20 @@ import Button from '../../ui/button/Button';
 import styles from './InterviewItem.module.scss';
 import { TInterviewItemProps } from './InterviewItem.props';
 import { ChatIcon } from './../../../public/icons/ChatIcon';
+import { useGetUserByIdQuery } from '../../../redux';
 
 export const InterviewItem: React.FC<TInterviewItemProps> = ({
 	status,
 	stack,
-	name,
+	initiatorId,
 	date,
 	grade,
 }) => {
 	const cx = classNames.bind(styles);
+	const { data: user, error } = useGetUserByIdQuery(initiatorId);
+	if (!user) {
+		return <p>Загрузка...</p>
+	}
 	return (
 		<li
 			className={cx('interviewItem', {
@@ -25,7 +30,7 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 		>
 			<span className={styles.text}>{date}</span>
 			<span className={styles.text}>{stack}</span>
-			<span className={styles.text}>{name}</span>
+			<span className={styles.text}>{`${user.name} ${user.surName}`}</span>
 			<span className={styles.text}>{grade}</span>
 			<span>
 				<Button

@@ -25,7 +25,7 @@ export const MyInterview = () => {
 							key={item.id}
 							date={getDate(item, item.dateTime)}
 							grade={item.level}
-							name={item.technology.name}
+							initiatorId={item.initiatorId}
 							stack={item.technology.name}
 							status={item.status}
 						/>

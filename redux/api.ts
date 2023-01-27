@@ -15,7 +15,6 @@ import {
 	CreateOneToOne,
 	QuestionRequest,
 	IUser,
-	CreateUser,
 } from './types';
 
 export const api = createApi({
@@ -133,14 +132,6 @@ export const api = createApi({
 			query: (id) => `/user/${id}`,
 			providesTags: ['User'],
 		}),
-		createUser: builder.mutation<IUser, CreateUser>({
-			query: (body) => ({
-				url: `/user`,
-				method: 'POST',
-				body,
-			}),
-			invalidatesTags: [{ type: 'User', id: 'UserInfo' }],
-		}),
 	}),
 });
 
@@ -157,5 +148,4 @@ export const {
 	useCreateOneToOneMutation,
 	useGetMyOneToOneQuery,
 	useGetUserByIdQuery,
-	useCreateUserMutation
 } = api;

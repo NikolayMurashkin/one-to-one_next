@@ -1,6 +1,6 @@
 export type TInterviewItemProps = {
 	stack: string;
-	name: string;
+	initiatorId: number;
 	date: string;
 	grade: string;
 	status: string;

@@ -139,12 +139,4 @@ export interface IUser {
 	surName: string;
 }
 
-export type CreateUser = {
-	login: string | undefined;
-	email: string | undefined;
-	password: string | undefined;
-	name: string | undefined;
-	surName: string | undefined;
-};
-
 /* ===========User========== */
