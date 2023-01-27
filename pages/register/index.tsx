@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import styles from './index.module.scss';
 import Button from '../../components/ui/button/Button';
@@ -11,9 +11,8 @@ import { setUser } from '../../slices/userSlice';
 import { useAppDispatch } from './../../hooks/redux';
 
 const RegisterPage = () => {
+	const [userId, setUserId] = useState();
 	const router = useRouter();
-	const [createUser, result] = useCreateUserMutation();
-	const dispatch = useAppDispatch();
 
 	const loginRef = useRef<HTMLInputElement>(null);
 	const emailRef = useRef<HTMLInputElement>(null);
@@ -21,7 +20,7 @@ const RegisterPage = () => {
 	const nameRef = useRef<HTMLInputElement>(null);
 	const surNameRef = useRef<HTMLInputElement>(null);
 
-	const registerHandler = (event: React.FormEvent<HTMLFormElement>) => {
+	const registerHandler = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		event.stopPropagation();
 		const body = {
@@ -31,24 +30,23 @@ const RegisterPage = () => {
 			name: nameRef.current?.value,
 			surName: surNameRef.current?.value,
 		};
-		createUser(body);
-		router.push('/register/success');
-	};
-
-	if (result.isSuccess) {
-		const userId = result.data.id;
-		localStorage.setItem('userId', userId.toString());
+		const getUserId = await fetch(
+			'http://51.250.8.47:8080/one-to-one/api/v1/user',
+			{
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json',
+				},
+				body: JSON.stringify(body),
+			}
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				window.localStorage.setItem('userInfo', JSON.stringify(data));
+			});
 		
-		// dispatch(
-		// 	setUser({
-		// 		id: user.id,
-		// 		login: user.login,
-		// 		email: user.email,
-		// 		name: user.name,
-		// 		surName: user.surName,
-		// 	})
-		// );
-	}
+		// router.push('/register/success');
+	};
 
 	return (
 		<div className={styles.login}>
