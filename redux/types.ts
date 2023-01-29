@@ -14,6 +14,21 @@ export interface IQuestion {
 export interface ISetQuestions {
 	questions: IQuestion[];
 }
+export interface IAcceptedQuestion {
+	question: {
+		id: number;
+		question: string;
+		answer: string;
+		technologyId: number;
+		userId: number;
+	};
+	responseLevel: number;
+	comment: string;
+	accepted: boolean;
+}
+export interface ISetAcceptedQuestions {
+	questions: IAcceptedQuestion[];
+}
 
 export type GetAllQuestionResponse = {
 	items: IQuestion[];
@@ -172,5 +187,13 @@ export interface IGetFullUserStatistics {
 export interface ISetInterview {
 	date: string;
 	initiatorName: string;
+	interviewId: number;
+	initiatorId: number;
 }
 /* ===========Interview========== */
+
+/* ===========Rating========== */
+export interface IRating {
+	value: number;
+}
+/* ===========Rating========== */

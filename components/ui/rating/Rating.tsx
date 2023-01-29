@@ -4,6 +4,8 @@ import { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Rating.module.scss';
+import { useAppDispatch } from './../../../hooks/redux';
+import { setRating } from '../../../slices/ratingSlice';
 
 type TRatingProps = {
 	readOnly: boolean;
@@ -13,7 +15,8 @@ type TRatingProps = {
 const Rating: React.FC<TRatingProps> = ({ readOnly, count = 0 }) => {
 	const cx = classNames.bind(styles);
 
-	const [rating, setRating] = useState(0);
+	const dispatch = useAppDispatch();
+	const [rating, setInnerRating] = useState(0);
 	const [hover, setHover] = useState(0);
 
 	return (
@@ -29,7 +32,8 @@ const Rating: React.FC<TRatingProps> = ({ readOnly, count = 0 }) => {
 							value={ratingValue}
 							onClick={() => {
 								if (!readOnly) {
-									setRating(ratingValue);
+									setInnerRating(ratingValue);
+									dispatch(setRating(ratingValue));
 								}
 							}}
 						/>

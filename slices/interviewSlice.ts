@@ -3,7 +3,9 @@ import { ISetInterview } from '../redux';
 
 const initialState: ISetInterview = {
 	date: '',
-	initiatorName: ''
+	initiatorName: '',
+	interviewId: 0,
+	initiatorId: 0
 };
 
 const interviewSlice = createSlice({
@@ -13,6 +15,8 @@ const interviewSlice = createSlice({
 		setInterview(state, action) {
 			state.date = action.payload.date;
 			state.initiatorName = action.payload.initiatorName;
+			state.interviewId = action.payload.interviewId;
+			state.initiatorId = action.payload.initiatorId;
 		},
 	},
 });

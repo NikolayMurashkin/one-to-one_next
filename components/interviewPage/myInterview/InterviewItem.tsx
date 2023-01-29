@@ -16,6 +16,7 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 	initiatorId,
 	date,
 	grade,
+	interviewId
 }) => {
 	const cx = classNames.bind(styles);
 	const dipatch = useAppDispatch();
@@ -48,7 +49,20 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 				/>
 			</span>
 			{status === 'ACCEPT' && (
-				<Link href={'/session'} className={styles.button} onClick={() => dipatch(setInterview({date: date, initiatorName: `${user.name} ${user.surName}`}))}>
+				<Link
+					href={'/session'}
+					className={styles.button}
+					onClick={() =>
+						dipatch(
+							setInterview({
+								date,
+								initiatorName: `${user.name} ${user.surName}`,
+								interviewId,
+								initiatorId
+							})
+						)
+					}
+				>
 					<ChatIcon />
 					<span>Подключить</span>
 				</Link>

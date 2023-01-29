@@ -28,6 +28,7 @@ export const MyInterview = () => {
 							initiatorId={item.initiatorId}
 							stack={item.technology.name}
 							status={item.status}
+							interviewId={item.id}
 						/>
 					);
 				})}

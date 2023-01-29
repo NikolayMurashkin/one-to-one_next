@@ -38,14 +38,14 @@
 	flex: 1 0 auto;
 }
 
-.comment {
+.commentWrapper {
 	display: flex;
 	justify-content: space-between;
 	column-gap: 20px;
 }
 
 .answer {
-	flex-basis: 400px;
+	flex: 0 1 400px;
 }
 
 .text {
@@ -53,6 +53,7 @@
 	border-radius: 5px;
 	padding: 10px;
 	resize: initial;
+	margin-bottom: 10px;
 }
 
 .text::placeholder {
@@ -60,7 +61,7 @@
 }
 
 .opened {
-	max-height: 160px;
+	max-height: 190px;
 }
 
 .arrow {
@@ -69,4 +70,18 @@
 
 .opened .arrow {
 	transform: rotate(90deg);
+}
+
+.comment {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.button {
+	background: #A3D0AB;
+	border-radius: 5px;
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 15px;
 }

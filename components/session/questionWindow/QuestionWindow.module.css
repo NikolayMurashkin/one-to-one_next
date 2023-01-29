@@ -53,3 +53,8 @@
 	font-size: 12px;
 	line-height: 15px;
 }
+
+.button:disabled {
+	background-color: #dadada;
+	cursor: default;
+}

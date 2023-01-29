@@ -138,6 +138,17 @@ export const api = createApi({
 				`/user/one-to-one/feedback/${userId}/full-statistics`,
 			providesTags: ['User'],
 		}),
+		sendFeedback: builder.mutation({
+			query: ({ body }) => ({
+				url: '/user/one-to-one/feedback/create',
+				method: 'POST',
+				body,
+				headers: {
+					'Content-type': 'application/json',
+				},
+			}),
+			// invalidatesTags: [{ type: 'OneToOne', id: 'OneToOneList' }],
+		}),
 	}),
 });
 
@@ -154,5 +165,6 @@ export const {
 	useCreateOneToOneMutation,
 	useGetMyOneToOneQuery,
 	useGetUserByIdQuery,
-	useGetFullUserStatisticsQuery
+	useGetFullUserStatisticsQuery,
+	useSendFeedbackMutation
 } = api;

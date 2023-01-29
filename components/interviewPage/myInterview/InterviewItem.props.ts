@@ -4,4 +4,5 @@ export type TInterviewItemProps = {
 	date: string;
 	grade: string;
 	status: string;
+	interviewId: number
 };

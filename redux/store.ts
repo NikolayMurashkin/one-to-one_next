@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
+import acceptedQuestionsSlice from '../slices/acceptedQuestionsSlice';
 import interviewSlice from '../slices/interviewSlice';
 import levelSlice from '../slices/levelSlice';
 import questionsSlice from '../slices/questionsSlice';
+import ratingSlice from '../slices/ratingSlice';
 import tabSlice from '../slices/tabSlice';
 import technologySlice from '../slices/technologySlice';
 
@@ -15,7 +17,9 @@ export const store = configureStore({
 		technology: technologySlice,
 		level: levelSlice,
 		questions: questionsSlice,
-		interview: interviewSlice
+		acceptedQuestions: acceptedQuestionsSlice,
+		interview: interviewSlice,
+		rating: ratingSlice
 	},
 	middleware: (getDefaultMiddlware) =>
 		getDefaultMiddlware().concat(api.middleware),
