@@ -1,27 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IQuestion } from '../redux';
+import { ISetQuestions } from '../redux';
 
-
-const initialState: IQuestion = {
-	question: '',
-	answer: '',
-	technology: {
-		id: undefined,
-		name: '',
-	},
-	technologyId: undefined,
-	userId: undefined,
+const initialState: ISetQuestions = {
+	questions: [],
 };
 
 const questionsSlice = createSlice({
 	name: 'question',
 	initialState,
 	reducers: {
-		setTechnologyId(state, action) {
-			state.technology = action.payload
+		setQuestions(state, action) {
+			state.questions.push(action.payload);
+		},
+		removeQuestion(state, action) {
+			state.questions = state.questions.filter(
+				(question) => question.id !== action.payload
+			);
 		},
 	},
 });
 
-export const { setTechnologyId } = questionsSlice.actions;
+export const { setQuestions, removeQuestion } = questionsSlice.actions;
 export default questionsSlice.reducer;

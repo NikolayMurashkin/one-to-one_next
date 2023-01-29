@@ -6,22 +6,31 @@ import { QuestionItemProps } from './QuestionItem.props';
 import Rating from './../../ui/rating/Rating';
 import { CloseIcon } from './../../../public/icons/CloseIcon';
 import { useRef } from 'react';
+import { useAppDispatch } from '../../../hooks/redux';
+import { removeQuestion } from '../../../slices/questionsSlice';
 
 export const QuestionItem: React.FC<QuestionItemProps> = ({
 	stack,
 	question,
 	answer,
+	id,
 }) => {
 	const cx = classNames.bind(styles);
 	const commentRef = useRef<HTMLLIElement>(null);
 
+	const dispatch = useAppDispatch();
+	const removeQuestionHandler = (id: number | undefined) => {
+		dispatch(removeQuestion(id));
+	};
+
 	const openCommentHandler = () => {
 		commentRef.current?.classList.toggle(cx('opened'));
 	};
+
 	return (
 		<li className={cx('wrapper')} ref={commentRef}>
 			<div className={cx('content')} onClick={openCommentHandler}>
-				<CloseIcon />
+				<CloseIcon onClick={() => removeQuestionHandler(id)} />
 				<span className={cx('stack')}>{stack}</span>
 				<span className={cx('question')}>{question}</span>
 				<Rating readOnly={false} />

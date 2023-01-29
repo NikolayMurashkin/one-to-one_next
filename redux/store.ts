@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import levelSlice from '../slices/levelSlice';
+import questionsSlice from '../slices/questionsSlice';
 import tabSlice from '../slices/tabSlice';
 import technologySlice from '../slices/technologySlice';
 
@@ -11,7 +12,8 @@ export const store = configureStore({
 		[api.reducerPath]: api.reducer,
 		tabs: tabSlice,
 		technology: technologySlice,
-		level: levelSlice
+		level: levelSlice,
+		questions: questionsSlice
 	},
 	middleware: (getDefaultMiddlware) =>
 		getDefaultMiddlware().concat(api.middleware),

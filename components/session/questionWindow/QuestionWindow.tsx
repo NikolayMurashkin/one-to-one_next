@@ -3,9 +3,17 @@ import { GetAllQuestionResponse } from '../../../redux';
 import { QuestionItem } from './QuestionItem';
 
 import styles from './QuestionWindow.module.css';
+import { IQuestion } from './../../../redux/types';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from '../../../hooks/redux';
+import { useAppDispatch } from './../../../hooks/redux';
+import { removeQuestion } from '../../../slices/questionsSlice';
 
 export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 	const cx = classNames.bind(styles);
+
+	const questions = useAppSelector(state => state.questions.questions)
+
 	return (
 		<div className={cx('wrapper')}>
 			<div className={cx('top')}>
@@ -14,16 +22,21 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 			</div>
 			<hr />
 			<ul className={cx('list')}>
-				{items.map((question) => {
-					return (
-						<QuestionItem
-							key={question.id}
-							stack={question.technology?.name}
-							question={question.question}
-							answer={question.answer}
-						/>
-					);
-				})}
+				{questions.length <= 0 ? (
+					<p>Добавьте вопрос из списка слева</p>
+				) : (
+					questions.map((question) => {
+						return (
+							<QuestionItem
+								key={question.id}
+								stack={question.technology?.name}
+								question={question.question}
+								id={question.id}
+								answer={question.answer}
+							/>
+						);
+					})
+				)}
 			</ul>
 			<div className={cx('bottom')}>
 				<input

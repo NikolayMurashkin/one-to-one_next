@@ -10,6 +10,11 @@ export interface IQuestion {
 	technologyId: number | undefined;
 	userId: number | undefined;
 }
+
+export interface ISetQuestions {
+	questions: IQuestion[]
+}
+
 export type GetAllQuestionResponse = {
 	items: IQuestion[];
 	totalItems?: string;

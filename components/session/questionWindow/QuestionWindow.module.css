@@ -1,6 +1,9 @@
 .wrapper {
 	font-size: 12px;
 	line-height: 15px;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 }
 
 .top {
@@ -21,6 +24,7 @@
 	flex-direction: column;
 	row-gap: 10px;
 	margin-bottom: 20px;
+	flex: 1 0 auto;
 }
 
 .bottom {
@@ -29,6 +33,7 @@
 	border-top: 1px solid #dadada;
 	padding-top: 10px;
 	align-items: center;
+	flex: 0 1 auto;
 }
 
 .text {

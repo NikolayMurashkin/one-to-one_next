@@ -7,9 +7,14 @@ import { FilterIcon } from './../../public/icons/FilterIcon';
 import { QuestionItem } from '../../components/session/questionItem/QuestionItem';
 import { useGetAllQuestionsQuery } from '../../redux';
 import { QuestionWindow } from './../../components/session/questionWindow/QuestionWindow';
+import { IQuestion } from './../../redux/types';
+import { useAppDispatch, useAppSelector } from './../../hooks/redux';
+import { setQuestions } from '../../slices/questionsSlice';
 
 const Session = () => {
 	const cx = classNames.bind(styles);
+	const dispatch = useAppDispatch();
+	const questions = useAppSelector((state) => state.questions.questions);
 
 	const [userId, setUserId] = useState<number>(1);
 
@@ -20,7 +25,6 @@ const Session = () => {
 			setUserId(user.id);
 		}
 	}, []);
-	console.log(userId);
 
 	const { data, error } = useGetAllQuestionsQuery(userId);
 
@@ -31,6 +35,13 @@ const Session = () => {
 	if (error) {
 		return <p>Что-то пошло не так! Мы скоро всё исправим!</p>;
 	}
+
+	const addQuestionHandler = (question: IQuestion) => {
+		if (questions.some((oldQuestion) => oldQuestion.id === question.id)) {
+			return;
+		}
+		dispatch(setQuestions(question));
+	};
 
 	return (
 		<>
@@ -45,7 +56,11 @@ const Session = () => {
 			<section className={cx('wrapper')}>
 				<div className={cx('questions')}>
 					<div className={cx('searchBar')}>
-						<input type='search' placeholder='Поиск вопроса' className={cx('input')}/>
+						<input
+							type='search'
+							placeholder='Поиск вопроса'
+							className={cx('input')}
+						/>
 						<FilterIcon />
 					</div>
 					<hr />
@@ -53,6 +68,7 @@ const Session = () => {
 						{data.items.map((question) => {
 							return (
 								<QuestionItem
+									onClick={() => addQuestionHandler(question)}
 									question={question.question}
 									key={question.id}
 									stack={question.technology?.name}
