@@ -12,7 +12,7 @@ export interface IQuestion {
 }
 
 export interface ISetQuestions {
-	questions: IQuestion[]
+	questions: IQuestion[];
 }
 
 export type GetAllQuestionResponse = {
@@ -167,3 +167,10 @@ export interface IGetFullUserStatistics {
 }
 
 /* ===========User========== */
+
+/* ===========Interview========== */
+export interface ISetInterview {
+	date: string;
+	initiatorName: string;
+}
+/* ===========Interview========== */

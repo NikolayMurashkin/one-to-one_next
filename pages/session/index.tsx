@@ -3,12 +3,12 @@ import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 
 import styles from './index.module.css';
-import { FilterIcon } from './../../public/icons/FilterIcon';
+import { FilterIcon } from '../../public/icons/FilterIcon';
 import { QuestionItem } from '../../components/session/questionItem/QuestionItem';
 import { useGetAllQuestionsQuery } from '../../redux';
-import { QuestionWindow } from './../../components/session/questionWindow/QuestionWindow';
-import { IQuestion } from './../../redux/types';
-import { useAppDispatch, useAppSelector } from './../../hooks/redux';
+import { QuestionWindow } from '../../components/session/questionWindow/QuestionWindow';
+import { IQuestion, OnetoOneResponse } from '../../redux/types';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setQuestions } from '../../slices/questionsSlice';
 
 const Session = () => {

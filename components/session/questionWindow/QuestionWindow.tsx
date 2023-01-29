@@ -3,22 +3,21 @@ import { GetAllQuestionResponse } from '../../../redux';
 import { QuestionItem } from './QuestionItem';
 
 import styles from './QuestionWindow.module.css';
-import { IQuestion } from './../../../redux/types';
-import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../hooks/redux';
-import { useAppDispatch } from './../../../hooks/redux';
-import { removeQuestion } from '../../../slices/questionsSlice';
 
 export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 	const cx = classNames.bind(styles);
+	const interviewInfo = useAppSelector((state) => state.interview);
 
-	const questions = useAppSelector(state => state.questions.questions)
+	const questions = useAppSelector((state) => state.questions.questions);
 
 	return (
 		<div className={cx('wrapper')}>
 			<div className={cx('top')}>
-				<span className={cx('date')}>дата</span>
-				<span className={cx('name')}>имя</span>
+				<span className={cx('date')}>{interviewInfo.date}</span>
+				<span className={cx('name')}>
+					{interviewInfo.initiatorName}
+				</span>
 			</div>
 			<hr />
 			<ul className={cx('list')}>

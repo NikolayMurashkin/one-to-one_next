@@ -7,6 +7,8 @@ import styles from './InterviewItem.module.scss';
 import { TInterviewItemProps } from './InterviewItem.props';
 import { ChatIcon } from './../../../public/icons/ChatIcon';
 import { useGetUserByIdQuery } from '../../../redux';
+import { useAppDispatch } from './../../../hooks/redux';
+import { setInterview } from '../../../slices/interviewSlice';
 
 export const InterviewItem: React.FC<TInterviewItemProps> = ({
 	status,
@@ -16,9 +18,11 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 	grade,
 }) => {
 	const cx = classNames.bind(styles);
+	const dipatch = useAppDispatch();
 	const { data: user, error } = useGetUserByIdQuery(initiatorId);
+
 	if (!user) {
-		return <p>Загрузка...</p>
+		return <p>Загрузка...</p>;
 	}
 	return (
 		<li
@@ -30,7 +34,9 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 		>
 			<span className={styles.text}>{date}</span>
 			<span className={styles.text}>{stack}</span>
-			<span className={styles.text}>{`${user.name} ${user.surName}`}</span>
+			<span
+				className={styles.text}
+			>{`${user.name} ${user.surName}`}</span>
 			<span className={styles.text}>{grade}</span>
 			<span>
 				<Button
@@ -42,7 +48,7 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 				/>
 			</span>
 			{status === 'ACCEPT' && (
-				<Link href={'/session'} className={styles.button}>
+				<Link href={'/session'} className={styles.button} onClick={() => dipatch(setInterview({date: date, initiatorName: `${user.name} ${user.surName}`}))}>
 					<ChatIcon />
 					<span>Подключить</span>
 				</Link>
