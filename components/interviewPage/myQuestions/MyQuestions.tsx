@@ -14,7 +14,6 @@ export const MyQuestions = () => {
 			setUserId(user.id);
 		}
 	}, []);
-	console.log(userId);
 
 	const { data, error } = useGetAllQuestionsQuery(userId);
 

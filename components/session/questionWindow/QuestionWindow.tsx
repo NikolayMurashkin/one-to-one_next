@@ -45,16 +45,6 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 			}),
 			message,
 		};
-		// fetch(
-		// 	'http://51.250.8.47:8080/one-to-one/api/v1/user/one-to-one/feedback/create',
-		// 	{
-		// 		method: 'POST',
-		// 		body: JSON.stringify(body),
-		// 		headers: {
-		// 			'Content-type': 'application/json',
-		// 		},
-		// 	}
-		// );
 		sendFeedback({ body: JSON.stringify(body) });
 
 		console.log(body);

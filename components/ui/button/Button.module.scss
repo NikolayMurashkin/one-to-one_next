@@ -16,9 +16,10 @@
 	background: var(--green);
 	font-size: 12px;
 	line-height: 15px;
-	color: rgba(255, 255, 255, 0.8);
+	color: var(--black);
 	padding: 5px;
 	width: 139px;
+	font-weight: 400;
 	&:disabled {
 		cursor: default;
 	}

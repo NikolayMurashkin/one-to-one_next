@@ -29,9 +29,7 @@ export const Questions: React.FC<QuestionsProps> = ({
 	const selectedTab = useAppSelector(
 		(state: RootState) => state.tabs.selectedTab
 	);
-	const technologyId = useAppSelector(
-		(state: RootState) => state.technology.id
-	);
+	const technology = useAppSelector((state: RootState) => state.technology);
 
 	const [addQuestions] = useAddQuestionsMutation();
 
@@ -47,7 +45,7 @@ export const Questions: React.FC<QuestionsProps> = ({
 					question,
 					answer,
 					userId: 1,
-					technologyId,
+					technologyId: technology.id,
 				},
 			]),
 		});
@@ -56,20 +54,24 @@ export const Questions: React.FC<QuestionsProps> = ({
 		closeModal();
 	};
 	const addOneMoreQuestionHandler = () => {
-		const newArr: IQuestion[] = [];
-		setQuestionsList(
-			newArr.concat(questionsList, [
-				{
-					question,
-					answer,
-					userId: 1,
-					technologyId,
-				},
-			])
-		);
+		// setQuestionsList((prevList) => {
+		// 	const newList = prevList.concat([
+		// 		{
+		// 			question,
+		// 			answer,
+		// 			userId: 1,
+		// 			technology: {
+		// 				id: technology.id,
+		// 				name: technology.name,
+		// 			},
+		// 			technologyId: technology.id,
+		// 		},
+		// 	]);
+		// 	return newList;
+		// });
 
-		setQuestion('');
-		setAnswer('');
+		// setQuestion('');
+		// setAnswer('');
 	};
 
 	return (
@@ -97,6 +99,7 @@ export const Questions: React.FC<QuestionsProps> = ({
 						<PlusIcon
 							onClick={addOneMoreQuestionHandler}
 							color='#808080'
+							className={cx('plusIcon')}
 						/>
 						<Button color='secondary' text='Сохранить' />
 					</div>
@@ -104,10 +107,10 @@ export const Questions: React.FC<QuestionsProps> = ({
 						<div className={cx('questions__question')}>
 							<textarea
 								placeholder='Вопрос'
-								value={question}
 								cols={1}
 								rows={1}
 								className={cx('questions__input')}
+								value={question}
 								onChange={(e) => setQuestion(e.target.value)}
 							/>
 							<Technology />
@@ -124,12 +127,13 @@ export const Questions: React.FC<QuestionsProps> = ({
 					{questionsList && (
 						<ul className={cx('questions__added')}>
 							{questionsList.map((question) => {
+								console.log(question);
 								return (
 									<QuestionItem
-										key={question.technologyId}
+										key={question.question}
 										answer={question.answer}
 										question={question.question}
-										technology={question.technologyId?.toString()}
+										technology={question.technology?.name}
 									/>
 								);
 							})}

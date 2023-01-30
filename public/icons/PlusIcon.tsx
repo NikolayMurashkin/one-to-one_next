@@ -10,7 +10,6 @@ export const PlusIcon = (props: SVGProps<SVGSVGElement>) => (
 		{...props}
 	>
 		<g opacity={0.8} clipPath='url(#a)'>
-			<path fill='#fff' d='M.333 0h15.932v15.932H.333z' />
 			<path
 				d='M8.3 14.604a6.638 6.638 0 1 0 0-13.277 6.638 6.638 0 0 0 0 13.277ZM8.3 5.31v5.311M5.644 7.966h5.31'
 				stroke={props.color}

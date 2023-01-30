@@ -24,15 +24,14 @@ export const Tabs: React.FC<TabsProps> = ({ selectedId, tabs }) => {
 							tab__selected: tab.id === selectedId,
 						})}
 						key={tab.id}
+						onClick={() => setTabHanlder(tab.id)}
 					>
 						<div
 							className={cx('tabLabel', {
 								tabLabel__selected: tab.id === selectedId,
 							})}
 						>
-							<span onClick={() => setTabHanlder(tab.id)}>
-								{tab.label}
-							</span>
+							<span>{tab.label}</span>
 						</div>
 						{tab.id === 1 || tab.id === 3 ? (
 							<Modal tab={tab.id} selectedTab={selectedId} />

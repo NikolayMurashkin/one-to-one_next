@@ -10,9 +10,9 @@ export default function Layout({ children }: TLayoutProps) {
 		router.pathname === '/login' || router.pathname === '/register';
 
 	return (
-		<div className={styles.wrapper}>
+		<div>
 			{!isAuthPage && <Header />}
-			{children}
+			<div className={styles.wrapper}>{children}</div>
 		</div>
 	);
 }
