@@ -16,6 +16,7 @@ import {
 	QuestionRequest,
 	IUser,
 	IGetFullUserStatistics,
+	IGetUserStatistics,
 } from './types';
 
 export const api = createApi({
@@ -133,9 +134,13 @@ export const api = createApi({
 			query: (id) => `/user/${id}`,
 			providesTags: ['User'],
 		}),
-		getFullUserStatistics: builder.query<IGetFullUserStatistics, number>({
+		getTechnologyStatistics: builder.query<IGetFullUserStatistics, number>({
 			query: (userId) =>
 				`/user/one-to-one/feedback/${userId}/technology-statistics`,
+			providesTags: ['User'],
+		}),
+		getUserStatistics: builder.query<IGetUserStatistics, number>({
+			query: (userId) => `/user/one-to-one/feedback/${userId}/statistics`,
 			providesTags: ['User'],
 		}),
 		sendFeedback: builder.mutation({
@@ -164,6 +169,7 @@ export const {
 	useCreateOneToOneMutation,
 	useGetMyOneToOneQuery,
 	useGetUserByIdQuery,
-	useGetFullUserStatisticsQuery,
-	useSendFeedbackMutation
+	useGetTechnologyStatisticsQuery,
+	useSendFeedbackMutation,
+	useGetUserStatisticsQuery,
 } = api;

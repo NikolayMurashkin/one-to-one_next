@@ -181,6 +181,19 @@ export interface IGetFullUserStatistics {
 	totalItems: number;
 	items: IUserStatisticItem[];
 }
+export interface IGetUserStatistics {
+	id: number;
+	user: {
+		id: number;
+		login: string;
+		email: string;
+		name: string;
+		surName: string;
+	};
+	totalOneToOneCount: number;
+	totalQuestionCount: number;
+	totalPoint: number;
+}
 
 /* ===========User========== */
 

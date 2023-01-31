@@ -1,10 +1,10 @@
-import { useGetFullUserStatisticsQuery } from '../../../redux';
+import { useGetTechnologyStatisticsQuery } from '../../../redux';
 
 import styles from './Statistic.module.scss';
 import { StatisticItem } from './StatisticItem';
 
 export const Statistic = () => {
-	const { data, error } = useGetFullUserStatisticsQuery(2);
+	const { data, error } = useGetTechnologyStatisticsQuery(2);
 
 	if (!data) {
 		return <p>Загрузка...</p>;

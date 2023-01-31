@@ -38,6 +38,10 @@ export const Questions: React.FC<QuestionsProps> = ({
 		e: React.FormEvent<HTMLFormElement>
 	) => {
 		e.preventDefault();
+		if (question.length <= 0 || answer.length <= 0) {
+			setIsFilled(false);
+			return;
+		}
 		const newArr: IQuestion[] = [];
 		await addQuestions({
 			userId: 1,

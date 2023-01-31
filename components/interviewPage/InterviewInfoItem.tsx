@@ -4,7 +4,7 @@ import { StarIcon } from './../../public/icons/StarIcon';
 
 export const InterviewInfoItem: React.FC<TInterviewInfoItemProps> = ({
 	text,
-	count,
+	count
 }) => {
 	return (
 		<div className={styles.item}>
@@ -12,7 +12,9 @@ export const InterviewInfoItem: React.FC<TInterviewInfoItemProps> = ({
 				<p className={styles.text}>{text}</p>
 				<p className={styles.count}>{count}</p>
 			</div>
-			{text === 'Оценки пользователей' && <StarIcon className={styles.icon}/>}
+			{text === 'Оценки пользователей' && (
+				<StarIcon className={styles.icon} />
+			)}
 		</div>
 	);
 };

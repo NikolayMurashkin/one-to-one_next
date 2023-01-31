@@ -1,9 +1,19 @@
+import classNames from 'classnames/bind';
+
 import styles from './InterviewInfoList.module.scss';
 import { InterviewInfoItem } from './InterviewInfoItem';
 import { useEffect, useState } from 'react';
-import { IUser, useGetFullUserStatisticsQuery } from '../../redux';
+import { IUser, useGetUserStatisticsQuery } from '../../redux';
 
 export const InterviewInfoList = () => {
+	const cx = classNames.bind(styles);
+	const { data, error } = useGetUserStatisticsQuery(2);
+	if (!data) {
+		return <p>Загрузка...</p>;
+	}
+	if (error) {
+		return <p>Загрузка...</p>;
+	}
 	// const [userId, setUserId] = useState<number>(1);
 
 	// useEffect(() => {
@@ -25,12 +35,55 @@ export const InterviewInfoList = () => {
 	// }
 	// console.log(userStatistics);
 
+	const labels = [
+		'Оценки пользователей',
+		'Пройдено собесований',
+		'Набрано баллов',
+		'Задано вопросов',
+	];
+
 	return (
-		<div className={styles.list}>
-			<InterviewInfoItem text='Оценки пользователей' count={4.6} />
-			<InterviewInfoItem text='Пройдено собесований' count={11} />
-			<InterviewInfoItem text='Набрано баллов' count={35} />
-			<InterviewInfoItem text='Задано вопросов' count={27} />
-		</div>
+		<ul className={cx('list')}>
+			{labels.map((item, i) => {
+				switch (i) {
+					case 0:
+						return (
+							<InterviewInfoItem
+								key={i}
+								text={item}
+								count={+(
+									data.totalPoint / data.totalQuestionCount
+								).toFixed(1)}
+							/>
+						);
+					case 1:
+						return (
+							<InterviewInfoItem
+								key={i}
+								text={item}
+								count={data.totalOneToOneCount}
+							/>
+						);
+					case 2:
+						return (
+							<InterviewInfoItem
+								key={i}
+								text={item}
+								count={data.totalPoint}
+							/>
+						);
+					case 3:
+						return (
+							<InterviewInfoItem
+								key={i}
+								text={item}
+								count={data.totalQuestionCount}
+							/>
+						);
+					default:
+						return;
+				}
+			})}
+		</ul>
 	);
 };
