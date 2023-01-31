@@ -1,60 +1,93 @@
-.section {
-	details[open] summary ~ * {
-		animation: sweep 0.5s ease-in-out;
-	}
-	details[close] summary ~ * {
-		animation: sweepClose 0.5s ease-in-out;
-	}
-
-	@keyframes sweep {
-		0% {
-			opacity: 0;
-			transform: translateX(-10px);
-		}
-		100% {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-	@keyframes sweepClose {
-		0% {
-			opacity: 1;
-			transform: translateX(0px);
-		}
-		100% {
-			opacity: 0;
-			transform: translateX(-10px);
-		}
-	}
-}
-
-.interviewItem {
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	padding: 5px 10px;
 	background: #ffffff;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+	border: 1px solid #808080;
 	border-radius: 5px;
-	padding: 10px 15px;
+	overflow: hidden;
+	transition: all 0.25s ease-in-out;
+	width: 100%;
+	max-height: 35px;
 	font-size: 12px;
 	line-height: 15px;
-	transition: all 3s ease-in;
-	.question {
-		list-style: none;
-		span:first-child {
-			cursor: pointer;
-		}
-		.title {
-			display: flex;
-			justify-content: space-between;
-			padding-right: 80px;
-		}
-	}
-	.details {
-		margin-top: 10px;
-		display: flex;
-		column-gap: 60px;
-		.answer {
-			color: var(--gray);
-		}
-		.text {
-		}
-	}
+	cursor: pointer;
+}
+
+.content {
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 20px;
+	align-items: center;
+	position: relative;
+	padding-top: 4px;
+}
+
+.content > *:last-child {
+	margin-left: 15px;
+}
+
+.stack {
+	flex: 1 0 auto;
+	margin-left: 10px;
+	/* margin-right: 5%; */
+}
+
+.question {
+	position: absolute;
+	left: 120px;
+	flex: 1 0 auto;
+}
+
+.commentWrapper {
+	display: flex;
+	column-gap: 75px;
+	margin-left: 10px;
+}
+
+.answer {
+}
+
+.text {
+	background: #d9d9d9;
+	border-radius: 5px;
+	padding: 10px;
+	resize: initial;
+	margin-bottom: 10px;
+}
+
+.text::placeholder {
+	color: #888888;
+}
+
+.opened {
+	max-height: 190px;
+}
+
+.arrow {
+	transition: all 0.25s ease-in-out;
+}
+
+.opened .arrow {
+	transform: rotate(90deg);
+}
+
+.comment {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.button {
+	background: #a3d0ab;
+	border-radius: 5px;
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 15px;
+}
+
+.label {
+	font-size: 12px;
+	line-height: 15px;
+	color: #b3b3b3;
 }
