@@ -16,6 +16,7 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 	answer,
 	id,
 	techId,
+	isInterview,
 	setComments,
 	setIsDisabled,
 }) => {
@@ -38,12 +39,6 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 	};
 
 	const acceptQuestionHanlder = () => {
-		// console.log(
-		// 	acceptedQuestions.every((question) => question.accepted === true)
-		// );
-		// if (acceptedQuestions.some((item) => item.question.id === id)) {
-		// 	return;
-		// }
 		dispatch(
 			acceptQuestion({
 				question: {
@@ -75,13 +70,15 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 			<div className={cx('commentWrapper')}>
 				<p className={cx('answer')}>{answer}</p>
 				<div className={cx('comment')}>
-					<textarea
-						onChange={(e) => setComment(e.target.value)}
-						cols={60}
-						rows={5}
-						placeholder='Введите комментарий к ответу'
-						className={cx('text')}
-					/>
+					{isInterview && (
+						<textarea
+							onChange={(e) => setComment(e.target.value)}
+							cols={60}
+							rows={5}
+							placeholder='Введите комментарий к ответу'
+							className={cx('text')}
+						/>
+					)}
 					<button
 						className={cx('button')}
 						onClick={acceptQuestionHanlder}

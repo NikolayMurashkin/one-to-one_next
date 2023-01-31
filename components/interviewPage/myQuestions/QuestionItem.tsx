@@ -6,7 +6,6 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 	answer,
 	technology,
 }) => {
-	console.log(technology);
 	return (
 		<li className={styles.section}>
 			<details className={styles.interviewItem}>

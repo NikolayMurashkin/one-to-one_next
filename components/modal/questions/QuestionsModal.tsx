@@ -10,7 +10,7 @@ import {
 	useAddQuestionsMutation,
 } from '../../../redux';
 import { Technology } from '../technology/Technology';
-import { QuestionItem } from '../../interviewPage/myQuestions/QuestionItem';
+import { QuestionItem } from './questionItem/QuestionItem';
 import styles from './Questions.module.scss';
 import Button from '../../ui/button/Button';
 import { useAppSelector } from '../../../hooks/redux';
@@ -24,6 +24,7 @@ export const Questions: React.FC<QuestionsProps> = ({
 
 	const [question, setQuestion] = useState('');
 	const [answer, setAnswer] = useState('');
+	const [isFilled, setIsFilled] = useState(true);
 	const [questionsList, setQuestionsList] = useState<IQuestion[]>([]);
 
 	const selectedTab = useAppSelector(
@@ -54,24 +55,34 @@ export const Questions: React.FC<QuestionsProps> = ({
 		closeModal();
 	};
 	const addOneMoreQuestionHandler = () => {
-		// setQuestionsList((prevList) => {
-		// 	const newList = prevList.concat([
-		// 		{
-		// 			question,
-		// 			answer,
-		// 			userId: 1,
-		// 			technology: {
-		// 				id: technology.id,
-		// 				name: technology.name,
-		// 			},
-		// 			technologyId: technology.id,
-		// 		},
-		// 	]);
-		// 	return newList;
-		// });
-
-		// setQuestion('');
-		// setAnswer('');
+		if (question.length <= 0 || answer.length <= 0) {
+			setIsFilled(false);
+			return;
+		}
+		setQuestionsList((prevList) => {
+			setIsFilled(true);
+			const newList = prevList.concat([
+				{
+					question,
+					answer,
+					userId: 1,
+					technology: {
+						id: technology.id,
+						name: technology.name,
+					},
+					technologyId: technology.id,
+				},
+			]);
+			setQuestion('');
+			setAnswer('');
+			return newList;
+		});
+		console.log(questionsList);
+	};
+	const deleteQuestionHandler = (question: string | undefined) => {
+		setQuestionsList((prevState) => {
+			return prevState.filter((item) => item.question !== question);
+		});
 	};
 
 	return (
@@ -113,27 +124,42 @@ export const Questions: React.FC<QuestionsProps> = ({
 								value={question}
 								onChange={(e) => setQuestion(e.target.value)}
 							/>
+							{!isFilled && (
+								<span className={cx('errorQuestion')}>
+									Поле должно быть заполнено
+								</span>
+							)}
+
 							<Technology />
 						</div>
-						<textarea
-							placeholder='Ответ'
-							className={cx('questions__input')}
-							cols={1}
-							rows={4}
-							value={answer}
-							onChange={(e) => setAnswer(e.target.value)}
-						/>
+						<div className={cx('questions__answer')}>
+							<textarea
+								placeholder='Ответ'
+								className={cx('questions__input')}
+								cols={1}
+								rows={4}
+								value={answer}
+								onChange={(e) => setAnswer(e.target.value)}
+							/>
+							{!isFilled && (
+								<span className={cx('errorAnswer')}>
+									Поле должно быть заполнено
+								</span>
+							)}
+						</div>
 					</div>
 					{questionsList && (
 						<ul className={cx('questions__added')}>
 							{questionsList.map((question) => {
-								console.log(question);
 								return (
 									<QuestionItem
 										key={question.question}
 										answer={question.answer}
 										question={question.question}
-										technology={question.technology?.name}
+										technologyName={
+											question.technology?.name
+										}
+										deleteQuestion={deleteQuestionHandler}
 									/>
 								);
 							})}

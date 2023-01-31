@@ -72,6 +72,7 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 								question={question.question}
 								id={question.id}
 								answer={question.answer}
+								isInterview
 								setComments={setComments}
 								setIsDisabled={setIsDisabled}
 							/>
