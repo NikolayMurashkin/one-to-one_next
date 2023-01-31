@@ -46,6 +46,17 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 			message,
 		};
 		sendFeedback({ body: JSON.stringify(body) });
+		
+		fetch(`http://51.250.8.47:8080/one-to-one/api/v1/one-to-one/${interviewInfo.interviewId}/close`, {
+			method: 'PUT',
+			headers: {
+				'Content-type': 'application/json',
+			},
+			body: JSON.stringify({
+				authorId: interviewInfo.initiatorId,
+				opponentId: 2,
+			}),
+		});
 
 		console.log(body);
 	};

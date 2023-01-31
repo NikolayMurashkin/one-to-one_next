@@ -5,7 +5,7 @@ const initialState: ISetInterview = {
 	date: '',
 	initiatorName: '',
 	interviewId: 0,
-	initiatorId: 0
+	initiatorId: 0,
 };
 
 const interviewSlice = createSlice({

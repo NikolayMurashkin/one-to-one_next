@@ -59,6 +59,7 @@ export const InterviewsModal: React.FC<InterviewsModalProps> = ({
 			technologyId,
 		};
 
+
 		createInterview(data);
 		closeModal();
 	};

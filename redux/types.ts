@@ -164,10 +164,10 @@ export interface IUserStatisticItem {
 	user: {
 		id: number;
 		user: IUser;
-		login:string;
+		login: string;
 		email: string;
 		name: string;
-		surName:string;
+		surName: string;
 	};
 	technology: {
 		id: number;
