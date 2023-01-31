@@ -161,12 +161,13 @@ export interface IUser {
 
 export interface IUserStatisticItem {
 	id: number;
-	userStatistics: {
+	user: {
 		id: number;
 		user: IUser;
-		totalOneToOneCount: number;
-		totalQuestionCount: number;
-		totalPoint: number;
+		login:string;
+		email: string;
+		name: string;
+		surName:string;
 	};
 	technology: {
 		id: number;

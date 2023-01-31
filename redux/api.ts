@@ -135,7 +135,7 @@ export const api = createApi({
 		}),
 		getFullUserStatistics: builder.query<IGetFullUserStatistics, number>({
 			query: (userId) =>
-				`/user/one-to-one/feedback/${userId}/full-statistics`,
+				`/user/one-to-one/feedback/${userId}/technology-statistics`,
 			providesTags: ['User'],
 		}),
 		sendFeedback: builder.mutation({
@@ -147,7 +147,6 @@ export const api = createApi({
 					'Content-type': 'application/json',
 				},
 			}),
-			// invalidatesTags: [{ type: 'OneToOne', id: 'OneToOneList' }],
 		}),
 	}),
 });

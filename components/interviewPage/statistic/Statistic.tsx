@@ -1,45 +1,31 @@
+import { useGetFullUserStatisticsQuery } from '../../../redux';
+
 import styles from './Statistic.module.scss';
 import { StatisticItem } from './StatisticItem';
 
 export const Statistic = () => {
+	const { data, error } = useGetFullUserStatisticsQuery(2);
+
+	if (!data) {
+		return <p>Загрузка...</p>;
+	}
+	if (error) {
+		return <p>Ошибка</p>;
+	}
+	console.log(data);
 	return (
 		<ul className={styles.list}>
-			<StatisticItem
-				count={1}
-				scores={4}
-				questions={108}
-				technology='TypeScript'
-			/>
-			<StatisticItem
-				count={2}
-				scores={8}
-				questions={108}
-				technology='TypeScript'
-			/>
-			<StatisticItem
-				count={3}
-				scores={15}
-				questions={108}
-				technology='TypeScript'
-			/>
-			<StatisticItem
-				count={4}
-				scores={16}
-				questions={108}
-				technology='TypeScript'
-			/>
-			<StatisticItem
-				count={5}
-				scores={23}
-				questions={108}
-				technology='TypeScript'
-			/>
-			<StatisticItem
-				count={1}
-				scores={42}
-				questions={108}
-				technology='TypeScript'
-			/>
+			{data.items.map((item) => {
+				return (
+					<StatisticItem
+						key={item.id}
+						count={item.totalPoint / item.questionCount}
+						scores={item.totalPoint}
+						technology={item.technology.name}
+						questions={item.questionCount}
+					/>
+				);
+			})}
 		</ul>
 	);
 };

@@ -10,6 +10,7 @@ import { useAppSelector } from '../../hooks/redux';
 import {
 	RootState,
 	useGetAllQuestionsQuery,
+	useGetFullUserStatisticsQuery,
 	useGetMyOneToOneQuery,
 } from '../../redux';
 
@@ -20,6 +21,7 @@ export const InterviewTabs = () => {
 
 	const { data: questions } = useGetAllQuestionsQuery(1);
 	const { data: interviews } = useGetMyOneToOneQuery();
+	const { data: statictics } = useGetFullUserStatisticsQuery(2);
 	const myInterviews = interviews?.items.filter(
 		(item) => item.status !== 'OPEN'
 	);
@@ -34,7 +36,10 @@ export const InterviewTabs = () => {
 			id: 3,
 			label: `Мои вопросы (${questions && questions.totalItems})`,
 		},
-		{ id: 4, label: 'Моя статистика' },
+		{
+			id: 4,
+			label: `Мои статистика (${statictics && statictics.totalItems})`,
+		},
 	];
 
 	return (
