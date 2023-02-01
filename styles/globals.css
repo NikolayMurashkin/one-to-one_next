@@ -106,6 +106,7 @@ h6 {
 	border-radius: 2px;
 	height: 27px;
 	min-width: 142px;
+	var(--text-fz24);
 }
 
 .react-select__control {
