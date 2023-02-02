@@ -12,16 +12,16 @@
 	--color-hover-blue: rgba(247, 248, 251, 0.5);
 	--color-transparency: rgba(0, 0, 0, 0.8);
 	//effects
-	--effect-blur: {
+	--blur-background: {
 		background: #d9d9d9;
+	}
+	--blur-shadow: {
 		box-shadow: 0px 0px 4px #abadde;
 	}
 	//text
-	--text: {
-		font-family: "Inter";
-		font-style: normal;
-		color: #000000;
-	}
+	--font-family: "Inter";
+	--font-style: normal;
+	--font-color: var(--color-black);
 	--text-semibold: 600;
 	--text-regular: 400;
 	--text-lh-12: 15px;
@@ -29,4 +29,6 @@
 	--text-lh-24: 19px;
 	--text-lh-40: 48px;
 	--text-lh-48: 58px;
+	//animate
+	--transition: all 0.3s ease-in-out;
 }

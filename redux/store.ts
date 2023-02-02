@@ -1,7 +1,9 @@
+import getUserByIdSlice from '@entities/interviewItem/api/getUserByIdSlice';
+import setInterviewItemSlice from '@entities/interviewItem/api/setInterviewItemSlice';
+import myQquestionsSlice from '@features/myQuestions/api/myQquestionsSlice';
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import acceptedQuestionsSlice from '../slices/acceptedQuestionsSlice';
-import interviewSlice from '../slices/interviewSlice';
 import levelSlice from '../slices/levelSlice';
 import questionsSlice from '../slices/questionsSlice';
 import ratingSlice from '../slices/ratingSlice';
@@ -18,8 +20,10 @@ export const store = configureStore({
 		level: levelSlice,
 		questions: questionsSlice,
 		acceptedQuestions: acceptedQuestionsSlice,
-		interview: interviewSlice,
-		rating: ratingSlice
+		interviewItem: setInterviewItemSlice,
+		user: getUserByIdSlice,
+		rating: ratingSlice,
+		myQuestions: myQquestionsSlice
 	},
 	middleware: (getDefaultMiddlware) =>
 		getDefaultMiddlware().concat(api.middleware),

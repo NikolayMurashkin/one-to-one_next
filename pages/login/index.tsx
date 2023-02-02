@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import styles from './index.module.scss';
-import Button from '../../components/ui/button/Button';
 import { Input } from './../../components/ui/input/Input';
 import { useRef } from 'react';
+import { LoginButton } from '@shared/ui/';
 
 const LoginPage = () => {
 	const router = useRouter();
@@ -49,7 +49,7 @@ const LoginPage = () => {
 				<Link href={'/register'} className={styles.forgotPassword}>
 					Забыли пароль?
 				</Link>
-				<Button text='Войти' color='primary' />
+				<LoginButton text='Войти' />
 			</form>
 			<p className={styles.toRegister}>
 				Нет аккаунта?{' '}

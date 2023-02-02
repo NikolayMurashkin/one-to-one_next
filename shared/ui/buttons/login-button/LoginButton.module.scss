@@ -1,0 +1,22 @@
+.button {
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 17px;
+	padding: 10px 120px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	background: var(--color-light-green);
+	color: var(--color-white);
+	&:disabled {
+		background: var(--color-light-gray);
+	}
+	&:hover {
+		background: var(--color-green);
+	}
+	&:active {
+		background: var(--color-blue);
+	}
+}

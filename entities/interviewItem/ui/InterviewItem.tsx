@@ -1,27 +1,25 @@
-import Image from 'next/image';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 
-import Button from '../../ui/button/Button';
 import styles from './InterviewItem.module.scss';
-import { TInterviewItemProps } from './InterviewItem.props';
-import { useGetUserByIdQuery } from '../../../redux';
-import { useAppDispatch } from './../../../hooks/redux';
-import { setInterview } from '../../../slices/interviewSlice';
+import { IInterviewItemProps } from '@entities/interviewItem/model/interviewItem.props';
+import { useAppDispatch } from '@app/hooks';
+import { setInterview } from '@entities/interviewItem/api';
 import { InterviewButton } from '@shared/ui';
 import { MainButton } from '@shared/ui';
+import { useGetUserByIdQuery } from '@entities/interviewItem/api/getUserByIdApiSlice';
 
-export const InterviewItem: React.FC<TInterviewItemProps> = ({
+export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	status,
 	stack,
 	initiatorId,
 	date,
-	grade,
 	interviewId,
+	level
 }) => {
 	const cx = classNames.bind(styles);
 	const dipatch = useAppDispatch();
-	const { data: user, error } = useGetUserByIdQuery(initiatorId);
+	const { data: user } = useGetUserByIdQuery(initiatorId);
 
 	if (!user) {
 		return <p>Загрузка...</p>;
@@ -34,20 +32,11 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 				complete: status === 'CLOSED',
 			})}
 		>
-			<span className={styles.text}>{date}</span>
-			<span className={styles.text}>{stack}</span>
-			<span
-				className={styles.text}
-			>{`${user.name} ${user.surName}`}</span>
-			<span className={styles.text}>{grade}</span>
+			<span className={cx('text')}>{date}</span>
+			<span className={cx('text')}>{stack}</span>
+			<span className={cx('text')}>{`${user.name} ${user.surName}`}</span>
+			<span className={cx('text')}>{level}</span>
 			<span>
-				{/* <Button
-					color={'ghost'}
-					text={'Подробнее'}
-					disabled={
-						status === 'ACCEPT' || +date == new Date().getDate()
-					}
-				/> */}
 				<MainButton
 					type='border'
 					isDisabled={
@@ -68,6 +57,8 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 								initiatorName: `${user.name} ${user.surName}`,
 								interviewId,
 								initiatorId,
+								level,
+								status,
 							})
 						)
 					}

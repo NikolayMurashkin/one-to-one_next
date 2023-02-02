@@ -6,11 +6,11 @@ import { useRef } from 'react';
 import styles from './index.module.scss';
 import Button from '../../components/ui/button/Button';
 import { Input } from './../../components/ui/input/Input';
+import { LoginButton } from '@shared/ui';
 
 const RegisterPage = () => {
 	const router = useRouter();
 
-	const loginRef = useRef<HTMLInputElement>(null);
 	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
 	const nameRef = useRef<HTMLInputElement>(null);
@@ -21,7 +21,6 @@ const RegisterPage = () => {
 		event.preventDefault();
 		event.stopPropagation();
 		const body = {
-			login: loginRef.current?.value,
 			email: emailRef.current?.value,
 			password: passwordRef.current?.value,
 			name: nameRef.current?.value,
@@ -59,12 +58,6 @@ const RegisterPage = () => {
 				ref={formRef}
 			>
 				<Input
-					type='text'
-					placeholder='Введите логин'
-					label='Логин'
-					inputRef={loginRef}
-				/>
-				<Input
 					type='email'
 					placeholder='Введите адрес почты'
 					label='Почта'
@@ -88,7 +81,7 @@ const RegisterPage = () => {
 					label='Фамилия'
 					inputRef={surNameRef}
 				/>
-				<Button text='Зарегистрироваться' color='primary' />
+				<LoginButton text='Зарегистрироваться'/>
 			</form>
 			<p className={styles.toRegister}>
 				Есть аккаунт?{' '}
