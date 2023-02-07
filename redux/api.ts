@@ -23,7 +23,7 @@ export const api = createApi({
 	reducerPath: 'api',
 	tagTypes: ['Questions', 'Technologies', 'OneToOne', 'User'],
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://51.250.8.47:8080/one-to-one/api/v1',
+		baseUrl: 'http://51.250.55.231:8080/one-to-one/api/v1',
 	}),
 	endpoints: (builder) => ({
 		getAllQuestions: builder.query<GetAllQuestionResponse, number>({
