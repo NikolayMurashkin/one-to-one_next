@@ -5,10 +5,11 @@ import Link from 'next/link';
 import Button from '../../ui/button/Button';
 import styles from './InterviewItem.module.scss';
 import { TInterviewItemProps } from './InterviewItem.props';
-import { ChatIcon } from './../../../public/icons/ChatIcon';
 import { useGetUserByIdQuery } from '../../../redux';
 import { useAppDispatch } from './../../../hooks/redux';
 import { setInterview } from '../../../slices/interviewSlice';
+import { InterviewButton } from '@shared/ui';
+import { MainButton } from '@shared/ui';
 
 export const InterviewItem: React.FC<TInterviewItemProps> = ({
 	status,
@@ -16,7 +17,7 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 	initiatorId,
 	date,
 	grade,
-	interviewId
+	interviewId,
 }) => {
 	const cx = classNames.bind(styles);
 	const dipatch = useAppDispatch();
@@ -40,12 +41,20 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 			>{`${user.name} ${user.surName}`}</span>
 			<span className={styles.text}>{grade}</span>
 			<span>
-				<Button
+				{/* <Button
 					color={'ghost'}
 					text={'Подробнее'}
 					disabled={
 						status === 'ACCEPT' || +date == new Date().getDate()
 					}
+				/> */}
+				<MainButton
+					type='border'
+					isDisabled={
+						status === 'ACCEPT' || +date == new Date().getDate()
+					}
+					text={'Подробнее'}
+					color={status === 'CLOSED' ? 'green' : 'blue'}
 				/>
 			</span>
 			{status === 'ACCEPT' && (
@@ -58,37 +67,16 @@ export const InterviewItem: React.FC<TInterviewItemProps> = ({
 								date,
 								initiatorName: `${user.name} ${user.surName}`,
 								interviewId,
-								initiatorId
+								initiatorId,
 							})
 						)
 					}
 				>
-					<ChatIcon />
-					<span>Подключить</span>
+					<InterviewButton status='active' />
 				</Link>
 			)}
-			{status === 'CLOSED' && (
-				<span className={styles.status}>
-					<Image
-						src='/icons/complete.svg'
-						width={11}
-						height={11}
-						alt='pending icon'
-					/>{' '}
-					Завершено
-				</span>
-			)}
-			{status === 'pending' && (
-				<span className={styles.status}>
-					<Image
-						src='/icons/pending.svg'
-						width={11}
-						height={11}
-						alt='pending icon'
-					/>{' '}
-					Ожидание
-				</span>
-			)}
+			{status === 'CLOSED' && <InterviewButton status='completed' />}
+			{status === 'pending' && <InterviewButton status='waiting' />}
 		</li>
 	);
 };

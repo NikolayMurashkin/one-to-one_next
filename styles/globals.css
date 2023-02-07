@@ -43,6 +43,7 @@ input,
 button,
 textarea {
 	font-size: inherit;
+	font-family: inherit;
 }
 
 button {
@@ -55,10 +56,11 @@ a {
 	color: inherit;
 }
 
+/* a,
 a:link,
 a:visited {
 	text-decoration: none;
-}
+} */
 
 a:hover {
 	text-decoration: none;
@@ -86,15 +88,34 @@ h6 {
 
 /*===================Variables=======================*/
 :root {
-	--red: #C70025;
-	--green: #89B588;
-	--dark-green: rgba(93, 154, 91, 0.73);
-	--pink: #F8CEC0;
-	--orange: #ff7448;
-	--light-orange: #FFBBA5;
-	--gray: #808080;
-	--black: #000000;
-	--white: #ffffff;
+	--color-blue: #213a8f;
+	--color-green: #7a9f80;
+	--color-gray: #808080;
+	--color-black: #000000;
+	--color-white: #ffffff;
+	--color-light-blue: #909cc7;
+	--color-light-green: #a3d0ab;
+	--color-light-gray: #d9d9d9;
+	--color-red: #c70025;
+	--color-yellow: #ffb904;
+	--color-hover-blue: rgba(247, 248, 251, 0.5);
+	--color-transparency: rgba(0, 0, 0, 0.8);
+
+	--blur-background: #d9d9d9;
+	--blur-shadow: 0px 0px 10px #abadde;
+
+	--font-family: "Inter";
+	--font-style: normal;
+	--font-color: var(--color-black);
+	--text-semibold: 600;
+	--text-regular: 400;
+	--text-lh-12: 15px;
+	--text-lh-14: 17px;
+	--text-lh-24: 19px;
+	--text-lh-40: 48px;
+	--text-lh-48: 58px;
+
+	--transition: all 0.3s ease-in-out;
 }
 
 
@@ -106,7 +127,8 @@ h6 {
 	border-radius: 2px;
 	height: 27px;
 	min-width: 142px;
-	font-size: var(--text-fz24);
+	font-size: var(--text-lh24);
+
 }
 
 .react-select__control {

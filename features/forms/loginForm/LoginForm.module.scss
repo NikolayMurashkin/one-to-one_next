@@ -1,0 +1,28 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: felx-start;
+	margin-bottom: 26px;
+	
+}
+.toRegister {
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
+	color: var(--black);
+	opacity: 0.6;
+
+	.registerLink {
+		font-weight: 700;
+		text-decoration: none;
+	}
+}
+.forgotPassword {
+	font-size: 12px;
+	line-height: 15px;
+	text-decoration-line: underline;
+	color: var(--color-black);
+	margin-top: -13px;
+	margin-bottom: 18px;
+	padding-left: 10px;
+}

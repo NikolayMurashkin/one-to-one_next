@@ -1,0 +1,13 @@
+.rating {
+	input[type="radio"] {
+		display: none;
+	}
+	.star {
+		cursor: pointer;
+		transition: color 0.3s;
+	}
+	.readOnly {
+	cursor: default;
+}
+}
+
