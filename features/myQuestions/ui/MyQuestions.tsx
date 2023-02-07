@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useGetAllQuestionsQuery } from '../../../redux/';
 
-import styles from './MyQuestions.module.scss';
+import styles from '../model/MyQuestions.module.scss';
 import { QuestionItem } from '@entities/questionItem';
 
 export const MyQuestions = () => {

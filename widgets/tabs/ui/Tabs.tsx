@@ -1,12 +1,16 @@
-import styles from '@widgets/tabs/model/Tabs.module.scss';
-import { MyInterview } from '@features/myInterviews';
-import { MyQuestions } from '@features/myQuestions';
 import { useAppSelector } from '@app/hooks';
 import { RootState } from '@app/store';
+import styles from '@widgets/tabs/model/Tabs.module.scss';
+import { useGetTechnologyStatisticsQuery } from '@shared/api/getTechnologyStatisticApiSlice';
+import { ITab } from '@widgets/tabs/model/Tabs.props';
+import { MyInterview } from '@features/myInterviews';
+import { MyQuestions } from '@features/myQuestions';
 import { useGetMyQuestionsQuery } from '@features/myQuestions/api/getMyQustionsApiSlice';
 import { useGetMyInterviewsQuery } from '@features/myInterviews/api/getMyInterviewsApiSlice';
 import { SortList } from '@features/sortList/ui/SortList';
-import { ITab } from '@widgets/tabs/model/Tabs.props';
+import { SearchInterview } from '@features/searchInterviews';
+import { Statistic } from '@features/statistic/ui/Statistic';
+import { TabsButtons } from '@features/tabs/ui/Tabs';
 
 export const Tabs = () => {
 	const selectedTabId = useAppSelector(
@@ -38,7 +42,7 @@ export const Tabs = () => {
 
 	return (
 		<section className={styles.interviewTabs}>
-			<Tabs tabs={tabs} selectedId={selectedTabId} />
+			<TabsButtons tabs={tabs} selectedId={selectedTabId} />
 			<div className={styles.tab}>
 				<SortList tabId={selectedTabId} />
 				<div className={styles.content}>

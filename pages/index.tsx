@@ -1,20 +1,21 @@
 import Head from 'next/head';
 
-import { InterviewInfoList } from '../components/interviewPage/InterviewInfoList';
-import { InterviewTabs } from '../components/interviewPage/InterviewTabs';
+// import { InterviewInfoList } from '../components/interviewPage/InterviewInfoList';
+import { Tabs } from '@widgets/tabs/ui/Tabs';
 import styles from './index.module.scss';
 import { TIndexProps } from '../types/index.props';
 import { useGetAllOneToOneQuery } from '../redux';
+import { InterviewInfoList } from '@features/interviewInfo/ui/InterviewInfoList';
 
 const HomePage: React.FC<TIndexProps> = () => {
-	const { data: interviews, error } = useGetAllOneToOneQuery();
-	if (!interviews) {
-		return <p>Загрузка...</p>;
-	}
+	// const { data: interviews, error } = useGetAllOneToOneQuery();
+	// if (!interviews) {
+	// 	return <p>Загрузка...</p>;
+	// }
 
-	if (error) {
-		return <p>Что-то пошло не так! Мы скоро всё исправим!</p>;
-	}
+	// if (error) {
+	// 	return <p>Что-то пошло не так! Мы скоро всё исправим!</p>;
+	// }
 
 	return (
 		<>
@@ -28,7 +29,7 @@ const HomePage: React.FC<TIndexProps> = () => {
 			</Head>
 			<main className={styles.main}>
 				<InterviewInfoList />
-				<InterviewTabs />
+				<Tabs />
 			</main>
 		</>
 	);
