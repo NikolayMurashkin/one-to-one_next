@@ -30,11 +30,11 @@ export const SearchInterviewItem: React.FC<ISearchInterviewItemProps> = ({
 		const refStyle = interviewRef.current?.style;
 		if (refStyle) {
 			refStyle.opacity = '0';
-			refStyle.transition = 'all .5s ease';
+			refStyle.transition = 'all 1s ease';
 			refStyle.transform = 'translateY(-30px)';
 			setTimeout(() => {
 				refStyle.display = 'none';
-			}, 310);
+			}, 1000);
 		}
 	};
 	if (!user) {

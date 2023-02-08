@@ -1,0 +1,18 @@
+.button {
+	border: 1px solid var(--color-light-blue);
+	border-radius: 5px;
+	padding: 5px 15px;
+	color: var(--color-light-blue);
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 15px;
+	transition: all 0.3s ease-in-out;
+	&:hover {
+		color: var(--color-blue);
+		border: 1px solid var(--color-blue);
+	}
+	&:active {
+		color: var(--color-green);
+		border: 1px solid var(--color-green);
+	}
+}
