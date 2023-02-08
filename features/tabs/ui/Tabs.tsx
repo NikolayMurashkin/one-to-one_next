@@ -4,7 +4,7 @@ import styles from '../model/Tabs.module.scss';
 import { TabsProps } from '@features/tabs/model/Tabs.props';
 import { Modal } from '@widgets/modal/ui/Modal';
 import { useAppDispatch } from '@app/hooks';
-import { setSelectedTab } from '../../../slices/tabSlice';
+import { setSelectedTab } from '@features/tabs/api/tabsSlice';
 
 export const TabsButtons: React.FC<TabsProps> = ({ selectedId, tabs }) => {
 	const dispatch = useAppDispatch();

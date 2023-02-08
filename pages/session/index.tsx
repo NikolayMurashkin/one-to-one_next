@@ -2,19 +2,47 @@ import Head from 'next/head';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 
-import styles from './index.module.css';
-import { FilterIcon } from '../../public/icons/FilterIcon';
-import { QuestionItem } from '../../components/session/questionItem/QuestionItem';
-import { useGetAllQuestionsQuery } from '../../redux';
-import { QuestionWindow } from '../../components/session/questionWindow/QuestionWindow';
-import { IQuestion, OnetoOneResponse } from '../../redux/types';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { setQuestions } from '../../slices/questionsSlice';
+import styles from './index.module.scss';
+import { useAppDispatch, useAppSelector } from '@app/hooks';
+import { setQuestions } from '@entities/sessionWindowQuestion/api/setQuestionSlice';
+import { FilterIcon } from '@shared/ui/icons/FilterIcon';
+import { useGetAllQuestionsQuery } from '@shared/api/getAllQuestionsApiSlice';
+import { QuestionItem } from '@entities/sessionQuestionItem/ui/QuestionItem';
+import { QuestionWindow } from '@features/questionWindow/ui/QuestionWindow';
+
+export interface IQuestion {
+	id?: number;
+	question: string;
+	answer: string;
+	technology?: {
+		id: number | undefined;
+		name: string;
+	};
+	technologyId: number | undefined;
+	userId: number | undefined;
+}
+export interface IInterview {
+	id: number;
+	initiatorId: number;
+	opponentId: number | null;
+	technology: {
+		id: number;
+		name: string;
+	};
+	dateTime: string;
+	status: string;
+	comment: string;
+	level: string;
+}
+export interface IInterviewResponse {
+	totalItems: number;
+	items: IInterview[];
+};
 
 const Session = () => {
 	const cx = classNames.bind(styles);
 	const dispatch = useAppDispatch();
-	const questions = useAppSelector((state) => state.questions.questions);
+	const questions = useAppSelector((state) => state.setQuestion.questions);
 
 	const [userId, setUserId] = useState<number>(1);
 

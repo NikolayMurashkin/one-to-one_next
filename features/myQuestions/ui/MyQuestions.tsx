@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useGetAllQuestionsQuery } from '../../../redux/';
 
 import styles from '../model/MyQuestions.module.scss';
 import { QuestionItem } from '@entities/questionItem';
+import { useGetMyQuestionsQuery } from '../api/getMyQustionsApiSlice';
 
 export const MyQuestions = () => {
 	const [userId, setUserId] = useState<number>(1);
@@ -15,7 +15,7 @@ export const MyQuestions = () => {
 		}
 	}, []);
 
-	const { data, error } = useGetAllQuestionsQuery(userId);
+	const { data, error } = useGetMyQuestionsQuery(userId);
 
 	if (!data) {
 		return <p>Загрузка...</p>;
