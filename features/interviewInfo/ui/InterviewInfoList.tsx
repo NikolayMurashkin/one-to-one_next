@@ -7,12 +7,83 @@ import { useGetUserStatisticsQuery } from '@features/interviewInfo/api/interview
 
 export const InterviewInfoList = () => {
 	const cx = classNames.bind(styles);
-	const { data, error } = useGetUserStatisticsQuery(2);
-	if (!data) {
-		return <p>Загрузка...</p>;
+	const { data, error, isLoading } = useGetUserStatisticsQuery(2);
+
+	const labels = [
+		'Оценки пользователей',
+		'Пройдено собесований',
+		'Набрано баллов',
+		'Задано вопросов',
+	];
+
+	let content;
+
+	if (isLoading) {
+		content = (
+			<ul className={cx('list')}>
+				{labels.map((item, i) => {
+					return <p key={i}>Загрузка...</p>;
+				})}
+			</ul>
+		);
 	}
 	if (error) {
-		return <p>Загрузка...</p>;
+		content = (
+			<ul className={cx('list')}>
+				{labels.map((item, i) => {
+					return <InterviewInfoItem key={i} text={item} count={0} />;
+				})}
+			</ul>
+		);
+	}
+	if (data) {
+		content = (
+			<ul className={cx('list')}>
+				{labels.map((item, i) => {
+					switch (i) {
+						case 0:
+							return (
+								<InterviewInfoItem
+									key={i}
+									text={item}
+									count={
+										+(
+											data.totalPoint /
+											data.totalQuestionCount
+										).toFixed(1)
+									}
+								/>
+							);
+						case 1:
+							return (
+								<InterviewInfoItem
+									key={i}
+									text={item}
+									count={data.totalOneToOneCount}
+								/>
+							);
+						case 2:
+							return (
+								<InterviewInfoItem
+									key={i}
+									text={item}
+									count={data.totalPoint}
+								/>
+							);
+						case 3:
+							return (
+								<InterviewInfoItem
+									key={i}
+									text={item}
+									count={data.totalQuestionCount}
+								/>
+							);
+						default:
+							return;
+					}
+				})}
+			</ul>
+		);
 	}
 	// const [userId, setUserId] = useState<number>(1);
 
@@ -35,55 +106,5 @@ export const InterviewInfoList = () => {
 	// }
 	// console.log(userStatistics);
 
-	const labels = [
-		'Оценки пользователей',
-		'Пройдено собесований',
-		'Набрано баллов',
-		'Задано вопросов',
-	];
-
-	return (
-		<ul className={cx('list')}>
-			{labels.map((item, i) => {
-				switch (i) {
-					case 0:
-						return (
-							<InterviewInfoItem
-								key={i}
-								text={item}
-								count={+(
-									data.totalPoint / data.totalQuestionCount
-								).toFixed(1)}
-							/>
-						);
-					case 1:
-						return (
-							<InterviewInfoItem
-								key={i}
-								text={item}
-								count={data.totalOneToOneCount}
-							/>
-						);
-					case 2:
-						return (
-							<InterviewInfoItem
-								key={i}
-								text={item}
-								count={data.totalPoint}
-							/>
-						);
-					case 3:
-						return (
-							<InterviewInfoItem
-								key={i}
-								text={item}
-								count={data.totalQuestionCount}
-							/>
-						);
-					default:
-						return;
-				}
-			})}
-		</ul>
-	);
+	return content;
 };

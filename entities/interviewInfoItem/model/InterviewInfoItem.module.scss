@@ -2,12 +2,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: var(--black);
+	color: var(--color-blue);
 	position: relative;
 	flex: 1 1 25%;
-	&:not(:last-child) {
-		border-right: 1px solid rgba(0, 0, 0, 0.1);
-	}
 	.info {
 		display: flex;
 		flex-direction: column;

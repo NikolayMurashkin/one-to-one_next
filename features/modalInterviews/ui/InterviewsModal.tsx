@@ -68,7 +68,7 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 				className={cx('plusIcon', {
 					plusActive: 1 === selectedTab,
 				})}
-				color={1 === selectedTab ? '#C70025' : '#808080'}
+				color={1 === selectedTab ? '#213A8F' : '#808080'}
 			/>
 			<ReactModal
 				ariaHideApp={false}

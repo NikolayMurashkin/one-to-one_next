@@ -36,7 +36,7 @@ export const Tabs = () => {
 		},
 		{
 			id: 4,
-			label: `Мои статистика (${statictics && statictics.totalItems})`,
+			label: `Мои статистика (${statictics && statictics.totalItems || 0})`,
 		},
 	];
 

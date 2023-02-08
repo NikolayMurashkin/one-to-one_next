@@ -95,7 +95,7 @@ export const Questions: React.FC<IQuestionsProps> = ({
 				className={cx('plusIcon', {
 					plusActive: 3 === selectedTab,
 				})}
-				color={3 === selectedTab ? '#C70025' : '#808080'}
+				color={3 === selectedTab ? '#213A8F' : '#808080'}
 			/>
 			<ReactModal
 				ariaHideApp={false}

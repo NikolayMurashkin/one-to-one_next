@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 import styles from './Header.module.scss';
-import { LogoIcon } from '@shared/ui/icons/LogoIcon';
 import { LogOutIcon } from '@shared/ui/icons/LogOutIcon';
+import { LogoWithoutText } from '@shared/ui/icons/LogoWithoutText';
 
 export interface IUser {
 	id: number;
@@ -33,7 +33,7 @@ const Header = () => {
 	return (
 		<header className={styles.header}>
 			<Link href='/' className={styles.logo}>
-				<LogoIcon />
+				<LogoWithoutText />
 			</Link>
 			<div className={styles.profile}>
 				<div className={styles.personInfo}>
