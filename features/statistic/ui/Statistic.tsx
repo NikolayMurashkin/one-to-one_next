@@ -8,11 +8,9 @@ export const Statistic = () => {
 
 	if (isLoading) {
 		return <p className={styles.loading}>Загрузка...</p>;
-	}
-	if (error) {
+	} else if (error) {
 		return <p className={styles.empty}>Статистика отсуствует</p>;
-	}
-	if (data) {
+	} else if (data) {
 		return (
 			<ul className={styles.list}>
 				{data.items.map((item) => {
@@ -28,5 +26,7 @@ export const Statistic = () => {
 				})}
 			</ul>
 		);
+	} else {
+		return <p>statistic</p>;
 	}
 };
