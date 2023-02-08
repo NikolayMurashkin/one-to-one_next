@@ -16,7 +16,7 @@ export const InterviewInfoList = () => {
 		'Задано вопросов',
 	];
 
-	let content;
+	let content = <p>content</p>;
 
 	if (isLoading) {
 		content = (
