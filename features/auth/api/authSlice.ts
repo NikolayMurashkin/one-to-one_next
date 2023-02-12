@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@app/store';
 import { IAuthSlice } from '@features/auth/model/authSliceTypes';
 
-const initialState: IAuthSlice = { user: null, token: null };
+const initialState: IAuthSlice = { email: null, token: null };
 
 const authSlice = createSlice({
 	name: 'auth',
@@ -11,11 +11,11 @@ const authSlice = createSlice({
 		setCredentials: (state, action) => {
 			console.log(action.payload);
 			// const { user, accessToken } = action.payload;
-			state.user = action.payload;
-			// state.token = accessToken;
+			state.email = action.payload.email;
+			state.token = action.payload.jwtToken;
 		},
 		logOut: (state) => {
-			state.user = null;
+			state.email = null;
 			state.token = null;
 		},
 	},
@@ -25,5 +25,5 @@ export const { setCredentials, logOut } = authSlice.actions;
 
 export default authSlice.reducer;
 
-export const selectCurrentUser = (state: RootState) => state.auth.user;
+export const selectCurrentUserEmail = (state: RootState) => state.auth.email;
 export const selectCurrentToken = (state: RootState) => state.auth.token;

@@ -1,4 +1,4 @@
 export interface IAuthSlice {
-	user: string | null;
+	email: string | null;
 	token: string | null;
 }
