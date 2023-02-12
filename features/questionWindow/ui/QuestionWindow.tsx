@@ -1,11 +1,13 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import { QuestionItem } from '@entities/sessionWindowQuestion/ui/QuestionItem';
 import {useSendFeedbackMutation} from '@shared/api/sendFeedbackApiSlice'
 import styles from '../model/QuestionWindow.module.scss';
 import { useAppSelector } from '@app/hooks';
 import { Technology } from '@entities/technology/ui/Technology';
+import { useCloseSessionMutation } from '../api/closeSessionApiSlice';
 
 export interface IQuestion {
 	id?: number;
@@ -30,7 +32,10 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 	const [message, setMessage] = useState('');
 	const [isDisabled, setIsDisabled] = useState(true);
 
+	const [closeSession] = useCloseSessionMutation();
 	const [sendFeedback] = useSendFeedbackMutation();
+
+	const router = useRouter();
 
 	const interviewInfo = useAppSelector((state) => state.interviewItem);
 	const questions = useAppSelector((state) => state.setQuestion.questions);
@@ -59,19 +64,12 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 			message,
 		};
 		sendFeedback({ body: JSON.stringify(body) });
-		
-		fetch(`http://51.250.8.47:8080/one-to-one/api/v1/one-to-one/${interviewInfo.interviewId}/close`, {
-			method: 'PUT',
-			headers: {
-				'Content-type': 'application/json',
-			},
-			body: JSON.stringify({
-				authorId: interviewInfo.initiatorId,
-				opponentId: 2,
-			}),
+		closeSession({
+			interviewId: interviewInfo.interviewId,
+			authorId: interviewInfo.initiatorId,
+			opponentId: 2
 		});
-
-		console.log(body);
+		router.push('/')
 	};
 
 	return (
