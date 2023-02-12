@@ -13,9 +13,13 @@ const baseQuery = fetchBaseQuery({
 	credentials: 'include',
 	prepareHeaders: (headers, { getState }) => {
 		const token = (getState() as RootState).auth.token;
-		// const localStorageToken = JSON.parse(localStorage.getItem('token') || '');
+		const localStorageToken = JSON.parse(
+			localStorage.getItem('token') || ''
+		);
 		if (token) {
-			headers.set('authorization', `Bearer ${token}`);
+			headers.set('Authorization', `Bearer ${token}`);
+		} else if (localStorageToken) {
+			headers.set('Authorization', `Bearer ${localStorageToken}`);
 		}
 		return headers;
 	},
@@ -34,9 +38,9 @@ const baseQueryWithReauth: BaseQueryFn<
 		const refreshResult = await baseQuery('/auth', api, extraOptions);
 		// console.log(refreshResult);
 		if (refreshResult?.data) {
-			const user = (api.getState() as any).auth.user;
+			const userEmail = (api.getState() as any).auth.email;
 			//store the new token
-			api.dispatch(setCredentials({ ...refreshResult.data, user }));
+			api.dispatch(setCredentials({ ...refreshResult.data, userEmail }));
 			//retry the original query with new access token
 			result = await baseQuery(args, api, extraOptions);
 		} else {

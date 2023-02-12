@@ -37,8 +37,9 @@ export const LoginForm = () => {
 
 		try {
 			const userData = await login({ email, password }).unwrap();
-			// localStorage.setItem('token', JSON.stringify(userData.jwtToken));
-			console.log(userData);
+			const token = JSON.stringify(userData.jwtToken);
+			localStorage.setItem('token', token);
+			console.log(token);
 			dispatch(setCredentials({ ...userData, email }));
 			setEmail('');
 			setPassword('');
