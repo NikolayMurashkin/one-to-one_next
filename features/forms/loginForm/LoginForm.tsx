@@ -37,6 +37,7 @@ export const LoginForm = () => {
 
 		try {
 			const userData = await login({ email, password }).unwrap();
+			console.log(userData);
 			dispatch(setCredentials({ ...userData, email }));
 			setEmail('');
 			setPassword('');
