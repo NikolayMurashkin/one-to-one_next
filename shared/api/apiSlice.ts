@@ -12,9 +12,9 @@ const baseQuery = fetchBaseQuery({
 	baseUrl: 'http://51.250.55.231:8080/one-to-one/api/v1',
 	credentials: 'include',
 	prepareHeaders: (headers, { getState }) => {
-		// const token = (getState() as RootState).auth.token;
-		const token = JSON.parse(localStorage.getItem('token') || '');
-		if (token) {
+		const token = (getState() as RootState).auth.token;
+		const localStorageToken = JSON.parse(localStorage.getItem('token') || '');
+		if (token || localStorageToken) {
 			headers.set('authorization', `Bearer ${token}`);
 		}
 		return headers;
