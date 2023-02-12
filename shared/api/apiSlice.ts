@@ -13,15 +13,13 @@ const baseQuery = fetchBaseQuery({
 	credentials: 'include',
 	prepareHeaders: (headers, { getState }) => {
 		const token = (getState() as RootState).auth.token;
-		// const localStorageToken = JSON.parse(
-		// 	localStorage.getItem('token') || ''
-		// );
+		const localStorageToken = localStorage.getItem('token');
+
 		if (token) {
 			headers.set('Authorization', `Bearer ${token}`);
-		} 
-		// else if (localStorageToken) {
-		// 	headers.set('Authorization', `Bearer ${localStorageToken}`);
-		// }
+		} else if (localStorageToken) {
+			headers.set('Authorization', `Bearer ${localStorageToken}`);
+		}
 		return headers;
 	},
 });
