@@ -10,7 +10,7 @@ import { RootState } from '@app/store';
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: 'http://51.250.55.231:8080/one-to-one/api/v1',
-	// credentials: 'include',
+	credentials: 'include',
 	prepareHeaders: (headers, { getState }) => {
 		const token = (getState() as RootState).auth.token;
 		if (token) {
