@@ -36,7 +36,7 @@ const baseQueryWithReauth: BaseQueryFn<
 	if (result?.error?.status === 401) {
 		console.log(`sending refresh token`);
 		//send refresh token to get new access token
-		const refreshResult = await baseQuery('/auth', api, extraOptions);
+		const refreshResult = await baseQuery('/auth/jwt/refresh', api, extraOptions);
 		console.log(refreshResult);
 		if (refreshResult?.data) {
 			const userEmail = (api.getState() as any).auth.email;
