@@ -13,8 +13,8 @@ const baseQuery = fetchBaseQuery({
 	credentials: 'include',
 	prepareHeaders: (headers, { getState }) => {
 		const token = (getState() as RootState).auth.token;
-		const localStorageToken = JSON.parse(localStorage.getItem('token') || '');
-		if (token || localStorageToken) {
+		// const localStorageToken = JSON.parse(localStorage.getItem('token') || '');
+		if (token) {
 			headers.set('authorization', `Bearer ${token}`);
 		}
 		return headers;
