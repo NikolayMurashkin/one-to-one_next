@@ -37,10 +37,11 @@ export const LoginForm = () => {
 
 		try {
 			const userData = await login({ email, password }).unwrap();
-			const token = JSON.stringify(userData.jwtToken);
-			localStorage.setItem('token', token);
-			const tryToken = JSON.parse(localStorage.getItem('token') || '')
-			console.log(tryToken);
+
+			localStorage.setItem('access', JSON.stringify(userData.jwtToken));
+			localStorage.setItem('refresh', JSON.stringify(userData.refreshToken));
+
+			console.log(userData);
 			dispatch(setCredentials({ ...userData, email }));
 			setEmail('');
 			setPassword('');
