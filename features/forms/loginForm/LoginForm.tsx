@@ -41,7 +41,7 @@ export const LoginForm = () => {
 			localStorage.setItem('access', JSON.stringify(userData.jwtToken));
 			localStorage.setItem('refresh', JSON.stringify(userData.refreshToken));
 
-			console.log(userData);
+			// console.log(userData);
 			dispatch(setCredentials({ ...userData, email }));
 			setEmail('');
 			setPassword('');
