@@ -1,11 +1,10 @@
-import { IGetMyInterviewsResponse } from '@features/myInterviews/model/interviewItemSliceTypes';
 import { apiSlice } from '@shared/api';
-import { ISendFeedbackRequest } from './sendFeedbackTypes';
+import { ISendFeedbackRequest, ISendFeedbackResponse } from './sendFeedbackTypes';
 
 export const sendFeedbackApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		sendFeedback: builder.mutation<
-			IGetMyInterviewsResponse,
+			ISendFeedbackResponse,
 			ISendFeedbackRequest
 		>({
 			query: (body) => ({
@@ -16,7 +15,6 @@ export const sendFeedbackApiSlice = apiSlice.injectEndpoints({
 					'Content-type': 'application/json',
 				},
 			}),
-
 			invalidatesTags: [{ type: 'Interview', id: 'InterviewList' }],
 		}),
 	}),

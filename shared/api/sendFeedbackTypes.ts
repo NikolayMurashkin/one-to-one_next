@@ -1,4 +1,4 @@
-interface IQuestion {
+interface IQuestionRequest {
 	comment: string;
 	question: {
 		answer: string;
@@ -12,8 +12,24 @@ interface IQuestion {
 
 export interface ISendFeedbackRequest {
 	authorId: number;
-	mesage: string;
+	message: string;
 	oneToOneId: number;
-	questions: IQuestion[];
+	questions: IQuestionRequest[];
 	recipientId: number;
+}
+
+interface IQuestionRsponse {
+	question: string;
+	answer: string;
+	responseLevel: string;
+	comment: string;
+}
+
+export interface ISendFeedbackResponse {
+	id: number;
+	oneToOneId: number;
+	authorId: number;
+	recipientId: number;
+	questions: IQuestionRsponse[];
+	message: string;
 }

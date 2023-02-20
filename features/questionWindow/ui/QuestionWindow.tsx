@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { QuestionItem } from '@entities/sessionWindowQuestion/ui/QuestionItem';
-import {useSendFeedbackMutation} from '@shared/api/sendFeedbackApiSlice'
+import { useSendFeedbackMutation } from '@shared/api/sendFeedbackApiSlice';
 import styles from '../model/QuestionWindow.module.scss';
 import { useAppSelector } from '@app/hooks';
 import { Technology } from '@entities/technology/ui/Technology';
@@ -63,13 +63,13 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 			}),
 			message,
 		};
-		sendFeedback({ body: JSON.stringify(body) });
+		sendFeedback(body);
 		closeSession({
 			interviewId: interviewInfo.interviewId,
 			authorId: interviewInfo.initiatorId,
-			opponentId: 2
+			opponentId: 2,
 		});
-		router.push('/')
+		router.push('/');
 	};
 
 	return (
