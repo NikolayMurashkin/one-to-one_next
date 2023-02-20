@@ -19,12 +19,12 @@ const Header = () => {
 	// 	setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
 	// 	console.log(user);
 	// }
-	
+
 	useEffect(() => {
-			const userIdJson = localStorage.getItem('id');
-			if (userIdJson) {
-				setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
-			}
+		const userIdJson = localStorage.getItem('id');
+		if (userIdJson) {
+			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
+		}
 	}, []);
 
 	const { data: userData, isLoading } = useGetUserQuery(user);
@@ -67,6 +67,8 @@ const Header = () => {
 				</Link>
 			</header>
 		);
+	} else {
+		return null;
 	}
 };
 
