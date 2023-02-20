@@ -5,6 +5,7 @@ export interface ISetInterview {
 	initiatorId: number;
 	level: string;
 	status: string;
+	stack: string;
 }
 
 export interface IInterviewItem {
@@ -24,4 +25,4 @@ export interface IInterviewItem {
 export interface IGetMyInterviewsResponse {
 	totalItems: number;
 	items: IInterviewItem[];
-};
+}

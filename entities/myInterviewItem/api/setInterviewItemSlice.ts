@@ -8,6 +8,7 @@ const initialState: ISetInterview = {
 	initiatorId: 0,
 	level: '',
 	status: '',
+	stack: '',
 };
 
 const interviewSlice = createSlice({
@@ -20,6 +21,7 @@ const interviewSlice = createSlice({
 			state.interviewId = action.payload.interviewId;
 			state.initiatorId = action.payload.initiatorId;
 			state.level = action.payload.level;
+			state.stack = action.payload.stack;
 		},
 	},
 });
