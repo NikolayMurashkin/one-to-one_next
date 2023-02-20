@@ -46,7 +46,7 @@ export const RegisterForm = () => {
 		setPassword('');
 		setName('');
 		setSurName('');
-		// router.push('/register/success');
+		router.push('/register/success');
 	};
 
 	const emailInputHandler = (e: React.ChangeEvent<HTMLInputElement>) =>

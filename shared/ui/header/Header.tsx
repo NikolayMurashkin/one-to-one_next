@@ -5,29 +5,27 @@ import { useState, useEffect } from 'react';
 import styles from './Header.module.scss';
 import { LogOutIcon } from '@shared/ui/icons/LogOutIcon';
 import { LogoWithoutText } from '@shared/ui/icons/LogoWithoutText';
+import { useGetUserQuery } from './api/getUserApiSlice';
 
 export interface IUser {
 	id: number;
-	login: string;
-	email: string;
-	name: string;
-	surName: string;
 }
 
 const Header = () => {
-	const [user, setUser] = useState<IUser>();
-
+	const [user, setUser] = useState<IUser>({id: 0});
+	const { data: userData } = useGetUserQuery(user.id);
+	
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			const userJson = localStorage.getItem('userInfo');
-			setUser(userJson !== null ? JSON.parse(userJson) : {});
+			const userIdJson = localStorage.getItem('id');
+			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
 		}
 	}, []);
 
 	const logoutHandler = () => {
 		localStorage.clear();
 	};
-	if (!user) {
+	if (!userData) {
 		return <p>Загрузка...</p>;
 	}
 	return (
@@ -39,8 +37,8 @@ const Header = () => {
 				<div className={styles.personInfo}>
 					<span
 						className={styles.name}
-					>{`${user.name} ${user.surName}`}</span>
-					<span className={styles.email}>{user.email}</span>
+					>{`${userData?.name} ${userData?.surName}`}</span>
+					<span className={styles.email}>{userData?.email}</span>
 				</div>
 				<Image
 					src={'/profile.png'}
@@ -53,6 +51,7 @@ const Header = () => {
 				href={{
 					pathname: '/login',
 				}}
+				onClick={logoutHandler}
 			>
 				<LogOutIcon />
 			</Link>
