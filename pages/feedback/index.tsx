@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import classNames from 'classnames/bind';
+import { useRouter } from 'next/router';
 
 import styles from './index.module.scss';
 import { MainButton } from '@shared/ui';
@@ -9,6 +10,12 @@ import { RootState } from '@app/store';
 import { FeedbackQuestion } from '@entities/feedbackQuestion/ui/FeedbackQuestion';
 
 const Feedback = () => {
+	const router = useRouter();
+
+	if (localStorage.getItem('id') === null) {
+		router.push('/login');
+	}
+
 	const cx = classNames.bind(styles);
 
 	const { initiatorId, interviewId, date, initiatorName, level, stack } =

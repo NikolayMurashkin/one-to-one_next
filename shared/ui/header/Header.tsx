@@ -13,13 +13,6 @@ export interface IUser {
 
 const Header = () => {
 	const [user, setUser] = useState<number>();
-	// if (localStorage.getItem('id') !== null) {
-	// 	const userIdJson = localStorage.getItem('id');
-	// 	console.log(userIdJson);
-	// 	setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
-	// 	console.log(user);
-	// }
-
 	useEffect(() => {
 		const userIdJson = localStorage.getItem('id');
 		if (userIdJson) {
@@ -27,7 +20,8 @@ const Header = () => {
 		}
 	}, []);
 
-	const { data: userData, isLoading } = useGetUserQuery(user);
+	
+	const { data: userData, isLoading } = useGetUserQuery(user ? user : 0);
 
 	const logoutHandler = () => {
 		localStorage.clear();

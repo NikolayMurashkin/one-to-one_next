@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import styles from './index.module.scss';
 import { useAppDispatch, useAppSelector } from '@app/hooks';
@@ -37,9 +38,15 @@ export interface IInterview {
 export interface IInterviewResponse {
 	totalItems: number;
 	items: IInterview[];
-};
+}
 
 const Session = () => {
+	const router = useRouter();
+
+	if (localStorage.getItem('id') === null) {
+		router.push('/login');
+	}
+
 	const cx = classNames.bind(styles);
 	const dispatch = useAppDispatch();
 	const questions = useAppSelector((state) => state.setQuestion.questions);

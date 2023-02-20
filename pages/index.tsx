@@ -3,16 +3,13 @@ import Head from 'next/head';
 import { Tabs } from '@widgets/tabs/ui/Tabs';
 import styles from './index.module.scss';
 import { InterviewInfoList } from '@features/interviewInfo/ui/InterviewInfoList';
-import { useGetAllInterviewsQuery } from '@features/searchInterviews/api/searchInterviewsApiSlice';
+import { useRouter } from 'next/router';
 
 const HomePage = () => {
-	const { data: interviews, error } = useGetAllInterviewsQuery();
-	if (!interviews) {
-		return <p>Загрузка...</p>;
-	}
+	const router = useRouter();
 
-	if (error) {
-		return <p>Что-то пошло не так! Мы скоро всё исправим!</p>;
+	if (localStorage.getItem('id') === null) {
+		router.push('/login');
 	}
 
 	return (
