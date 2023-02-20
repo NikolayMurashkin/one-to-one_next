@@ -15,9 +15,7 @@ export const InterviewInfoList = () => {
 		}
 	}, []);
 
-	const { data, error, isLoading } = useGetUserStatisticsQuery(
-		user ? user : 0
-	);
+	const { data, error, isLoading } = useGetUserStatisticsQuery(2);
 
 	const labels = [
 		'Оценки пользователей',
