@@ -8,7 +8,7 @@ import { useAppSelector } from '@app/hooks';
 import { RootState } from '@app/store';
 import { FeedbackQuestion } from '@entities/feedbackQuestion/ui/FeedbackQuestion';
 
-export const Feedback = () => {
+const Feedback = () => {
 	const cx = classNames.bind(styles);
 
 	const { initiatorId, interviewId, date, initiatorName, level, stack } =
@@ -82,3 +82,5 @@ export const Feedback = () => {
 		);
 	}
 };
+
+export default Feedback;
