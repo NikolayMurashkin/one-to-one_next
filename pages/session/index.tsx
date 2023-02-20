@@ -51,9 +51,9 @@ const Session = () => {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			// if (localStorage && localStorage.getItem('id') === null) {
-			// 	router.push('/login');
-			// }
+			if (localStorage && localStorage.getItem('id') === null) {
+				router.push('/login');
+			}
 			const userJson = localStorage.getItem('id');
 			const user = userJson !== null ? JSON.parse(userJson) : {};
 			setUserId(user.id);

@@ -7,16 +7,17 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 const HomePage = () => {
-	// const router = useRouter();
+	const router = useRouter();
 	
-	// useEffect(() => {
-	// 	if (
-	// 		typeof window !== 'undefined' &&
-	// 		localStorage.getItem('id') === null
-	// 	) {
-	// 		router.push('/login');
-	// 	}
-	// }, []);
+	useEffect(() => {
+		if (
+			typeof window !== 'undefined' &&
+			localStorage.getItem('id') === null
+		) {
+			router.push('/login');
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<>
