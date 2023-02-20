@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
 import classNames from 'classnames/bind';
 import { useRouter } from 'next/router';
@@ -12,9 +13,15 @@ import { FeedbackQuestion } from '@entities/feedbackQuestion/ui/FeedbackQuestion
 const Feedback = () => {
 	const router = useRouter();
 
-	if (localStorage.getItem('id') === null) {
-		router.push('/login');
-	}
+	useEffect(() => {
+		if (
+			typeof window !== 'undefined' &&
+			localStorage.getItem('id') === null
+		) {
+			router.push('/login');
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const cx = classNames.bind(styles);
 

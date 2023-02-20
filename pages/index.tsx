@@ -4,13 +4,20 @@ import { Tabs } from '@widgets/tabs/ui/Tabs';
 import styles from './index.module.scss';
 import { InterviewInfoList } from '@features/interviewInfo/ui/InterviewInfoList';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const HomePage = () => {
 	const router = useRouter();
-
-	if (localStorage.getItem('id') === null) {
-		router.push('/login');
-	}
+	
+	useEffect(() => {
+		if (
+			typeof window !== 'undefined' &&
+			localStorage.getItem('id') === null
+		) {
+			router.push('/login');
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<>

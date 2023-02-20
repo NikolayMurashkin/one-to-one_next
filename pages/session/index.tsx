@@ -43,10 +43,6 @@ export interface IInterviewResponse {
 const Session = () => {
 	const router = useRouter();
 
-	if (localStorage.getItem('id') === null) {
-		router.push('/login');
-	}
-
 	const cx = classNames.bind(styles);
 	const dispatch = useAppDispatch();
 	const questions = useAppSelector((state) => state.setQuestion.questions);
@@ -55,10 +51,14 @@ const Session = () => {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			const userJson = localStorage.getItem('userInfo');
+			if (localStorage && localStorage.getItem('id') === null) {
+				router.push('/login');
+			}
+			const userJson = localStorage.getItem('id');
 			const user = userJson !== null ? JSON.parse(userJson) : {};
 			setUserId(user.id);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const { data, error } = useGetAllQuestionsQuery(userId);
