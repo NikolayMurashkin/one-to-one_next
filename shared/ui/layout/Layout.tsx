@@ -24,7 +24,7 @@ export default function Layout({ children }: TLayoutProps) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const { data: userData, isLoading } = useGetUserQuery(user);
+	const { data: userData, isLoading } = useGetUserQuery(user ? user : 0);
 	if (isLoading) {
 		return <p>Загрузка...</p>;
 	}
