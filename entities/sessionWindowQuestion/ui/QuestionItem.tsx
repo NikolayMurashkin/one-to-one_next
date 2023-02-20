@@ -68,6 +68,7 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 				<ArrowRightIcon className={cx('arrow')} />
 			</div>
 			<div className={cx('commentWrapper')}>
+				<p className={cx('answer')}>{answer}</p>
 				<div className={cx('comment')}>
 					{isInterview && (
 						<textarea
