@@ -75,7 +75,7 @@ export const Questions: React.FC<IQuestionsProps> = ({
 				{
 					question,
 					answer,
-					userId: 1,
+					userId: user ? user : 0,
 					technology: {
 						id: technology.id,
 						name: technology.name,
