@@ -19,9 +19,8 @@ const Header = () => {
 			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
 		}
 	}, []);
-
 	
-	const { data: userData, isLoading } = useGetUserQuery(user ? user : 0);
+	const { data: userData, isLoading } = useGetUserQuery(user);
 
 	const logoutHandler = () => {
 		localStorage.clear();
