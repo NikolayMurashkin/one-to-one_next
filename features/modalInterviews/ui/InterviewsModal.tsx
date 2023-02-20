@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 
 import { useAppSelector } from '@app/hooks';
@@ -20,10 +20,20 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 	closeModal,
 }) => {
 	const cx = classNames.bind(styles);
-
+	
+	
+	
+	const [user, setUser] = useState<number>();
 	const [date, setDate] = useState<Date | undefined>();
 	const [time, setTime] = useState('');
 	const [comment, setComment] = useState('');
+	
+	useEffect(() => {
+		const userIdJson = localStorage.getItem('id');
+		if (userIdJson) {
+			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
+		}
+	}, []);
 
 	const [createInterview] = useCreateInterviewMutation();
 
@@ -53,7 +63,7 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 			dateTime: newDate?.toISOString(),
 			levelId: level,
 			comment,
-			initiatorId: 1,
+			initiatorId: user,
 			technologyId,
 		};
 

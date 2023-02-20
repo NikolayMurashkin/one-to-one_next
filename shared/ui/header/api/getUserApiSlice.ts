@@ -10,7 +10,7 @@ interface IGetUserByIdResponse {
 export const getUserApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getUser: builder.query<IGetUserByIdResponse, number | undefined>({
-			query: (id) => id ? `/user/${id}` : '',
+			query: (id) => `/user/${id}`,
 			providesTags: ['User'],
 		}),
 	}),
