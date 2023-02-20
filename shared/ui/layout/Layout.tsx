@@ -18,7 +18,7 @@ export default function Layout({ children }: TLayoutProps) {
 		if (userIdJson) {
 			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
 		}
-		if (isAuthPage && localStorage.getItem('id') === null) {
+		if (!isAuthPage && localStorage.getItem('id') === null) {
 			router.push('/login');
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
