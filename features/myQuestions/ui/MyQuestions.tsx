@@ -5,13 +5,13 @@ import { QuestionItem } from '@entities/questionItem';
 import { useGetMyQuestionsQuery } from '../api/getMyQustionsApiSlice';
 
 export const MyQuestions = () => {
-	const [userId, setUserId] = useState<number>(1);
+	const [userId, setUserId] = useState<number>(0);
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			const userJson = localStorage.getItem('userInfo');
+			const userJson = localStorage.getItem('id');
 			const user = userJson !== null ? JSON.parse(userJson) : {};
-			setUserId(user.id);
+			setUserId(user);
 		}
 	}, []);
 
