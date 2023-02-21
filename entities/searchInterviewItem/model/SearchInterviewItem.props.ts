@@ -5,4 +5,5 @@ export interface ISearchInterviewItemProps {
 	level: string;
 	id: number | undefined;
 	buttonText: string;
+	isDisabled: boolean;
 }

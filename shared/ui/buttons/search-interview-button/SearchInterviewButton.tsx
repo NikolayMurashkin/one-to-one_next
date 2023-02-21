@@ -6,6 +6,7 @@ import { ISearchInterviewButtonProps } from './SearchInterviewButton.props';
 
 export const SearchInterviewButton: React.FC<ISearchInterviewButtonProps> = ({
 	text,
+	isDisabled
 }) => {
 	const cx = classNames.bind(styles);
 	const [btnText, setBtnText] = useState('');
@@ -21,7 +22,7 @@ export const SearchInterviewButton: React.FC<ISearchInterviewButtonProps> = ({
 	};
 
 	return (
-		<button className={cx('button')} onClick={clickHandle}>
+		<button disabled={isDisabled} className={cx('button')} onClick={clickHandle}>
 			{btnText}
 		</button>
 	);

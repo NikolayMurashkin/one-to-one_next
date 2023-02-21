@@ -13,18 +13,27 @@ const baseQuery = fetchBaseQuery({
 	credentials: 'include',
 	prepareHeaders: (headers, { getState }) => {
 		const token = (getState() as RootState).auth.token;
-		const localStorageToken = localStorage
-			.getItem('access')
-			?.replaceAll('"', '');
+		// const localStorageToken = localStorage
+		// 	.getItem('access')
+		// 	?.replaceAll('"', '');
 
 		if (token) {
 			headers.set('Authorization', `Bearer ${token}`);
-		} else if (localStorageToken) {
-			headers.set('Authorization', `Bearer ${localStorageToken}`);
 		}
+		//  else if (localStorageToken) {
+		// 	headers.set('Authorization', `Bearer ${localStorageToken}`);
+		// }
 		return headers;
 	},
 });
+
+interface IRefreshReesultResponse {
+	data: {
+		email: string;
+		id: number;
+		jwtToken: string;
+	};
+}
 
 const baseQueryWithReauth: BaseQueryFn<
 	string | FetchArgs,
@@ -36,12 +45,16 @@ const baseQueryWithReauth: BaseQueryFn<
 	if (result?.error?.status === 401) {
 		console.log(`sending refresh token`);
 		//send refresh token to get new access token
-		const refreshResult = await baseQuery('/auth/jwt/refresh', api, extraOptions);
+		const refreshResult = await baseQuery(
+			'/auth/jwt/refresh',
+			api,
+			extraOptions
+		);
 		console.log(refreshResult);
 		if (refreshResult?.data) {
 			const userEmail = (api.getState() as any).auth.email;
 			//store the new token
-			console.log(refreshResult.data)
+			console.log(refreshResult.data);
 			// localStorage.setItem(
 			// 	'access',
 			// 	JSON.stringify(refreshResult.data.jwtToken)

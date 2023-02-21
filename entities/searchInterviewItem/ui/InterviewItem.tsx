@@ -19,6 +19,7 @@ export const SearchInterviewItem: React.FC<ISearchInterviewItemProps> = ({
 	level,
 	id,
 	buttonText,
+	isDisabled
 }) => {
 	const cx = classNames.bind(styles);
 	const [userId, setUserId] = useState<number>();
@@ -67,7 +68,7 @@ export const SearchInterviewItem: React.FC<ISearchInterviewItemProps> = ({
 					})
 				}
 			>
-				<SearchInterviewButton text={buttonText} />
+				<SearchInterviewButton isDisabled={isDisabled} text={buttonText} />
 			</span>
 		</li>
 	);
