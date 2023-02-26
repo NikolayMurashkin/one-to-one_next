@@ -9,7 +9,7 @@ import { setCredentials, logOut } from '@features/auth/api/authSlice';
 import { RootState } from '@app/store';
 
 const baseQuery = fetchBaseQuery({
-	baseUrl: 'http://51.250.51.231:8080/one-to-one/api/v1',
+	baseUrl: 'http://51.250.55.231:8080/one-to-one/api/v1',
 	credentials: 'include',
 	prepareHeaders: (headers, { getState }) => {
 		const token = (getState() as RootState).auth.token;
