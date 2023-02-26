@@ -42,7 +42,7 @@ const baseQueryWithReauth: BaseQueryFn<
 	let result = await baseQuery(args, api, extraOptions);
 
 	if (result?.error?.status === 401) {
-		console.log(`sending refresh token`);
+		// console.log(`sending refresh token`);
 		//send refresh token to get new access token
 		const refreshResult = await baseQuery(
 			'/auth/jwt/refresh',
@@ -54,10 +54,11 @@ const baseQueryWithReauth: BaseQueryFn<
 			const userEmail = (api.getState() as any).auth.email;
 			//store the new token
 			// console.log(refreshResult.data);
-			// localStorage.setItem(
-			// 	'access',
-			// 	JSON.stringify(refreshResult.data.jwtToken)
-			// );
+			
+			localStorage.setItem(
+				'access',
+				JSON.stringify(refreshResult.data.jwtToken)
+			);
 			api.dispatch(setCredentials({ ...refreshResult.data, userEmail }));
 			//retry the original query with new access token
 			result = await baseQuery(args, api, extraOptions);

@@ -20,6 +20,9 @@ export const MyQuestions = () => {
 	if (!data) {
 		return <p>Загрузка...</p>;
 	}
+	if (data.totalItems == 0) {
+		return <p>Вы пока не добавили ни одного вопроса</p>;
+	}
 
 	if (error) {
 		return <p>Что-то пошло не так! Мы скоро всё исправим!</p>;
