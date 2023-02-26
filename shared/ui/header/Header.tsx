@@ -5,59 +5,64 @@ import { useState, useEffect } from 'react';
 import styles from './Header.module.scss';
 import { LogOutIcon } from '@shared/ui/icons/LogOutIcon';
 import { LogoWithoutText } from '@shared/ui/icons/LogoWithoutText';
+import { useGetUserQuery } from './api/getUserApiSlice';
 
 export interface IUser {
-	id: number;
-	login: string;
-	email: string;
-	name: string;
-	surName: string;
+	id: string;
 }
 
 const Header = () => {
-	const [user, setUser] = useState<IUser>();
-
+	const [user, setUser] = useState<number>();
 	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const userJson = localStorage.getItem('userInfo');
-			setUser(userJson !== null ? JSON.parse(userJson) : {});
+		const userIdJson = localStorage.getItem('id');
+		if (userIdJson) {
+			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
 		}
 	}, []);
+	
+	const { data: userData, isLoading } = useGetUserQuery(user);
 
 	const logoutHandler = () => {
 		localStorage.clear();
 	};
-	if (!user) {
+
+	if (isLoading) {
 		return <p>Загрузка...</p>;
 	}
-	return (
-		<header className={styles.header}>
-			<Link href='/' className={styles.logo}>
-				<LogoWithoutText />
-			</Link>
-			<div className={styles.profile}>
-				<div className={styles.personInfo}>
-					<span
-						className={styles.name}
-					>{`${user.name} ${user.surName}`}</span>
-					<span className={styles.email}>{user.email}</span>
+
+	if (userData) {
+		return (
+			<header className={styles.header}>
+				<Link href='/' className={styles.logo}>
+					<LogoWithoutText />
+				</Link>
+				<div className={styles.profile}>
+					<div className={styles.personInfo}>
+						<span
+							className={styles.name}
+						>{`${userData?.name} ${userData?.surName}`}</span>
+						<span className={styles.email}>{userData?.email}</span>
+					</div>
+					<Image
+						src={'/profile.png'}
+						alt={'profile'}
+						width={37}
+						height={37}
+					/>
 				</div>
-				<Image
-					src={'/profile.png'}
-					alt={'profile'}
-					width={37}
-					height={37}
-				/>
-			</div>
-			<Link
-				href={{
-					pathname: '/login',
-				}}
-			>
-				<LogOutIcon />
-			</Link>
-		</header>
-	);
+				<Link
+					href={{
+						pathname: '/login',
+					}}
+					onClick={logoutHandler}
+				>
+					<LogOutIcon />
+				</Link>
+			</header>
+		);
+	} else {
+		return null;
+	}
 };
 
 export default Header;

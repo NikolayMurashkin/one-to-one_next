@@ -6,9 +6,11 @@ import { ISearchInterviewButtonProps } from './SearchInterviewButton.props';
 
 export const SearchInterviewButton: React.FC<ISearchInterviewButtonProps> = ({
 	text,
+	isDisabled
 }) => {
 	const cx = classNames.bind(styles);
 	const [btnText, setBtnText] = useState('');
+	
 	useEffect(() => {
 		setBtnText(text)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -21,7 +23,7 @@ export const SearchInterviewButton: React.FC<ISearchInterviewButtonProps> = ({
 	};
 
 	return (
-		<button className={cx('button')} onClick={clickHandle}>
+		<button disabled={isDisabled} className={cx('button')} onClick={clickHandle}>
 			{btnText}
 		</button>
 	);

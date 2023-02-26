@@ -9,6 +9,7 @@ import Link from 'next/link';
 import styles from '@features/forms/loginForm/LoginForm.module.scss';
 import { Input } from '@shared/ui/inputs/Input';
 import { LoginButton } from '@shared/ui';
+import { IError } from './model/LoginFormTypes';
 
 export const LoginForm = () => {
 	const cx = classNames.bind(styles);
@@ -39,24 +40,24 @@ export const LoginForm = () => {
 			const userData = await login({ email, password }).unwrap();
 
 			localStorage.setItem('access', JSON.stringify(userData.jwtToken));
-			localStorage.setItem('refresh', JSON.stringify(userData.refreshToken));
+			localStorage.setItem('id', JSON.stringify(userData.id));
 
-			// console.log(userData);
 			dispatch(setCredentials({ ...userData, email }));
 			setEmail('');
 			setPassword('');
 			router.push('/');
-		} catch (err) {
+			
+		} catch (err: any) {
 			console.log(err);
-			// if (!err?.status) {
-			// 	setErrMsg('No Server Response');
-			// } else if (err.status === 400) {
-			// 	setErrMsg('Missing Username or Password');
-			// } else if (err.status === 401) {
-			// 	setErrMsg('Unauthorized');
-			// } else {
-			// 	setErrMsg('Login Failed');
-			// }
+			if (!err?.status) {
+				setErrMsg('No Server Response');
+			} else if (err.status === 400) {
+				setErrMsg('Missing Username or Password');
+			} else if (err.status === 401) {
+				setErrMsg('Unauthorized');
+			} else {
+				setErrMsg('Login Failed');
+			}
 			// errRef.current.focus();
 		}
 	};
@@ -66,12 +67,7 @@ export const LoginForm = () => {
 	const pwdInputHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
 		setPassword(e.target.value);
 
-	// const submitLoginHandler = (event: React.FormEvent<HTMLFormElement>) => {
-	// 	event.preventDefault();
-	// 	event.stopPropagation();
-	// 	formRef.current?.clear();
-	// 	router.push('/');
-	// };
+	
 
 	const content = isLoading ? (
 		<h1>Загрузка...</h1>

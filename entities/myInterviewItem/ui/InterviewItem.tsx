@@ -8,6 +8,7 @@ import { setInterview } from '@entities/myInterviewItem/api';
 import { MyInterviewButton } from '@shared/ui';
 import { MainButton } from '@shared/ui';
 import { useGetUserByIdQuery } from '@shared/api/getUserByIdApiSlice';
+import { useRouter } from 'next/router';
 
 export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	status,
@@ -15,15 +16,36 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	initiatorId,
 	date,
 	interviewId,
-	level
+	level,
 }) => {
 	const cx = classNames.bind(styles);
+	const router = useRouter();
 	const dipatch = useAppDispatch();
 	const { data: user } = useGetUserByIdQuery(initiatorId);
 
 	if (!user) {
 		return <p>Загрузка...</p>;
 	}
+
+	const setInterviewHandler = () => {
+		dipatch(
+			setInterview({
+				date,
+				initiatorName: `${user.name} ${user.surName}`,
+				interviewId,
+				initiatorId,
+				level,
+				status,
+				stack
+			})
+		);
+	};
+
+	const openFeedbackHanlder = () => {
+		setInterviewHandler();
+		router.push('/feedback');
+	};
+
 	return (
 		<li
 			className={cx('interviewItem', {
@@ -44,24 +66,14 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 					}
 					text={'Подробнее'}
 					color={status === 'CLOSED' ? 'green' : 'blue'}
+					onClick={openFeedbackHanlder}
 				/>
 			</span>
 			{status === 'ACCEPT' && (
 				<Link
 					href={'/session'}
 					className={styles.button}
-					onClick={() =>
-						dipatch(
-							setInterview({
-								date,
-								initiatorName: `${user.name} ${user.surName}`,
-								interviewId,
-								initiatorId,
-								level,
-								status,
-							})
-						)
-					}
+					onClick={setInterviewHandler}
 				>
 					<MyInterviewButton status='active' />
 				</Link>

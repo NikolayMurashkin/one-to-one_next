@@ -1,11 +1,11 @@
 export interface IAcceptInterview {
-	opponentId: number;
-	interviewId: number;
+	opponentId: number | undefined;
+	oneToOneId: number | undefined;
 }
-export interface IInterview {
+export interface IInterviewItem {
 	id: number;
 	initiatorId: number;
-	opponentId: number;
+	opponentId: number | undefined;
 	technology: {
 		id: number;
 		name: string;
@@ -14,8 +14,8 @@ export interface IInterview {
 	level: string;
 	status: string;
 	comment: string;
-};
+}
 
 export interface ISearchInterviewItemProps {
-	interviewList: IInterview[];
-};
+	interviewList: IInterviewItem[];
+}

@@ -14,12 +14,12 @@ export interface IInterviewItem {
 	level: string;
 }
 export interface ICreateInterview {
-	initiatorId: number;
+	initiatorId: number | undefined;
 	technologyId: number | undefined;
 	dateTime: string | undefined;
 	comment: string;
 	levelId: number | undefined;
-};
+}
 
 export const createInterviewApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({

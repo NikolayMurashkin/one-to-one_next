@@ -9,13 +9,13 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setCredentials: (state, action) => {
-			// const { user, accessToken } = action.payload;
 			state.email = action.payload.email;
 			state.token = action.payload.jwtToken;
 		},
 		logOut: (state) => {
 			state.email = null;
 			state.token = null;
+			localStorage.clear();
 		},
 	},
 });

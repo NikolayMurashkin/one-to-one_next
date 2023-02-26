@@ -7,7 +7,15 @@ import { useGetUserStatisticsQuery } from '@features/interviewInfo/api/interview
 
 export const InterviewInfoList = () => {
 	const cx = classNames.bind(styles);
-	const { data, error, isLoading } = useGetUserStatisticsQuery(2);
+	const [user, setUser] = useState<number>();
+	useEffect(() => {
+		const userIdJson = localStorage.getItem('id');
+		if (userIdJson) {
+			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
+		}
+	}, []);
+
+	const { data, error, isLoading } = useGetUserStatisticsQuery(3);
 
 	const labels = [
 		'Оценки пользователей',

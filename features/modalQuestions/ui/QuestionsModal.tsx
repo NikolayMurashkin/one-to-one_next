@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 import classNames from 'classnames/bind';
 
@@ -13,7 +13,6 @@ import { IQuestion } from '@features/myQuestions/model/myQuestionsSliceTypes';
 import { RootState } from '@app/store';
 import { useAddQuestionsMutation } from '@features/modalQuestions/api/questionsApiSlice';
 
-
 export const Questions: React.FC<IQuestionsProps> = ({
 	openModal,
 	closeModal,
@@ -25,6 +24,14 @@ export const Questions: React.FC<IQuestionsProps> = ({
 	const [answer, setAnswer] = useState('');
 	const [isFilled, setIsFilled] = useState(true);
 	const [questionsList, setQuestionsList] = useState<IQuestion[]>([]);
+	const [user, setUser] = useState<number>();
+
+	useEffect(() => {
+		const userIdJson = localStorage.getItem('id');
+		if (userIdJson) {
+			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
+		}
+	}, []);
 
 	const selectedTab = useAppSelector(
 		(state: RootState) => state.tabs.selectedTab
@@ -43,12 +50,12 @@ export const Questions: React.FC<IQuestionsProps> = ({
 		}
 		const newArr: IQuestion[] = [];
 		await addQuestions({
-			userId: 1,
+			userId: user ? user : 0,
 			questions: newArr.concat(questionsList, [
 				{
 					question,
 					answer,
-					userId: 1,
+					userId: user ? user : 0,
 					technologyId: technology.id,
 				},
 			]),
@@ -68,7 +75,7 @@ export const Questions: React.FC<IQuestionsProps> = ({
 				{
 					question,
 					answer,
-					userId: 1,
+					userId: user ? user : 0,
 					technology: {
 						id: technology.id,
 						name: technology.name,

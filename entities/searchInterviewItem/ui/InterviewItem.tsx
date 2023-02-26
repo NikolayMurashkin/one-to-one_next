@@ -1,13 +1,15 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from '../model/SearchInterviewItem.module.scss';
 import { ISearchInterviewItemProps } from '@entities/searchInterviewItem/model/SearchInterviewItem.props';
 import { SearchInterviewButton } from '@shared/ui';
 import {
-	IAcceptinterview,
-	useAcceptInterviewMutation,
-} from '@entities/searchInterviewItem/api/acceptInterviewApiSlice';
+	IAcceptInterview,
+	IInterviewItem,
+} from '../model/searchInterviewItemTypes';
+
+import { useAcceptInterviewMutation } from '@entities/searchInterviewItem/api/acceptInterviewApiSlice';
 import { useGetUserByIdQuery } from '@shared/api/getUserByIdApiSlice';
 
 export const SearchInterviewItem: React.FC<ISearchInterviewItemProps> = ({
@@ -17,14 +19,22 @@ export const SearchInterviewItem: React.FC<ISearchInterviewItemProps> = ({
 	level,
 	id,
 	buttonText,
+	isDisabled
 }) => {
 	const cx = classNames.bind(styles);
+	const [userId, setUserId] = useState<number>();
+	useEffect(() => {
+		const userIdJson = localStorage.getItem('id');
+		if (userIdJson) {
+			setUserId(userIdJson !== null ? JSON.parse(userIdJson) : {});
+		}
+	}, []);
 
 	const interviewRef = useRef<HTMLLIElement>(null);
 	const [acceptInterview] = useAcceptInterviewMutation();
 	const { data: user, error } = useGetUserByIdQuery(initiatorId);
 
-	const acceptInterviewHanlder = (body: IAcceptinterview) => {
+	const acceptInterviewHanlder = (body: IAcceptInterview) => {
 		acceptInterview(body);
 
 		const refStyle = interviewRef.current?.style;
@@ -53,12 +63,12 @@ export const SearchInterviewItem: React.FC<ISearchInterviewItemProps> = ({
 			<span
 				onClick={() =>
 					acceptInterviewHanlder({
-						opponentId: 2,
+						opponentId: userId,
 						oneToOneId: id,
 					})
 				}
 			>
-				<SearchInterviewButton text={buttonText} />
+				<SearchInterviewButton isDisabled={isDisabled} text={buttonText} />
 			</span>
 		</li>
 	);

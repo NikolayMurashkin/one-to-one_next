@@ -8,12 +8,12 @@ export interface ITechnology {
 export interface ITechnologyResponse {
 	totalItems: number;
 	items: ITechnology[];
-};
+}
 
 export const technologyApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getTechnologies: builder.query<ITechnologyResponse, void>({
-			query: () => `/technology?size=50`,
+			query: () => `/technology?size=1500`,
 			providesTags: (result) =>
 				result
 					? [

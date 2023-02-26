@@ -3,4 +3,5 @@ export interface IMainButton {
 	color: 'blue' | 'green';
 	text: string;
 	isDisabled: boolean;
+	onClick?: () => void;
 }

@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import styles from './index.module.scss';
 import { useAppDispatch, useAppSelector } from '@app/hooks';
@@ -37,9 +38,11 @@ export interface IInterview {
 export interface IInterviewResponse {
 	totalItems: number;
 	items: IInterview[];
-};
+}
 
 const Session = () => {
+	const router = useRouter();
+
 	const cx = classNames.bind(styles);
 	const dispatch = useAppDispatch();
 	const questions = useAppSelector((state) => state.setQuestion.questions);
@@ -48,10 +51,14 @@ const Session = () => {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			const userJson = localStorage.getItem('userInfo');
+			if (localStorage && localStorage.getItem('id') === null) {
+				router.push('/login');
+			}
+			const userJson = localStorage.getItem('id');
 			const user = userJson !== null ? JSON.parse(userJson) : {};
 			setUserId(user.id);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const { data, error } = useGetAllQuestionsQuery(userId);
