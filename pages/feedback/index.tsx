@@ -29,16 +29,6 @@ const Feedback = () => {
 		}
 	}, []);
 
-	useEffect(() => {
-		if (
-			typeof window !== 'undefined' &&
-			localStorage.getItem('id') === null
-		) {
-			router.push('/login');
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
 	const cx = classNames.bind(styles);
 
 	const { initiatorId, interviewId, date, initiatorName, level, stack } =
