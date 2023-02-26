@@ -26,12 +26,10 @@ const baseQuery = fetchBaseQuery({
 	},
 });
 
-interface IRefreshReesultResponse {
-	data: {
-		email: string;
-		id: number;
-		jwtToken: string;
-	};
+interface IRefreshResultResponse {
+	email: string;
+	id: number;
+	jwtToken: string;
 }
 
 const baseQueryWithReauth: BaseQueryFn<
@@ -53,12 +51,10 @@ const baseQueryWithReauth: BaseQueryFn<
 		if (refreshResult?.data) {
 			const userEmail = (api.getState() as any).auth.email;
 			//store the new token
-			// console.log(refreshResult.data);
-			
-			localStorage.setItem(
-				'access',
-				JSON.stringify(refreshResult.data.jwtToken)
-			);
+			const token: IRefreshResultResponse =
+				refreshResult.data as IRefreshResultResponse;
+
+			localStorage.setItem('access', JSON.stringify(token.jwtToken));
 			api.dispatch(setCredentials({ ...refreshResult.data, userEmail }));
 			//retry the original query with new access token
 			result = await baseQuery(args, api, extraOptions);
