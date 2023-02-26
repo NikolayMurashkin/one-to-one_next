@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import classNames from 'classnames/bind';
 import { useRouter } from 'next/router';
@@ -12,6 +12,22 @@ import { FeedbackQuestion } from '@entities/feedbackQuestion/ui/FeedbackQuestion
 
 const Feedback = () => {
 	const router = useRouter();
+
+	const [user, setUser] = useState<number>(0);
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const userJson = localStorage.getItem('id');
+			const user = userJson !== null ? JSON.parse(userJson) : {};
+			setUser(user);
+		}
+		if (
+			typeof window !== 'undefined' &&
+			localStorage.getItem('id') === null
+		) {
+			router.push('/login');
+		}
+	}, []);
 
 	useEffect(() => {
 		if (
@@ -34,7 +50,7 @@ const Feedback = () => {
 		isError,
 		error,
 	} = useGetFeedbackQuery({
-		initiatorId,
+		userId: user,
 		interviewId,
 	});
 

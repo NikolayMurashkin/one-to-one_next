@@ -11,7 +11,7 @@ export const feedbackApiSlice = apiSlice.injectEndpoints({
 			IGetFeedbackRequestBody
 		>({
 			query: (body) =>
-				`/user/one-to-one/feedback/${body.initiatorId}/${body.interviewId}`,
+				`/user/one-to-one/feedback/${body.userId}/${body.interviewId}`,
 			providesTags: ['Questions'],
 		}),
 	}),
