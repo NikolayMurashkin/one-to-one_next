@@ -10,6 +10,7 @@ export const SearchInterviewButton: React.FC<ISearchInterviewButtonProps> = ({
 }) => {
 	const cx = classNames.bind(styles);
 	const [btnText, setBtnText] = useState('');
+	
 	useEffect(() => {
 		setBtnText(text)
 	// eslint-disable-next-line react-hooks/exhaustive-deps

@@ -67,12 +67,7 @@ export const LoginForm = () => {
 	const pwdInputHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
 		setPassword(e.target.value);
 
-	// const submitLoginHandler = (event: React.FormEvent<HTMLFormElement>) => {
-	// 	event.preventDefault();
-	// 	event.stopPropagation();
-	// 	formRef.current?.clear();
-	// 	router.push('/');
-	// };
+	
 
 	const content = isLoading ? (
 		<h1>Загрузка...</h1>

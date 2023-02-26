@@ -15,11 +15,21 @@ export const MyInterview = () => {
 		}
 	}, []);
 
+	// const getUserId = () => {
+	// 	if (typeof window !== 'undefined') {
+	// 		const userIdJson = localStorage.getItem('id');
+	// 		if (userIdJson) {
+	// 			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
+	// 		}
+	// 	}
+	// };
+	// getUserId();
+
 	const {
 		data: interviews,
 		isLoading,
 		error,
-	} = useGetMyInterviewsQuery(user ? user : 0);
+	} = useGetMyInterviewsQuery(user);
 
 	if (isLoading) {
 		return <p>Загрузка...</p>;

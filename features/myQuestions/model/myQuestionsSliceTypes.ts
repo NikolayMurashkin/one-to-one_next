@@ -12,7 +12,7 @@ export interface IQuestion {
 
 export interface IGetMyQuestionResponse {
 	items: IQuestion[];
-	totalItems?: string;
+	totalItems?: number;
 };
 
 export interface ISetQuestions {
