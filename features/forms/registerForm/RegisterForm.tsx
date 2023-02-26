@@ -26,7 +26,7 @@ export const RegisterForm = () => {
 			surName,
 		};
 		const getUserId = await fetch(
-			'http://51.250.55.231:8080/one-to-one/api/v1/user/register',
+			'http://localhost:8080/one-to-one/api/v1/user/register',
 			{
 				method: 'POST',
 				headers: {
