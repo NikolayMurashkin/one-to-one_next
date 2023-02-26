@@ -8,12 +8,12 @@ import { useGetMyInterviewsQuery } from '@features/myInterviews/api/getMyIntervi
 export const MyInterview = () => {
 	const [user, setUser] = useState<number>();
 
-	useEffect(() => {
-		const userIdJson = localStorage.getItem('id');
-		if (userIdJson) {
-			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
-		}
-	}, []);
+	// useEffect(() => {
+	// 	const userIdJson = localStorage.getItem('id');
+	// 	if (userIdJson) {
+	// 		setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
+	// 	}
+	// }, []);
 
 	const getUserId = () => {
 		if (typeof window !== 'undefined') {
