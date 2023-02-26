@@ -51,10 +51,10 @@ const baseQueryWithReauth: BaseQueryFn<
 		if (refreshResult?.data) {
 			const userEmail = (api.getState() as any).auth.email;
 			//store the new token
-			const token: IRefreshResultResponse =
+			const data: IRefreshResultResponse =
 				refreshResult.data as IRefreshResultResponse;
 
-			localStorage.setItem('access', JSON.stringify(token.jwtToken));
+			localStorage.setItem('access', JSON.stringify(data.jwtToken));
 			api.dispatch(setCredentials({ ...refreshResult.data, userEmail }));
 			//retry the original query with new access token
 			result = await baseQuery(args, api, extraOptions);
