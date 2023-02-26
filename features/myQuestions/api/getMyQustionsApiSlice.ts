@@ -5,7 +5,7 @@ export const getMyQuestionsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getMyQuestions: builder.query<IGetMyQuestionResponse, number>({
 			query: (userid) =>
-				`/user/${userid}/question?search=userId:${userid}&size=30/`,
+				`/user/${userid}/question?search=userId:${userid}&size=30`,
 			providesTags: (result) =>
 				result
 					? [
