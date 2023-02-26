@@ -16,9 +16,8 @@ export const MyInterview = () => {
 	}, []);
 
 	const getUserId = () => {
-		const userIdJson = localStorage.getItem('id');
-		if (userIdJson) {
-			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
+		if (typeof window !== 'undefined') {
+			setUser(JSON.parse(localStorage.getItem('id') || ''));
 		}
 	};
 	getUserId();
