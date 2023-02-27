@@ -56,7 +56,7 @@ const Session = () => {
 			}
 			const userJson = localStorage.getItem('id');
 			const user = userJson !== null ? JSON.parse(userJson) : {};
-			setUserId(user.id);
+			setUserId(user);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
