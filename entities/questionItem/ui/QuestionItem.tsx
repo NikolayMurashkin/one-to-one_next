@@ -26,8 +26,8 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 			onClick={openQuestiontHandler}
 		>
 			<div className={cx('content')}>
-				<span className={cx('stack')}>{technology}</span>
 				<span className={cx('question')}>{question}</span>
+				<span className={cx('stack')}>{technology}</span>
 				<ArrowRightIcon className={cx('arrow')} />
 			</div>
 			<div className={cx('commentWrapper')}>

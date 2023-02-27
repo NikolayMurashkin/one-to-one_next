@@ -1,7 +1,7 @@
 .wrapper {
 	display: flex;
 	flex-direction: column;
-	padding: 5px 10px;
+	padding: 7px 10px 5px;
 	background: #ffffff;
 	border: 1px solid #808080;
 	border-radius: 5px;
@@ -20,7 +20,6 @@
 	margin-bottom: 20px;
 	align-items: center;
 	position: relative;
-	padding-top: 4px;
 }
 
 .content > *:last-child {
@@ -28,13 +27,15 @@
 }
 
 .stack {
-	flex: 1 0 auto;
-	margin-left: 10px;
-	margin-right: 20px;
+	flex: 0 0 200px;
+	font-size: 14px;
+	line-height: 17px;
+	color: var(--color-blue);
+	text-align: right;
 }
 
 .question {
-	flex: 1 0 auto;
+	flex: 1 0 600px;
 }
 
 .commentWrapper {
@@ -55,7 +56,7 @@
 }
 
 .text::placeholder {
-	color: #888888;
+	color: var(--color-gray);
 }
 
 .opened {

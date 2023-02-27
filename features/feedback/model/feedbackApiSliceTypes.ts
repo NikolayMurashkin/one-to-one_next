@@ -15,6 +15,6 @@ export interface IGetFeedbackResponse {
 }
 
 export interface IGetFeedbackRequestBody {
-	userId: number;
+	userId: number | undefined;
 	interviewId: number;
 }

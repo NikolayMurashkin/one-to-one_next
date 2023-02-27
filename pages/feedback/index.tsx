@@ -9,11 +9,15 @@ import { useGetFeedbackQuery } from '@features/feedback/api/feedbackApiSlice';
 import { useAppSelector } from '@app/hooks';
 import { RootState } from '@app/store';
 import { FeedbackQuestion } from '@entities/feedbackQuestion/ui/FeedbackQuestion';
+import { CalendarIcon } from '@shared/ui/icons/CalendarIcon';
+import { UserIcon } from '@shared/ui/icons/UserIcon';
+import { StackIcon } from '@shared/ui/icons/StackIcon';
+import { LevelIcon } from '@shared/ui/icons/LevelIcon';
 
 const Feedback = () => {
 	const router = useRouter();
 
-	const [user, setUser] = useState<number>(0);
+	const [user, setUser] = useState<number>();
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
@@ -32,8 +36,9 @@ const Feedback = () => {
 
 	const cx = classNames.bind(styles);
 
-	const { initiatorId, interviewId, date, initiatorName, level, stack } =
-		useAppSelector((state: RootState) => state.interviewItem);
+	const { interviewId, date, initiatorName, level, stack } = useAppSelector(
+		(state: RootState) => state.interviewItem
+	);
 
 	const {
 		data: feedbackData,
@@ -63,12 +68,20 @@ const Feedback = () => {
 						content='width=device-width, initial-scale=1'
 					/>
 				</Head>
-				<section>
+				<section className={cx('feedback')}>
 					<div className={cx('title')}>
-						<span className={cx('date')}>{date}</span>
-						<span className={cx('name')}>{initiatorName}</span>
-						<span className={cx('stack')}>{stack}</span>
-						<span className={cx('level')}>{level}</span>
+						<span className={cx('title__item', 'date')}>
+							<CalendarIcon /> {date}
+						</span>
+						<span className={cx('title__item', 'name')}>
+							<UserIcon /> {initiatorName}
+						</span>
+						<span className={cx('title__item', 'stack')}>
+							<StackIcon /> {stack}
+						</span>
+						<span className={cx('title__item', 'level')}>
+							<LevelIcon /> {level}
+						</span>
 						<MainButton
 							color='green'
 							isDisabled={false}
