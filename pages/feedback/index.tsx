@@ -50,6 +50,10 @@ const Feedback = () => {
 		interviewId,
 	});
 
+	const exitHandler = () => {
+		router.push('/');
+	};
+
 	if (isLoading) {
 		return <p>Загрузка...</p>;
 	}
@@ -83,6 +87,7 @@ const Feedback = () => {
 							<LevelIcon /> {level}
 						</span>
 						<MainButton
+							onClick={exitHandler}
 							color='green'
 							isDisabled={false}
 							text={'Выйти'}
