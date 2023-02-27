@@ -89,7 +89,7 @@ const Feedback = () => {
 							type={'fill'}
 						/>
 					</div>
-					<hr />
+					{/* <hr /> */}
 					<ul className={cx('questionsList')}>
 						{feedbackData.questions.map((question) => (
 							<FeedbackQuestion
@@ -102,7 +102,7 @@ const Feedback = () => {
 							/>
 						))}
 					</ul>
-					<hr />
+					{/* <hr /> */}
 					<div className={cx('comment')}>
 						<span className={cx('comment__title')}>
 							Общий комментарий к собеседованию
