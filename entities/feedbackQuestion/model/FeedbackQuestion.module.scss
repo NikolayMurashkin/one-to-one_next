@@ -13,6 +13,7 @@
 	transition: all 0.25s ease-in-out;
 	&__top {
 		display: flex;
+		align-items: center;
 		column-gap: 20px;
 		&_stack {
 			color: var(--color-gray);
@@ -29,11 +30,14 @@
 			flex: 0 0 425px;
 		}
 		&_comment {
-			padding-left: 20px;
 			flex: 0 0 600px;
+			position: relative;
 			&::before {
 				content: "";
-				display: block;
+				position: absolute;
+				top: 0;
+				left: -20px;
+				display: inline-block;
 				width: 1px;
 				height: 100%;
 				background: var(--color-light-gray);
@@ -52,5 +56,5 @@
 }
 
 .opened .arrow {
-	transform: rotate(180deg);
+	transform: rotate(270deg);
 }
