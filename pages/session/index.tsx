@@ -47,7 +47,7 @@ const Session = () => {
 	const dispatch = useAppDispatch();
 	const questions = useAppSelector((state) => state.setQuestion.questions);
 
-	const [userId, setUserId] = useState<number>(1);
+	const [userId, setUserId] = useState<number>();
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {

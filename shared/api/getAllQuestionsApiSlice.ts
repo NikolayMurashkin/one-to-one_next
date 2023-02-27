@@ -14,11 +14,14 @@ export interface IQuestion {
 export interface IGetAllQuestionResponse {
 	items: IQuestion[];
 	totalItems?: string;
-};
+}
 
 export const getAllQuestionsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		getAllQuestions: builder.query<IGetAllQuestionResponse, number>({
+		getAllQuestions: builder.query<
+			IGetAllQuestionResponse,
+			number | undefined
+		>({
 			query: (userid) => `/user/${userid}/question`,
 			providesTags: (result) =>
 				result
@@ -35,4 +38,3 @@ export const getAllQuestionsApiSlice = apiSlice.injectEndpoints({
 });
 
 export const { useGetAllQuestionsQuery } = getAllQuestionsApiSlice;
-
