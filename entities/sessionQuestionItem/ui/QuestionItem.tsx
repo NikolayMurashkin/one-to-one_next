@@ -16,7 +16,7 @@ export const QuestionItem: React.FC<IQuestionItemProps> = ({
 		<li className={cx('wrapper')} onClick={onClick}>
 			<div className={cx('content')}>
 				<span className={cx('stack')}>
-					<StarIcon /> {stack}
+					 {stack}
 				</span>
 				<p className={cx('question')}>{question}</p>
 			</div>

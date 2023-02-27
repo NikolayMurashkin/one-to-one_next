@@ -27,6 +27,7 @@ const Feedback = () => {
 		) {
 			router.push('/login');
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const cx = classNames.bind(styles);

@@ -6,6 +6,9 @@ import styles from '@features/forms/registerForm/RegisterForm.module.scss';
 import { Input } from '@shared/ui/inputs/Input';
 import { LoginButton } from '@shared/ui';
 import Link from 'next/link';
+import { useRegisterMutation } from '@features/auth/api/authApiSlice';
+import { setCredentials } from '@features/auth/api/authSlice';
+import { useAppDispatch } from '@app/hooks';
 
 export const RegisterForm = () => {
 	const cx = classNames.bind(styles);
@@ -16,6 +19,10 @@ export const RegisterForm = () => {
 	const [name, setName] = useState('');
 	const [surName, setSurName] = useState('');
 
+	const dispatch = useAppDispatch();
+
+	const [register, { isLoading }] = useRegisterMutation();
+
 	const registerHandler = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		event.stopPropagation();
@@ -25,28 +32,40 @@ export const RegisterForm = () => {
 			name,
 			surName,
 		};
-		const getUserId = await fetch(
-			'http://localhost:8080/one-to-one/api/v1/user/register',
-			{
-				method: 'POST',
-				headers: {
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify(body),
-			}
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				window.localStorage.setItem(
-					'userInfo',
-					JSON.stringify(data.id)
-				);
-			});
-		setEmail('');
-		setPassword('');
-		setName('');
-		setSurName('');
-		router.push('/register/success');
+
+		try {
+			const userData = await register(body).unwrap();
+
+			localStorage.setItem('access', JSON.stringify(userData.jwtToken));
+			localStorage.setItem('id', JSON.stringify(userData.id));
+
+			dispatch(setCredentials({ ...userData, email }));
+			setEmail('');
+			setPassword('');
+			setName('');
+			setSurName('');
+			router.push('/register/success');
+		} catch (err: any) {
+			console.log(err);
+		}
+
+		// const getUserId = await fetch(
+		// 	'http://localhost:8080/one-to-one/api/v1/user/register',
+		// 	{
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Content-type': 'application/json',
+		// 		},
+		// 		body: JSON.stringify(body),
+		// 	}
+		// )
+		// 	.then((response) => response.json())
+		// 	.then((data) => {
+		// 		window.localStorage.setItem(
+		// 			'userInfo',
+		// 			JSON.stringify(data.id)
+		// 		);
+		// 	});
 	};
 
 	const emailInputHandler = (e: React.ChangeEvent<HTMLInputElement>) =>

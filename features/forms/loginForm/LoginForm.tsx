@@ -9,7 +9,6 @@ import Link from 'next/link';
 import styles from '@features/forms/loginForm/LoginForm.module.scss';
 import { Input } from '@shared/ui/inputs/Input';
 import { LoginButton } from '@shared/ui';
-import { IError } from './model/LoginFormTypes';
 
 export const LoginForm = () => {
 	const cx = classNames.bind(styles);
@@ -23,10 +22,6 @@ export const LoginForm = () => {
 
 	const [login, { isLoading }] = useLoginMutation();
 	const dispatch = useAppDispatch();
-
-	// useEffect(() => {
-	// 	userRef.current.focus();
-	// }, []);
 
 	useEffect(() => {
 		setErrMsg('');

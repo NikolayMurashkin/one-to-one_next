@@ -73,7 +73,7 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 					{isInterview && (
 						<textarea
 							onChange={(e) => setComment(e.target.value)}
-							cols={60}
+							cols={50}
 							rows={5}
 							placeholder='Введите комментарий к ответу'
 							className={cx('text')}
