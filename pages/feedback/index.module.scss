@@ -1,5 +1,6 @@
 .feedback {
 	display: flex;
+	flex-direction: column;
 	margin-top: 100px;
 	max-height: calc(100vh - 150px);
 	column-gap: 20px;
