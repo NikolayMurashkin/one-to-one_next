@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { QuestionItem } from '@entities/sessionWindowQuestion/ui/QuestionItem';
@@ -28,14 +28,31 @@ export type GetAllQuestionResponse = {
 
 export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 	const cx = classNames.bind(styles);
+
 	const [comments, setComments] = useState(['']);
 	const [message, setMessage] = useState('');
 	const [isDisabled, setIsDisabled] = useState(true);
+	const [user, setUser] = useState<number>();
 
 	const [closeSession] = useCloseSessionMutation();
 	const [sendFeedback] = useSendFeedbackMutation();
 
 	const router = useRouter();
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const userJson = localStorage.getItem('id');
+			const user = userJson !== null ? JSON.parse(userJson) : {};
+			setUser(user);
+		}
+		if (
+			typeof window !== 'undefined' &&
+			localStorage.getItem('id') === null
+		) {
+			router.push('/login');
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const interviewInfo = useAppSelector((state) => state.interviewItem);
 	const questions = useAppSelector((state) => state.setQuestion.questions);
@@ -47,7 +64,7 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 		const body = {
 			oneToOneId: interviewInfo.interviewId,
 			authorId: interviewInfo.initiatorId,
-			recipientId: 2,
+			recipientId: user,
 			questions: acceptedQuestions.map((item, i) => {
 				return {
 					question: {
