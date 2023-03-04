@@ -63,8 +63,8 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 	const sendFeedbackHandler = () => {
 		const body = {
 			oneToOneId: interviewInfo.interviewId,
-			authorId: interviewInfo.initiatorId,
-			recipientId: user,
+			authorId: user,
+			recipientId: interviewInfo.initiatorId,
 			questions: acceptedQuestions.map((item, i) => {
 				return {
 					question: {
