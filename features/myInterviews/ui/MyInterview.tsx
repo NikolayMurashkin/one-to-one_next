@@ -54,6 +54,7 @@ export const MyInterview = () => {
 									stack={item.technology.name}
 									status={item.status}
 									interviewId={item.id}
+									opponentId={item.opponentId}
 								/>
 							);
 						})}

@@ -36,7 +36,7 @@ const Feedback = () => {
 
 	const cx = classNames.bind(styles);
 
-	const { interviewId, date, initiatorName, level, stack, initiatorId } =
+	const { interviewId, date, initiatorName, level, stack, opponentId} =
 		useAppSelector((state: RootState) => state.interviewItem);
 
 	const {
@@ -45,7 +45,7 @@ const Feedback = () => {
 		isError,
 		error,
 	} = useGetFeedbackQuery({
-		userId: initiatorId,
+		userId: opponentId,
 		interviewId,
 	});
 

@@ -5,4 +5,5 @@ export interface IInterviewItemProps {
 	level: string;
 	status: string;
 	interviewId: number;
+	opponentId: number | null;
 }

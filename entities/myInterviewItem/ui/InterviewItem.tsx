@@ -17,6 +17,7 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	date,
 	interviewId,
 	level,
+	opponentId
 }) => {
 	const cx = classNames.bind(styles);
 	const router = useRouter();
@@ -26,6 +27,7 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	if (!user) {
 		return <p>Загрузка...</p>;
 	}
+	console.log(user);
 
 	const setInterviewHandler = () => {
 		dipatch(
@@ -36,7 +38,8 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 				initiatorId,
 				level,
 				status,
-				stack
+				stack,
+				opponentId,
 			})
 		);
 	};

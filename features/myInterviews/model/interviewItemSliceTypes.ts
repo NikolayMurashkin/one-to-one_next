@@ -6,6 +6,7 @@ export interface ISetInterview {
 	level: string;
 	status: string;
 	stack: string;
+	opponentId: number | null;
 }
 
 export interface IInterviewItem {
