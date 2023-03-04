@@ -4,6 +4,7 @@ export type QuestionItemProps = {
 	answer: string;
 	id: number | undefined;
 	techId: number | undefined;
+	userId: number | undefined;
 	isInterview: boolean;
 	setComments: React.Dispatch<React.SetStateAction<string[]>>;
 	setIsDisabled: React.Dispatch<React.SetStateAction<boolean>>;

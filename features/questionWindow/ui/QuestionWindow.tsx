@@ -97,6 +97,7 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 								isInterview
 								setComments={setComments}
 								setIsDisabled={setIsDisabled}
+							    userId={question.userId}
 							/>
 						);
 					})
