@@ -36,8 +36,15 @@ const Feedback = () => {
 
 	const cx = classNames.bind(styles);
 
-	const { interviewId, date, initiatorName, level, stack, opponentId} =
-		useAppSelector((state: RootState) => state.interviewItem);
+	const {
+		interviewId,
+		date,
+		initiatorName,
+		level,
+		stack,
+		opponentId,
+		initiatorId,
+	} = useAppSelector((state: RootState) => state.interviewItem);
 
 	const {
 		data: feedbackData,
@@ -45,7 +52,7 @@ const Feedback = () => {
 		isError,
 		error,
 	} = useGetFeedbackQuery({
-		userId: opponentId,
+		userId: opponentId === user ? initiatorId : opponentId,
 		interviewId,
 	});
 
