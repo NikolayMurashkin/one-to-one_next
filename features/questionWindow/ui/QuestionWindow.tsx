@@ -83,8 +83,8 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 		sendFeedback(body);
 		closeSession({
 			interviewId: interviewInfo.interviewId,
-			authorId: interviewInfo.initiatorId,
-			opponentId: user,
+			authorId: user,
+			opponentId: interviewInfo.initiatorId,
 		});
 		router.push('/');
 	};
@@ -114,7 +114,7 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 								isInterview
 								setComments={setComments}
 								setIsDisabled={setIsDisabled}
-							    userId={question.userId}
+								userId={question.userId}
 							/>
 						);
 					})

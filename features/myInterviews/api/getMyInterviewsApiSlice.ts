@@ -3,8 +3,11 @@ import { IGetMyInterviewsResponse } from '@features/myInterviews/model/interview
 
 export const getMyInterviewsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		getMyInterviews: builder.query<IGetMyInterviewsResponse, number | undefined>({
-			query: (id) => `/one-to-one/user/${id}`,
+		getMyInterviews: builder.query<
+			IGetMyInterviewsResponse,
+			number | undefined
+		>({
+			query: (id) => `/one-to-one?initiator.id${id}`,
 			providesTags: (result) =>
 				result
 					? [
