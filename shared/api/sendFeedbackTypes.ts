@@ -11,11 +11,11 @@ interface IQuestionRequest {
 }
 
 export interface ISendFeedbackRequest {
-	authorId: number | undefined;
+	authorId: number | undefined | null;
 	message: string;
 	oneToOneId: number;
 	questions: IQuestionRequest[];
-	recipientId: number | undefined;
+	recipientId: number | undefined | null;
 }
 
 interface IQuestionRsponse {

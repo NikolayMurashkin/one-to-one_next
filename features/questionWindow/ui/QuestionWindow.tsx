@@ -64,7 +64,10 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 		const body = {
 			oneToOneId: interviewInfo.interviewId,
 			authorId: user,
-			recipientId: interviewInfo.initiatorId,
+			recipientId:
+				interviewInfo.initiatorId === user
+					? interviewInfo.opponentId
+					: interviewInfo.initiatorId,
 			questions: acceptedQuestions.map((item, i) => {
 				return {
 					question: {
