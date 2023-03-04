@@ -84,7 +84,7 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 		closeSession({
 			interviewId: interviewInfo.interviewId,
 			authorId: interviewInfo.initiatorId,
-			opponentId: 2,
+			opponentId: user,
 		});
 		router.push('/');
 	};

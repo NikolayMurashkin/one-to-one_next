@@ -15,7 +15,7 @@ export interface ISendFeedbackRequest {
 	message: string;
 	oneToOneId: number;
 	questions: IQuestionRequest[];
-	recipientId: number;
+	recipientId: number | undefined;
 }
 
 interface IQuestionRsponse {
