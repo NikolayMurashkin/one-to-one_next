@@ -7,7 +7,7 @@ export const getInitiatorInterviewsApiSlice = apiSlice.injectEndpoints({
 			IGetMyInterviewsResponse,
 			number | undefined
 		>({
-			query: (id) => `/one-to-one?search=initiator.id${id}`,
+			query: (id) => `/one-to-one?search=initiator.id:${id}`,
 			providesTags: (result) =>
 				result
 					? [

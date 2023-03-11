@@ -7,7 +7,7 @@ export const getOpponentApiSlice = apiSlice.injectEndpoints({
 			IGetMyInterviewsResponse,
 			number | undefined
 		>({
-			query: (id) => `/one-to-one?search=opponent.id${id}`,
+			query: (id) => `/one-to-one?search=opponent.id:${id}`,
 			providesTags: (result) =>
 				result
 					? [

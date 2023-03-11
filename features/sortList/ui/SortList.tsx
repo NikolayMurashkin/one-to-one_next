@@ -32,6 +32,28 @@ export const SortList: React.FC<ISortListProps> = ({ tabId}) => {
 				</ul>
 			)}
 			{tabId == 2 && (
+				<ul className={cx('sortList', 'myInterview')}>
+					<li className={cx('sortItem')}>
+						<SortItem text='Дата, время' />
+					</li>
+					<li className={cx('sortItem')}>
+						<SortItem text='Стек' />
+					</li>
+					<li className={cx('sortItem')}>
+						<SortItem text='Оппонент' />
+					</li>
+					<li className={cx('sortItem')}>
+						<SortItem text='Уровень' />
+					</li>
+					<li className={cx('sortItem')}>
+						<SortItem text='Фидбек' />
+					</li>
+					<li className={cx('sortItem')}>
+						<SortItem text='Статус' />
+					</li>
+				</ul>
+			)}
+			{tabId == 3 && (
 				<ul className={cx('sortList', 'searchInterview')}>
 					<li className={cx('sortItem')}>
 						<SortItem text='Дата, время' />
@@ -47,7 +69,7 @@ export const SortList: React.FC<ISortListProps> = ({ tabId}) => {
 					</li>
 				</ul>
 			)}
-			{tabId == 3 && (
+			{tabId == 4 && (
 				<ul className={cx('sortList', 'myQuestions')}>
 					<li className={cx('sortItem')}>
 						<SortItem text='Список вопросов' />
@@ -57,7 +79,7 @@ export const SortList: React.FC<ISortListProps> = ({ tabId}) => {
 					</li>
 				</ul>
 			)}
-			{tabId == 4 && (
+			{tabId == 5 && (
 				<ul className={cx('sortList', 'statistic')}>
 					<li className={cx('sortItem')}>
 						<SortItem text='Технология' />
