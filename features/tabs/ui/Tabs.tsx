@@ -33,7 +33,7 @@ export const TabsButtons: React.FC<TabsProps> = ({ selectedId, tabs }) => {
 						>
 							<span>{tab.label}</span>
 						</div>
-						{tab.id === 1 || tab.id === 2 || tab.id === 4 ? (
+						{tab.id === 2 || tab.id === 4 ? (
 							<Modal tab={tab.id} selectedTab={selectedId} />
 						) : null}
 					</div>

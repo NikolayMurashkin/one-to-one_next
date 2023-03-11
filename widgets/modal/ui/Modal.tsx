@@ -14,7 +14,7 @@ export const Modal: React.FC<TModalProps> = ({ tab }): JSX.Element => {
 		setIsOpen(false);
 	}
 
-	if (tab === 1 || tab === 2) {
+	if (tab === 2) {
 		return (
 			<InterviewsModal
 				openModal={openModal}
