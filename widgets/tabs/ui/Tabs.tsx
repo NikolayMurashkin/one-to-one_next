@@ -83,5 +83,7 @@ export const Tabs = () => {
 				</div>
 			</section>
 		);
+	} else {
+		return <p>Загрузка...</p>;
 	}
 };
