@@ -1,13 +1,13 @@
 import { apiSlice } from '@shared/api/apiSlice';
 import { IGetMyInterviewsResponse } from '@features/myInterviews/model/interviewItemSliceTypes';
 
-export const getMyInterviewsApiSlice = apiSlice.injectEndpoints({
+export const getOpponentApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		getMyInterviews: builder.query<
+		getOpponentInterviews: builder.query<
 			IGetMyInterviewsResponse,
 			number | undefined
 		>({
-			query: (id) => `/one-to-one?initiator.id${id}`,
+			query: (id) => `/one-to-one?search=opponent.id${id}`,
 			providesTags: (result) =>
 				result
 					? [
@@ -22,4 +22,4 @@ export const getMyInterviewsApiSlice = apiSlice.injectEndpoints({
 	}),
 });
 
-export const { useGetMyInterviewsQuery } = getMyInterviewsApiSlice;
+export const { useGetOpponentInterviewsQuery } = getOpponentApiSlice;

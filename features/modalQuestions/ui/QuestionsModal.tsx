@@ -62,6 +62,7 @@ export const Questions: React.FC<IQuestionsProps> = ({
 		});
 		setQuestion('');
 		setAnswer('');
+		setQuestionsList([]);
 		closeModal();
 	};
 	const addOneMoreQuestionHandler = () => {

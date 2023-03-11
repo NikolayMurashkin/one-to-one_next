@@ -27,3 +27,7 @@ export interface IGetMyInterviewsResponse {
 	totalItems: number;
 	items: IInterviewItem[];
 }
+
+export interface IGetMyInterviewsProps {
+	interviews: IInterviewItem[];
+}

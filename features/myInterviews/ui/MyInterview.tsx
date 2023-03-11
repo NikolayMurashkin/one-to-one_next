@@ -1,48 +1,18 @@
-import { useEffect, useState } from 'react';
-
 import styles from '../model/MyInterview.module.scss';
 import { InterviewItem } from '@entities/myInterviewItem';
 import { getDate } from '@shared/api';
-import { useGetMyInterviewsQuery } from '@features/myInterviews/api/getMyInterviewsApiSlice';
+import { IGetMyInterviewsResponse } from '../model/interviewItemSliceTypes';
 
-export const MyInterview = () => {
-	const [user, setUser] = useState<number>();
-
-	useEffect(() => {
-		const userIdJson = localStorage.getItem('id');
-		if (userIdJson) {
-			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
-		}
-	}, []);
-
-	// const getUserId = () => {
-	// 	if (typeof window !== 'undefined') {
-	// 		const userIdJson = localStorage.getItem('id');
-	// 		if (userIdJson) {
-	// 			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
-	// 		}
-	// 	}
-	// };
-	// getUserId();
-
-	const {
-		data: interviews,
-		isLoading,
-		error,
-	} = useGetMyInterviewsQuery(user);
-
-	if (isLoading) {
+export const MyInterview: React.FC<IGetMyInterviewsResponse> = ({ totalItems, items }) => {
+	if (!items) {
 		return <p>Загрузка...</p>;
 	}
 
-	if (error) {
-		return <p>Что-то пошло не так! Мы скоро всё исправим!</p>;
-	}
-	if (interviews) {
+	if (items) {
 		return (
 			<ul className={styles.list}>
-				{interviews.items &&
-					interviews.items
+				{items &&
+					items
 						.filter((item) => item.status !== 'OPEN')
 						.map((item) => {
 							return (
@@ -60,7 +30,5 @@ export const MyInterview = () => {
 						})}
 			</ul>
 		);
-	} else {
-		return null;
-	}
+	} else return null;
 };
