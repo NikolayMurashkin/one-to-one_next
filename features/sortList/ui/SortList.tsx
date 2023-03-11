@@ -18,7 +18,7 @@ export const SortList: React.FC<ISortListProps> = ({ tabId}) => {
 						<SortItem text='Стек' />
 					</li>
 					<li className={cx('sortItem')}>
-						<SortItem text='Оппонент' />
+						<SortItem text='Создатель' />
 					</li>
 					<li className={cx('sortItem')}>
 						<SortItem text='Уровень' />
