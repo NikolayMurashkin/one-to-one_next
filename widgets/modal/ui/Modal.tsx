@@ -14,7 +14,7 @@ export const Modal: React.FC<TModalProps> = ({ tab }): JSX.Element => {
 		setIsOpen(false);
 	}
 
-	if (tab === 1) {
+	if (tab === 1 || tab === 2) {
 		return (
 			<InterviewsModal
 				openModal={openModal}
@@ -23,7 +23,7 @@ export const Modal: React.FC<TModalProps> = ({ tab }): JSX.Element => {
 			/>
 		);
 	}
-	if (tab === 3) {
+	if (tab === 4) {
 		return (
 			<Questions
 				openModal={openModal}
