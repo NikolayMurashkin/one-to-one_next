@@ -71,10 +71,10 @@ export const Tabs = () => {
 					<SortList tabId={selectedTabId} />
 					<div className={styles.content}>
 						{selectedTabId === tabs[0].id && (
-							<MyInterview {...opponentInterviews} />
+							<MyInterview {...opponentInterviews} opponent/>
 						)}
 						{selectedTabId === tabs[1].id && (
-							<MyInterview {...initiatorInterviews} />
+							<MyInterview {...initiatorInterviews} initiator/>
 						)}
 						{selectedTabId === tabs[2].id && <SearchInterview />}
 						{selectedTabId === tabs[3].id && <MyQuestions />}

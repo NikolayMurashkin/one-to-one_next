@@ -28,6 +28,7 @@ export interface IGetMyInterviewsResponse {
 	items: IInterviewItem[];
 }
 
-export interface IGetMyInterviewsProps {
-	interviews: IInterviewItem[];
+export interface IGetMyInterviewsProps extends IGetMyInterviewsResponse {
+	opponent?: boolean;
+	initiator?: boolean;
 }
