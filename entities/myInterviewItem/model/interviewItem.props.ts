@@ -1,6 +1,6 @@
 export interface IInterviewItemProps {
 	stack: string;
-	initiatorId: number;
+	initiatorId: number | null;
 	date: string;
 	level: string;
 	status: string;

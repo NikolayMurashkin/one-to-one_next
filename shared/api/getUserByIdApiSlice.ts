@@ -10,7 +10,7 @@ interface IGetUserByIdResponse {
 
 export const interviewItemApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		getUserById: builder.query<IGetUserByIdResponse, number | undefined>({
+		getUserById: builder.query<IGetUserByIdResponse, number | undefined | null>({
 			query: (id) => `/user/${id}`,
 			providesTags: ['User'],
 		}),

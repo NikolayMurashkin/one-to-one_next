@@ -39,11 +39,11 @@ export const MyInterview: React.FC<IGetMyInterviewsProps> = ({
 										key={item.id}
 										date={getDate(item, item.dateTime)}
 										level={item.level}
-										initiatorId={item.initiatorId}
+										initiatorId={item.opponentId}
 										stack={item.technology.name}
 										status={item.status}
 										interviewId={item.id}
-										opponentId={item.initiatorId}
+										opponentId={item.opponentId}
 									/>
 								);
 							}

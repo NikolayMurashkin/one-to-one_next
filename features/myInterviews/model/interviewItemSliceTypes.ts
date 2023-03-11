@@ -2,7 +2,7 @@ export interface ISetInterview {
 	date: string;
 	initiatorName: string;
 	interviewId: number;
-	initiatorId: number;
+	initiatorId: number | null;
 	level: string;
 	status: string;
 	stack: string;
