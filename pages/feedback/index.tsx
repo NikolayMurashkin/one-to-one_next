@@ -19,29 +19,20 @@ const Feedback = () => {
 
 	const [user, setUser] = useState<number>();
 
-	// useEffect(() => {
-	// 	if (typeof window !== 'undefined') {
-	// 		const userJson = localStorage.getItem('id');
-	// 		const user = userJson !== null ? JSON.parse(userJson) : {};
-	// 		setUser(user);
-	// 	}
-	// 	if (
-	// 		typeof window !== 'undefined' &&
-	// 		localStorage.getItem('id') === null
-	// 	) {
-	// 		router.push('/login');
-	// 	}
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
-
-	if (typeof window !== 'undefined') {
-		const userJson = localStorage.getItem('id');
-		const user = userJson !== null ? JSON.parse(userJson) : {};
-		setUser(user);
-	}
-	if (typeof window !== 'undefined' && localStorage.getItem('id') === null) {
-		router.push('/login');
-	}
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const userJson = localStorage.getItem('id');
+			const user = userJson !== null ? JSON.parse(userJson) : {};
+			setUser(user);
+		}
+		if (
+			typeof window !== 'undefined' &&
+			localStorage.getItem('id') === null
+		) {
+			router.push('/login');
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const cx = classNames.bind(styles);
 
@@ -61,7 +52,7 @@ const Feedback = () => {
 		isError,
 		error,
 	} = useGetFeedbackQuery({
-		userId: opponentId === user ? initiatorId : opponentId,
+		userId: user,
 		interviewId,
 	});
 
