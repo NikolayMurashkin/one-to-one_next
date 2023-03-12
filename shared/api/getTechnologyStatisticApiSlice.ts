@@ -33,12 +33,16 @@ export interface IGetFullUserStatistics {
 
 export const getTechnologyStatisticApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		getTechnologyStatistics: builder.query<IGetFullUserStatistics, number | undefined>({
+		getTechnologyStatistics: builder.query<
+			IGetFullUserStatistics,
+			number | undefined
+		>({
 			query: (userId) =>
-				`/user/one-to-one/feedback/${4}/technology-statistics`,
+				`/user/one-to-one/feedback/${userId}/technology-statistics`,
 			providesTags: ['User'],
 		}),
 	}),
 });
 
-export const { useGetTechnologyStatisticsQuery } = getTechnologyStatisticApiSlice;
+export const { useGetTechnologyStatisticsQuery } =
+	getTechnologyStatisticApiSlice;
