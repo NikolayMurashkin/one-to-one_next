@@ -93,7 +93,13 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 				)}
 			{initiatorFeedback === 'WRITE' &&
 				opponentFeedback === 'NO_WRITE' && (
-					<MyInterviewButton status='waiting for your review' />
+					<Link
+						href={'/session'}
+						className={styles.button}
+						onClick={setInterviewHandler}
+					>
+						<MyInterviewButton status='waiting for your review' />
+					</Link>
 				)}
 		</li>
 	);
