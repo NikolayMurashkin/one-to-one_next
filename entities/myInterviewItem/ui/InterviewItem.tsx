@@ -67,8 +67,8 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 				<MainButton
 					type='border'
 					isDisabled={
-						(initiatorFeedback === 'WRITE' &&
-							opponentFeedback === 'NO_WRITE') ||
+						(initiatorFeedback === 'NO_WRITE' &&
+							opponentFeedback === 'WRITE') ||
 						+date == new Date().getDate()
 					}
 					text={'Подробнее'}
