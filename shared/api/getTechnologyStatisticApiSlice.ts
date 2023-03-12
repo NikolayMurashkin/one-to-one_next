@@ -35,7 +35,7 @@ export const getTechnologyStatisticApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getTechnologyStatistics: builder.query<IGetFullUserStatistics, number | undefined>({
 			query: (userId) =>
-				`/user/one-to-one/feedback/${userId}/technology-statistics`,
+				`/user/one-to-one/feedback/${4}/technology-statistics`,
 			providesTags: ['User'],
 		}),
 	}),
