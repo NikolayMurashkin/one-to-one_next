@@ -51,3 +51,8 @@
 	border-right: solid 5px var(--dark-green);
 	border-left: solid 5px var(--dark-green);
 }
+.button {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+}

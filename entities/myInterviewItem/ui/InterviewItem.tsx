@@ -74,33 +74,36 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 					onClick={openFeedbackHanlder}
 				/>
 			</span>
-			{initiatorFeedback === 'NO_WRITE' &&
-				opponentFeedback === 'NO_WRITE' && (
-					<Link
-						href={'/session'}
-						className={styles.button}
-						onClick={setInterviewHandler}
-					>
-						<MyInterviewButton status='not started' />
-					</Link>
-				)}
-			{initiatorFeedback === 'WRITE' && opponentFeedback === 'WRITE' && (
-				<MyInterviewButton status='completed' />
-			)}
-			{initiatorFeedback === 'NO_WRITE' &&
-				opponentFeedback === 'WRITE' && (
-					<MyInterviewButton status='waiting for opponent review' />
-				)}
-			{initiatorFeedback === 'WRITE' &&
-				opponentFeedback === 'NO_WRITE' && (
-					<Link
-						href={'/session'}
-						className={styles.button}
-						onClick={setInterviewHandler}
-					>
-						<MyInterviewButton status='waiting for your review' />
-					</Link>
-				)}
+			<span className={cx('button')}>
+				{initiatorFeedback === 'NO_WRITE' &&
+					opponentFeedback === 'NO_WRITE' && (
+						<Link
+							href={'/session'}
+							className={styles.button}
+							onClick={setInterviewHandler}
+						>
+							<MyInterviewButton status='not started' />
+						</Link>
+					)}
+				{initiatorFeedback === 'WRITE' &&
+					opponentFeedback === 'WRITE' && (
+						<MyInterviewButton status='completed' />
+					)}
+				{initiatorFeedback === 'NO_WRITE' &&
+					opponentFeedback === 'WRITE' && (
+						<MyInterviewButton status='waiting for opponent review' />
+					)}
+				{initiatorFeedback === 'WRITE' &&
+					opponentFeedback === 'NO_WRITE' && (
+						<Link
+							href={'/session'}
+							className={styles.button}
+							onClick={setInterviewHandler}
+						>
+							<MyInterviewButton status='waiting for your review' />
+						</Link>
+					)}
+			</span>
 		</li>
 	);
 };

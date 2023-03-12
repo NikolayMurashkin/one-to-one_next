@@ -19,20 +19,29 @@ const Feedback = () => {
 
 	const [user, setUser] = useState<number>();
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const userJson = localStorage.getItem('id');
-			const user = userJson !== null ? JSON.parse(userJson) : {};
-			setUser(user);
-		}
-		if (
-			typeof window !== 'undefined' &&
-			localStorage.getItem('id') === null
-		) {
-			router.push('/login');
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	// useEffect(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		const userJson = localStorage.getItem('id');
+	// 		const user = userJson !== null ? JSON.parse(userJson) : {};
+	// 		setUser(user);
+	// 	}
+	// 	if (
+	// 		typeof window !== 'undefined' &&
+	// 		localStorage.getItem('id') === null
+	// 	) {
+	// 		router.push('/login');
+	// 	}
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
+
+	if (typeof window !== 'undefined') {
+		const userJson = localStorage.getItem('id');
+		const user = userJson !== null ? JSON.parse(userJson) : {};
+		setUser(user);
+	}
+	if (typeof window !== 'undefined' && localStorage.getItem('id') === null) {
+		router.push('/login');
+	}
 
 	const cx = classNames.bind(styles);
 
