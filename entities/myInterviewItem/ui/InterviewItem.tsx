@@ -67,10 +67,17 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 				<MainButton
 					type='border'
 					isDisabled={
-						status === 'ACCEPT' || +date == new Date().getDate()
+						(initiatorFeedback === 'WRITE' &&
+							opponentFeedback === 'NO_WRITE') ||
+						+date == new Date().getDate()
 					}
 					text={'Подробнее'}
-					color={status === 'CLOSED' ? 'green' : 'blue'}
+					color={
+						initiatorFeedback === 'WRITE' &&
+						opponentFeedback === 'NO_WRITE'
+							? 'green'
+							: 'blue'
+					}
 					onClick={openFeedbackHanlder}
 				/>
 			</span>
