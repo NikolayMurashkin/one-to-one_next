@@ -17,7 +17,9 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	date,
 	interviewId,
 	level,
-	opponentId
+	opponentId,
+	initiatorFeedback,
+	opponentFeedback,
 }) => {
 	const cx = classNames.bind(styles);
 	const router = useRouter();
@@ -72,17 +74,27 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 					onClick={openFeedbackHanlder}
 				/>
 			</span>
-			{status === 'ACCEPT' && (
-				<Link
-					href={'/session'}
-					className={styles.button}
-					onClick={setInterviewHandler}
-				>
-					<MyInterviewButton status='active' />
-				</Link>
+			{initiatorFeedback === 'NO_WRITE' &&
+				opponentFeedback === 'NO_WRITE' && (
+					<Link
+						href={'/session'}
+						className={styles.button}
+						onClick={setInterviewHandler}
+					>
+						<MyInterviewButton status='not started' />
+					</Link>
+				)}
+			{initiatorFeedback === 'WRITE' && opponentFeedback === 'WRITE' && (
+				<MyInterviewButton status='completed' />
 			)}
-			{status === 'CLOSED' && <MyInterviewButton status='completed' />}
-			{status === 'pending' && <MyInterviewButton status='waiting' />}
+			{initiatorFeedback === 'NO_WRITE' &&
+				opponentFeedback === 'WRITE' && (
+					<MyInterviewButton status='waiting for opponent review' />
+				)}
+			{initiatorFeedback === 'WRITE' &&
+				opponentFeedback === 'NO_WRITE' && (
+					<MyInterviewButton status='waiting for your review' />
+				)}
 		</li>
 	);
 };

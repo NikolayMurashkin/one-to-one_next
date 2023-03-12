@@ -21,6 +21,8 @@ export interface IInterviewItem {
 	status: string;
 	comment: string;
 	level: string;
+	initiatorFeedback: string;
+	opponentFeedback: string;
 }
 
 export interface IGetMyInterviewsResponse {
