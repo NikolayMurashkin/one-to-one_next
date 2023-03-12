@@ -31,9 +31,7 @@ export const Tabs = () => {
 	const { data: questions } = useGetMyQuestionsQuery(user ? user : 0);
 	const { data: opponentInterviews } = useGetOpponentInterviewsQuery(user);
 	const { data: initiatorInterviews } = useGetInitiatorInterviewsQuery(user);
-	const { data: statictics } = useGetTechnologyStatisticsQuery(
-		user ? user : 0
-	);
+	const { data: statictics } = useGetTechnologyStatisticsQuery(user);
 
 	if (opponentInterviews && initiatorInterviews) {
 		const passedInterviews = opponentInterviews.items.filter(

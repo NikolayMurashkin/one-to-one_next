@@ -14,9 +14,7 @@ export const Statistic = () => {
 		}
 	}, []);
 
-	const { data, error, isLoading } = useGetTechnologyStatisticsQuery(
-		user ? user : 0
-	);
+	const { data, error, isLoading } = useGetTechnologyStatisticsQuery(user);
 
 	if (isLoading) {
 		return <p className={styles.loading}>Загрузка...</p>;

@@ -33,7 +33,7 @@ export interface IGetFullUserStatistics {
 
 export const getTechnologyStatisticApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		getTechnologyStatistics: builder.query<IGetFullUserStatistics, number>({
+		getTechnologyStatistics: builder.query<IGetFullUserStatistics, number | undefined>({
 			query: (userId) =>
 				`/user/one-to-one/feedback/${userId}/technology-statistics`,
 			providesTags: ['User'],
