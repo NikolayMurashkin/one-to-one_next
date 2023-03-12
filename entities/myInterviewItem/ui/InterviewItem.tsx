@@ -73,8 +73,10 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 					}
 					text={'Подробнее'}
 					color={
-						initiatorFeedback === 'WRITE' &&
-						opponentFeedback === 'NO_WRITE'
+						(initiatorFeedback === 'WRITE' &&
+							opponentFeedback === 'WRITE') ||
+						(initiatorFeedback === 'WRITE' &&
+							opponentFeedback === 'NO_WRITE')
 							? 'green'
 							: 'blue'
 					}
