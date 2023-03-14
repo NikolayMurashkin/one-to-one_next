@@ -88,7 +88,6 @@ export const Questions: React.FC<IQuestionsProps> = ({
 			setAnswer('');
 			return newList;
 		});
-		console.log(questionsList);
 	};
 	const deleteQuestionHandler = (question: string | undefined) => {
 		setQuestionsList((prevState) => {

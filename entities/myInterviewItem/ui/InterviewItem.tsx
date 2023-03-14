@@ -33,7 +33,6 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	if (!user) {
 		return <p>Загрузка...</p>;
 	}
-	console.log(user);
 
 	const setInterviewHandler = () => {
 		dipatch(

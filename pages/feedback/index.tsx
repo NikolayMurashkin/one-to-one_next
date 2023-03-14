@@ -56,7 +56,7 @@ const Feedback = () => {
 		{
 			userId: user,
 			interviewId,
-		} ?? skipToken
+		}, {skip: !user}
 	);
 
 	const exitHandler = () => {
