@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 import styles from './Header.module.scss';
 import { LogOutIcon } from '@shared/ui/icons/LogOutIcon';
@@ -19,8 +20,8 @@ const Header = () => {
 			setUser(userIdJson !== null ? JSON.parse(userIdJson) : {});
 		}
 	}, []);
-	
-	const { data: userData, isLoading } = useGetUserQuery(user);
+
+	const { data: userData, isLoading } = useGetUserQuery(user ?? skipToken);
 
 	const logoutHandler = () => {
 		localStorage.clear();
