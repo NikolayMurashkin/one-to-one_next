@@ -15,11 +15,7 @@ export const Statistic = () => {
 		}
 	}, []);
 
-<<<<<<< HEAD
 	const { data, error, isLoading } = useGetTechnologyStatisticsQuery(user ?? skipToken);
-=======
-	const { data, error, isLoading } = useGetTechnologyStatisticsQuery(user);
->>>>>>> 49c0685089b14d91c562e73dbb51a62d85267e62
 
 	if (isLoading) {
 		return <p className={styles.loading}>Загрузка...</p>;

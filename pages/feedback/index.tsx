@@ -52,10 +52,12 @@ const Feedback = () => {
 		isLoading,
 		isError,
 		error,
-	} = useGetFeedbackQuery({
-		userId: user,
-		interviewId,
-	}, skipToken);
+	} = useGetFeedbackQuery(
+		{
+			userId: user,
+			interviewId,
+		} ?? skipToken
+	);
 
 	const exitHandler = () => {
 		router.push('/');
