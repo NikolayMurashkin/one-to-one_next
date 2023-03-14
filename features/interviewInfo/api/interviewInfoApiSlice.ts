@@ -18,7 +18,7 @@ export const interviewInfoApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getUserStatistics: builder.query<
 			IGetUserStatistics,
-			number | undefined
+			number
 		>({
 			query: (userId) => `/user/one-to-one/feedback/${userId}/statistics`,
 			providesTags: ['User'],

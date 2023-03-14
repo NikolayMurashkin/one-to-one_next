@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 import styles from '../model/InterviewInfoList.module.scss';
 import { InterviewInfoItem } from '@entities/interviewInfoItem';
@@ -15,7 +16,9 @@ export const InterviewInfoList = () => {
 		}
 	}, []);
 
-	const { data, error, isLoading } = useGetUserStatisticsQuery(user);
+	const { data, error, isLoading } = useGetUserStatisticsQuery(
+		user ?? skipToken
+	);
 
 	const labels = [
 		'Оценки пользователей',

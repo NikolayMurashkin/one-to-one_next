@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import Link from 'next/link';
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 import styles from '../model/InterviewItem.module.scss';
 import { IInterviewItemProps } from '@entities/myInterviewItem/model/interviewItem.props';
@@ -26,8 +27,8 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	const router = useRouter();
 
 	const dipatch = useAppDispatch();
-	
-	const { data: user } = useGetUserByIdQuery(initiatorId);
+
+	const { data: user } = useGetUserByIdQuery(initiatorId ?? skipToken);
 
 	if (!user) {
 		return <p>Загрузка...</p>;
