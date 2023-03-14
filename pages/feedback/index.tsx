@@ -53,7 +53,7 @@ const Feedback = () => {
 		isError,
 		error,
 	} = useGetFeedbackQuery({
-		userId: opponentId === user ? initiatorId : opponentId,
+		userId: user,
 		interviewId,
 	}, skipToken);
 

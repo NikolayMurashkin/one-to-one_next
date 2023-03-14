@@ -29,6 +29,10 @@ export const MyInterview: React.FC<IGetMyInterviewsProps> = ({
 										initiatorId={item.initiatorId}
 										stack={item.technology.name}
 										status={item.status}
+										initiatorFeedback={
+											item.initiatorFeedback
+										}
+										opponentFeedback={item.opponentFeedback}
 										interviewId={item.id}
 										opponentId={item.opponentId}
 									/>
@@ -44,6 +48,12 @@ export const MyInterview: React.FC<IGetMyInterviewsProps> = ({
 										status={item.status}
 										interviewId={item.id}
 										opponentId={item.opponentId}
+										initiatorFeedback={
+											item.opponentFeedback
+										}
+										opponentFeedback={
+											item.initiatorFeedback
+										}
 									/>
 								);
 							}

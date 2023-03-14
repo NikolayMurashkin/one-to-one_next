@@ -10,19 +10,33 @@ export const MyInterviewButton: React.FC<IInterviewButton> = ({ status }) => {
 	return (
 		<button
 			className={cx('button', {
-				blue: status === 'active',
-				'light-blue': status === 'waiting',
-				'light-green': status === 'completed',
+				blue: status === 'not started',
+				'light-blue': status === 'waiting for your review',
+				'light-green':
+					status === 'waiting for opponent review' ||
+					status === 'completed',
 			})}
-			disabled={status === 'completed' || status === 'waiting'}
+			disabled={
+				status === 'completed' ||
+				status === 'waiting for opponent review' ||
+				status === 'waiting for your review'
+			}
 		>
-			{status === 'active' ? (
+			{status === 'not started' ? (
 				<>
 					<ChatIcon /> Подключиться
 				</>
 			) : status === 'completed' ? (
 				<>
 					<CompleteIcon /> Завершено
+				</>
+			) : status === 'waiting for opponent review' ? (
+				<>
+					<ClockIcon /> Ожидание отзыва
+				</>
+			) : status === 'waiting for your review' ? (
+				<>
+					<ChatIcon /> Оставьте отзыв
 				</>
 			) : (
 				<>

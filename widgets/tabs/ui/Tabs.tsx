@@ -30,10 +30,17 @@ export const Tabs = () => {
 		(state: RootState) => state.tabs.selectedTab
 	);
 
+<<<<<<< HEAD
 	const { data: questions } = useGetMyQuestionsQuery(user ?? skipToken);
 	const { data: opponentInterviews } = useGetOpponentInterviewsQuery(user ?? skipToken);
 	const { data: initiatorInterviews } = useGetInitiatorInterviewsQuery(user ?? skipToken);
 	const { data: statictics } = useGetTechnologyStatisticsQuery(user ?? skipToken);
+=======
+	const { data: questions } = useGetMyQuestionsQuery(user ? user : 0);
+	const { data: opponentInterviews } = useGetOpponentInterviewsQuery(user);
+	const { data: initiatorInterviews } = useGetInitiatorInterviewsQuery(user);
+	const { data: statictics } = useGetTechnologyStatisticsQuery(user);
+>>>>>>> 49c0685089b14d91c562e73dbb51a62d85267e62
 
 	if (opponentInterviews && initiatorInterviews) {
 		const passedInterviews = opponentInterviews.items.filter(

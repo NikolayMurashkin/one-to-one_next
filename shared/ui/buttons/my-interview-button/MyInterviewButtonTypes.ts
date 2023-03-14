@@ -1,3 +1,3 @@
 export interface IInterviewButton {
-	status: 'active' | 'completed' | 'waiting';
+	status: 'completed' | 'waiting for your review' | 'waiting for opponent review' | 'not started';
 }
