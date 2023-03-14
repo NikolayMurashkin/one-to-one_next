@@ -84,11 +84,13 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 			message,
 		};
 		sendFeedback(body);
-		closeSession({
-			interviewId: interviewInfo.interviewId,
-			authorId: user,
-			opponentId: interviewInfo.initiatorId,
-		});
+		if (user === interviewInfo.initiatorId) {
+			closeSession({
+				interviewId: interviewInfo.interviewId,
+				authorId: user,
+				opponentId: interviewInfo.opponentId,
+			});
+		}
 		router.push('/');
 	};
 
