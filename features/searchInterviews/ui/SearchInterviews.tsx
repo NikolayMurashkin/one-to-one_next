@@ -46,6 +46,7 @@ export const SearchInterview = () => {
 						/>
 					);
 				})}
+			{allInterviews && allInterviews.totalItems === 0 && <p>Собеседования не найдены!</p>}
 		</ul>
 	);
 };
