@@ -20,7 +20,7 @@ export const getAllQuestionsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getAllQuestions: builder.query<
 			IGetAllQuestionResponse,
-			number | undefined
+			number
 		>({
 			query: (userid) => `/user/${userid}/question`,
 			providesTags: (result) =>

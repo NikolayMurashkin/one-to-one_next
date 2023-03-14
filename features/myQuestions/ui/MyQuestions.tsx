@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import styles from '../model/MyQuestions.module.scss';
 import { QuestionItem } from '@entities/questionItem';
 import { useGetMyQuestionsQuery } from '../api/getMyQustionsApiSlice';
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 export const MyQuestions = () => {
-	const [userId, setUserId] = useState<number>(0);
+	const [userId, setUserId] = useState<number>();
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
@@ -17,7 +18,7 @@ export const MyQuestions = () => {
 
 	//TODO: написать фетч для получения следующей страницы вопросов при скролле
 	
-	const { data, error } = useGetMyQuestionsQuery(userId);
+	const { data, error } = useGetMyQuestionsQuery(userId ?? skipToken);
 
 	if (!data) {
 		return <p>Загрузка...</p>;

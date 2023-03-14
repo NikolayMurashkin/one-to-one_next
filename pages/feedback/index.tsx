@@ -13,6 +13,7 @@ import { CalendarIcon } from '@shared/ui/icons/CalendarIcon';
 import { UserIcon } from '@shared/ui/icons/UserIcon';
 import { StackIcon } from '@shared/ui/icons/StackIcon';
 import { LevelIcon } from '@shared/ui/icons/LevelIcon';
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 const Feedback = () => {
 	const router = useRouter();
@@ -54,7 +55,7 @@ const Feedback = () => {
 	} = useGetFeedbackQuery({
 		userId: opponentId === user ? initiatorId : opponentId,
 		interviewId,
-	});
+	}, skipToken);
 
 	const exitHandler = () => {
 		router.push('/');

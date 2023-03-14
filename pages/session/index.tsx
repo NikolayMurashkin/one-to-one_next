@@ -2,6 +2,7 @@ import Head from 'next/head';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 import styles from './index.module.scss';
 import { useAppDispatch, useAppSelector } from '@app/hooks';
@@ -61,7 +62,7 @@ const Session = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const { data, error } = useGetAllQuestionsQuery(userId);
+	const { data, error } = useGetAllQuestionsQuery(userId ?? skipToken);
 
 	if (!data) {
 		return <p>Загрузка...</p>;

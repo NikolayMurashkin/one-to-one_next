@@ -50,12 +50,12 @@ export const Questions: React.FC<IQuestionsProps> = ({
 		}
 		const newArr: IQuestion[] = [];
 		await addQuestions({
-			userId: user ? user : 0,
+			userId: user,
 			questions: newArr.concat(questionsList, [
 				{
 					question,
 					answer,
-					userId: user ? user : 0,
+					userId: user,
 					technologyId: technology.id,
 				},
 			]),
@@ -76,7 +76,7 @@ export const Questions: React.FC<IQuestionsProps> = ({
 				{
 					question,
 					answer,
-					userId: user ? user : 0,
+					userId: user,
 					technology: {
 						id: technology.id,
 						name: technology.name,

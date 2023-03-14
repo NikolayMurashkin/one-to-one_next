@@ -20,8 +20,11 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	opponentId
 }) => {
 	const cx = classNames.bind(styles);
+
 	const router = useRouter();
+
 	const dipatch = useAppDispatch();
+	
 	const { data: user } = useGetUserByIdQuery(initiatorId);
 
 	if (!user) {

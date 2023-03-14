@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 import { useGetTechnologyStatisticsQuery } from '@shared/api/getTechnologyStatisticApiSlice';
 import styles from '../model/Statistic.module.scss';
@@ -14,9 +15,7 @@ export const Statistic = () => {
 		}
 	}, []);
 
-	const { data, error, isLoading } = useGetTechnologyStatisticsQuery(
-		user ? user : 0
-	);
+	const { data, error, isLoading } = useGetTechnologyStatisticsQuery(user ?? skipToken);
 
 	if (isLoading) {
 		return <p className={styles.loading}>Загрузка...</p>;

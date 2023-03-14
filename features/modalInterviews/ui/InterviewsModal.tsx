@@ -21,8 +21,6 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 }) => {
 	const cx = classNames.bind(styles);
 	
-	
-	
 	const [user, setUser] = useState<number>();
 	const [date, setDate] = useState<Date | undefined>();
 	const [time, setTime] = useState('');

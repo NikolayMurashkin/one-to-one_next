@@ -1,7 +1,7 @@
 import { apiSlice } from '@shared/api';
 
 export type AddQuestion = {
-	userId: number;
+	userId: number | undefined;
 	questions: IQuestion[];
 };
 export interface IQuestion {

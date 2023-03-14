@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react';
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 
+import styles from '@widgets/tabs/model/Tabs.module.scss';
 import { useAppSelector } from '@app/hooks';
 import { RootState } from '@app/store';
-import styles from '@widgets/tabs/model/Tabs.module.scss';
-import { useGetTechnologyStatisticsQuery } from '@shared/api/getTechnologyStatisticApiSlice';
 import { ITab } from '@widgets/tabs/model/Tabs.props';
 import { MyInterview } from '@features/myInterviews';
 import { MyQuestions } from '@features/myQuestions';
-import { useGetMyQuestionsQuery } from '@features/myQuestions/api/getMyQustionsApiSlice';
-import { useGetInitiatorInterviewsQuery } from '@features/myInterviews/api/getInitiatorInterviewsApiSlice';
 import { SortList } from '@features/sortList/ui/SortList';
 import { SearchInterview } from '@features/searchInterviews';
 import { Statistic } from '@features/statistic/ui/Statistic';
 import { TabsButtons } from '@features/tabs/ui/Tabs';
+import { useGetTechnologyStatisticsQuery } from '@shared/api/getTechnologyStatisticApiSlice';
+import { useGetMyQuestionsQuery } from '@features/myQuestions/api/getMyQustionsApiSlice';
+import { useGetInitiatorInterviewsQuery } from '@features/myInterviews/api/getInitiatorInterviewsApiSlice';
 import { useGetOpponentInterviewsQuery } from '@features/myInterviews/api/getOpponentInterviewsApiSlice';
 
 export const Tabs = () => {
 	const [user, setUser] = useState<number>();
+
 	useEffect(() => {
 		const userIdJson = localStorage.getItem('id');
 		if (userIdJson) {
@@ -28,12 +30,10 @@ export const Tabs = () => {
 		(state: RootState) => state.tabs.selectedTab
 	);
 
-	const { data: questions } = useGetMyQuestionsQuery(user ? user : 0);
-	const { data: opponentInterviews } = useGetOpponentInterviewsQuery(user);
-	const { data: initiatorInterviews } = useGetInitiatorInterviewsQuery(user);
-	const { data: statictics } = useGetTechnologyStatisticsQuery(
-		user ? user : 0
-	);
+	const { data: questions } = useGetMyQuestionsQuery(user ?? skipToken);
+	const { data: opponentInterviews } = useGetOpponentInterviewsQuery(user ?? skipToken);
+	const { data: initiatorInterviews } = useGetInitiatorInterviewsQuery(user ?? skipToken);
+	const { data: statictics } = useGetTechnologyStatisticsQuery(user ?? skipToken);
 
 	if (opponentInterviews && initiatorInterviews) {
 		const passedInterviews = opponentInterviews.items.filter(
