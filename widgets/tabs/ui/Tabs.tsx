@@ -18,6 +18,7 @@ import { useGetOpponentInterviewsQuery } from '@features/myInterviews/api/getOpp
 
 export const Tabs = () => {
 	const [user, setUser] = useState<number>();
+	const [page, setPage] = useState<number>(2);
 
 	useEffect(() => {
 		const userIdJson = localStorage.getItem('id');
@@ -30,10 +31,18 @@ export const Tabs = () => {
 		(state: RootState) => state.tabs.selectedTab
 	);
 
-	const { data: questions } = useGetMyQuestionsQuery(user ?? skipToken);
-	const { data: opponentInterviews } = useGetOpponentInterviewsQuery(user ?? skipToken);
-	const { data: initiatorInterviews } = useGetInitiatorInterviewsQuery(user ?? skipToken);
-	const { data: statictics } = useGetTechnologyStatisticsQuery(user ?? skipToken);
+	const { data: questions } = useGetMyQuestionsQuery(
+		{ userId: user, page } ?? skipToken
+	);
+	const { data: opponentInterviews } = useGetOpponentInterviewsQuery(
+		user ?? skipToken
+	);
+	const { data: initiatorInterviews } = useGetInitiatorInterviewsQuery(
+		user ?? skipToken
+	);
+	const { data: statictics } = useGetTechnologyStatisticsQuery(
+		user ?? skipToken
+	);
 
 	if (opponentInterviews && initiatorInterviews) {
 		const passedInterviews = opponentInterviews.items.filter(
@@ -71,10 +80,10 @@ export const Tabs = () => {
 					<SortList tabId={selectedTabId} />
 					<div className={styles.content}>
 						{selectedTabId === tabs[0].id && (
-							<MyInterview {...opponentInterviews} opponent/>
+							<MyInterview {...opponentInterviews} opponent />
 						)}
 						{selectedTabId === tabs[1].id && (
-							<MyInterview {...initiatorInterviews} initiator/>
+							<MyInterview {...initiatorInterviews} initiator />
 						)}
 						{selectedTabId === tabs[2].id && <SearchInterview />}
 						{selectedTabId === tabs[3].id && <MyQuestions />}
