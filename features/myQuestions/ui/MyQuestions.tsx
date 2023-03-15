@@ -21,7 +21,8 @@ export const MyQuestions = () => {
 	//TODO: написать фетч для получения следующей страницы вопросов при скролле
 
 	const { data, error } = useGetMyQuestionsQuery(
-		{ userId, page } ?? skipToken
+		{ userId, page },
+		{ skip: !userId }
 	);
 
 	if (!data) {
