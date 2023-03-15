@@ -2,19 +2,16 @@ import { apiSlice } from '@shared/api/apiSlice';
 import { IGetMyQuestionResponse } from '@features/myQuestions/model/myQuestionsSliceTypes';
 import { FetchArgs } from '@reduxjs/toolkit/dist/query';
 
-type IGetMyQuestionsRequest = {
-	userId: number | undefined;
-	page: number;
-};
+type IGetMyQuestionsRequest = { userId: number } & { page: number };
 
 export const getMyQuestionsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getMyQuestions: builder.query<
 			IGetMyQuestionResponse,
-			IGetMyQuestionsRequest
+			number
 		>({
-			query: ({ userId, page }) =>
-				`/user/${userId}/question?search=userId:${userId}&page=${page}&size=30`,
+			query: (userId) =>
+				`/user/${userId}/question?search=userId:${userId}&size=3000`,
 			providesTags: (result) =>
 				result
 					? [

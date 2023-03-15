@@ -31,9 +31,7 @@ export const Tabs = () => {
 		(state: RootState) => state.tabs.selectedTab
 	);
 
-	const { data: questions } = useGetMyQuestionsQuery(
-		{ userId: user, page } ?? skipToken
-	);
+	const { data: questions } = useGetMyQuestionsQuery(user ?? skipToken);
 	const { data: opponentInterviews } = useGetOpponentInterviewsQuery(
 		user ?? skipToken
 	);
