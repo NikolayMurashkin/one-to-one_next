@@ -18,11 +18,9 @@ export interface IGetAllQuestionResponse {
 
 export const getAllQuestionsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		getAllQuestions: builder.query<
-			IGetAllQuestionResponse,
-			number
-		>({
-			query: (userid) => `/user/${userid}/question`,
+		getAllQuestions: builder.query<IGetAllQuestionResponse, number>({
+			query: (userid) =>
+				`/user/${userid}/question?search=userId:${userid}&size=3000`,
 			providesTags: (result) =>
 				result
 					? [
