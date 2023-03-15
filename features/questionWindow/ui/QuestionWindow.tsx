@@ -138,7 +138,7 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 					disabled={
 						acceptedQuestions.every(
 							(question) => question.accepted !== true
-						) && acceptedQuestions.length === questions.length
+						) && acceptedQuestions.length !== questions.length
 					}
 				>
 					{acceptedQuestions.length === questions.length &&
