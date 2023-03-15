@@ -136,16 +136,17 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 					className={cx('button')}
 					onClick={sendFeedbackHandler}
 					disabled={
-						(acceptedQuestions.every(
+						acceptedQuestions.every(
 							(question) => question.accepted !== true
 						) &&
-							acceptedQuestions.length !== questions.length) ||
-						acceptedQuestions.length <= 0
+						(acceptedQuestions.length !== questions.length ||
+							acceptedQuestions.length <= 0)
 					}
 				>
 					{acceptedQuestions.length === questions.length &&
 						'Сохранить и выйти'}
-					{acceptedQuestions.length !== questions.length &&
+					{(acceptedQuestions.length !== questions.length ||
+						acceptedQuestions.length <= 0) &&
 						'Вам необходимо подтвердить все выбранные вопросы'}
 				</button>
 			</div>
