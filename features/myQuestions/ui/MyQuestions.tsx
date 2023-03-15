@@ -29,11 +29,8 @@ export const MyQuestions = () => {
 	};
 
 	const fetcher: Fetcher<IGetMyQuestionResponse, string> = async () => {
-		const res = await fetch(
-			`http://51.250.55.231:8080/one-to-one/api/v1`
-		).then((res) => res.json());
-		const data = await res.items;
-		return data;
+		const res = await fetch(`http://51.250.55.231:8080/one-to-one/api/v1`);
+		return await res.json();
 	};
 
 	const { data, error, isLoading, isValidating, mutate, size, setSize } =
