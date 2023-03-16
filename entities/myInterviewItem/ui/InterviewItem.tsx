@@ -54,6 +54,9 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 		router.push('/feedback');
 	};
 
+	const timeBeforeInterview = new Date(date);
+	console.log(timeBeforeInterview);
+
 	return (
 		<li
 			className={cx('interviewItem', {
