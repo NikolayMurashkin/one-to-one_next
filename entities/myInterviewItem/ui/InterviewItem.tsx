@@ -102,7 +102,7 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 						className={styles.button}
 						onClick={setInterviewHandler}
 					>
-						<MyInterviewButton status='not started' />
+						<MyInterviewButton status={timeBeforeInterview >= Date.now() ? 'waiting' : 'not started'} />
 					</Link>
 				)}
 			{initiatorFeedback === 'WRITE' && opponentFeedback === 'WRITE' && (

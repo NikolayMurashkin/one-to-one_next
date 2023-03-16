@@ -19,7 +19,8 @@ export const MyInterviewButton: React.FC<IInterviewButton> = ({ status }) => {
 			disabled={
 				status === 'completed' ||
 				status === 'waiting for opponent review' ||
-				status === 'waiting for your review'
+				status === 'waiting for your review' ||
+				status === 'waiting'
 			}
 		>
 			{status === 'not started' ? (
