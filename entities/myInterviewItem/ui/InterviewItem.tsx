@@ -21,14 +21,13 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	opponentId,
 	initiatorFeedback,
 	opponentFeedback,
+	interviewDate
 }) => {
 	const cx = classNames.bind(styles);
 
 	const router = useRouter();
 
 	const dipatch = useAppDispatch();
-
-	const interviewDate = useAppSelector((state) => state.interviewItem.date);
 
 	const { data: user } = useGetUserByIdQuery(initiatorId ?? skipToken);
 

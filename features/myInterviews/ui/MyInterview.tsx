@@ -25,7 +25,7 @@ export const MyInterview: React.FC<IGetMyInterviewsProps> = ({
 									<InterviewItem
 										key={item.id}
 										date={getDate(item, item.dateTime)}
-										
+										interviewDate={item.dateTime}
 										level={item.level}
 										initiatorId={item.initiatorId}
 										stack={item.technology.name}
@@ -43,6 +43,7 @@ export const MyInterview: React.FC<IGetMyInterviewsProps> = ({
 									<InterviewItem
 										key={item.id}
 										date={getDate(item, item.dateTime)}
+										interviewDate={item.dateTime}
 										level={item.level}
 										initiatorId={item.opponentId}
 										stack={item.technology.name}

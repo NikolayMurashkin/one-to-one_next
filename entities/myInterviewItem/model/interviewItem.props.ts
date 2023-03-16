@@ -6,7 +6,7 @@ export interface IInterviewItemProps {
 	status: string;
 	interviewId: number;
 	opponentId: number | null;
-
+	interviewDate: string;
 	initiatorFeedback?: string;
 	opponentFeedback?: string;
 }
