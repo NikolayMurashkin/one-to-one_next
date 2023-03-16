@@ -43,10 +43,13 @@ const acceptQuestionsSlice = createSlice({
 			}
 		},
 		removeAcceptedQuestion(state, action) {
-			state.questions.filter(question => question.question.id !== action.payload.id)
-		}
+			state.questions = state.questions.filter(
+				(question) => question.question.id !== action.payload.id
+			);
+		},
 	},
 });
 
-export const { acceptQuestion, removeAcceptedQuestion } = acceptQuestionsSlice.actions;
+export const { acceptQuestion, removeAcceptedQuestion } =
+	acceptQuestionsSlice.actions;
 export default acceptQuestionsSlice.reducer;
