@@ -26,7 +26,7 @@ export const FeedbackQuestion:React.FC<IFeedbackQuestionProps> = ({
 		<li className={cx('feedbackQuestion', {
 			green: responseLevel >= 4,
 			yellow: responseLevel === 3,
-			red: responseLevel > 3
+			red: responseLevel < 3
 		})} ref={feedbackRef}>
 			<div
 				className={cx('feedbackQuestion__top')}
