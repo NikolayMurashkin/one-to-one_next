@@ -140,7 +140,7 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 						acceptedQuestions.every(
 							(question) => question.accepted === true
 						) &&
-						questions.length > 0
+						acceptedQuestions.length > 0
 							? false
 							: true
 					}
@@ -149,7 +149,7 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 					acceptedQuestions.every(
 						(question) => question.accepted === true
 					) &&
-					questions.length > 0
+					acceptedQuestions.length > 0
 						? 'Сохранить и выйти'
 						: 'Вам необходимо подтвердить все выбранные вопросы'}
 					{/* {(acceptedQuestions.length !== questions.length ||
