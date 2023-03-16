@@ -61,14 +61,14 @@
 }
 
 .green {
-	background-color: #25e825;
-	//border: 1px solid var(--color-green);
+	//background-color: var(--color-light-green);
+	border: 1px solid #0aa90a;
 }
 .yellow {
-	background-color: #dada26;
-	//border: 1px solid yellow;
+	//background-color: yellow;
+	border: 1px solid #d97717;
 }
 .red {
-	background-color: #b92222;
-	//border: 1px solid var(--color-red);
+	//background-color: var(--color-red);
+	border: 1px solid var(--color-red);
 }
