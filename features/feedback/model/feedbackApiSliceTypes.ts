@@ -9,6 +9,7 @@ export interface IGetFeedbackResponse {
 			answer: string;
 			responseLevel: string;
 			comment: string;
+			technology: string;
 		}
 	];
 	message: string;
