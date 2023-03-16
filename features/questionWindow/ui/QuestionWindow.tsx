@@ -141,6 +141,8 @@ export const QuestionWindow: React.FC<GetAllQuestionResponse> = ({ items }) => {
 							(question) => question.accepted === true
 						) &&
 						questions.length > 0
+							? false
+							: true
 					}
 				>
 					{acceptedQuestions.length === questions.length &&
