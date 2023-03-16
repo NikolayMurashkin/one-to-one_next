@@ -9,9 +9,10 @@ import { setRating } from '@entities/rating/api/ratingSlice';
 type TRatingProps = {
 	readOnly: boolean;
 	count?: number;
+	setRating?: React.Dispatch<React.SetStateAction<number | undefined>>
 };
 
-const Rating: React.FC<TRatingProps> = ({ readOnly, count = 0 }) => {
+const Rating: React.FC<TRatingProps> = ({ readOnly, count = 0, setRating }) => {
 	const cx = classNames.bind(styles);
 
 	const dispatch = useAppDispatch();
@@ -32,7 +33,7 @@ const Rating: React.FC<TRatingProps> = ({ readOnly, count = 0 }) => {
 							onClick={() => {
 								if (!readOnly) {
 									setInnerRating(ratingValue);
-									dispatch(setRating(ratingValue));
+									setRating && setRating(rating)
 								}
 							}}
 						/>

@@ -95,18 +95,10 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 				opponentFeedback === 'NO_WRITE' && (
 					timeBeforeInterview >= Date.now() ? <MyInterviewButton status='waiting' /> : <Link
 						href={'/session'}
-						// className={styles.button}
 						onClick={setInterviewHandler}
 					>
 						<MyInterviewButton status='not started' />
 					</Link>
-					// <Link
-					// 	href={'/session'}
-					// 	// className={styles.button}
-					// 	onClick={setInterviewHandler}
-					// >
-					// 	<MyInterviewButton status={timeBeforeInterview >= Date.now() ? 'waiting' : 'not started'} />
-					// </Link>
 				)}
 			{initiatorFeedback === 'WRITE' && opponentFeedback === 'WRITE' && (
 				<MyInterviewButton status='completed' />

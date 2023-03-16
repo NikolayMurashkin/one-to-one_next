@@ -26,13 +26,13 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 }) => {
 	const cx = classNames.bind(styles);
 	const [comment, setComment] = useState('');
+	const [rating, setRating] = useState<number>();
 	const commentRef = useRef<HTMLLIElement>(null);
 
 	const dispatch = useAppDispatch();
 	const acceptedQuestions = useAppSelector(
 		(state) => state.acceptQuestion.questions
 	);
-	const rating = useAppSelector((state) => state.rating.value);
 
 	const removeQuestionHandler = (id: number | undefined) => {
 		dispatch(removeQuestion(id));
@@ -60,13 +60,15 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 		);
 	};
 
+
+
 	return (
 		<li className={cx('wrapper')} ref={commentRef}>
 			<div className={cx('content')} onClick={openCommentHandler}>
 				<CloseIcon onClick={() => removeQuestionHandler(id)} />
 				<span className={cx('stack')}>{stack}</span>
 				<span className={cx('question')}>{question}</span>
-				<Rating readOnly={false} />
+				<Rating readOnly={false} setRating={setRating}/>
 				<ArrowRightIcon className={cx('arrow')} />
 			</div>
 			<div className={cx('commentWrapper')}>
