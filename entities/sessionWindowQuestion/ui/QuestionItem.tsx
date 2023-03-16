@@ -8,7 +8,10 @@ import Rating from '@entities/rating/ui/Rating';
 import { CloseIcon } from '@shared/ui/icons/CloseIcon';
 import { useAppDispatch, useAppSelector } from '@app/hooks';
 import { removeQuestion } from '@entities/sessionWindowQuestion/api/setQuestionSlice';
-import { acceptQuestion } from '@entities/sessionWindowQuestion/api/acceptQuestionSlice';
+import {
+	acceptQuestion,
+	removeAcceptedQuestion,
+} from '@entities/sessionWindowQuestion/api/acceptQuestionSlice';
 
 export const QuestionItem: React.FC<QuestionItemProps> = ({
 	stack,
@@ -33,6 +36,7 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 
 	const removeQuestionHandler = (id: number | undefined) => {
 		dispatch(removeQuestion(id));
+		dispatch(removeAcceptedQuestion({ id }));
 	};
 
 	const openCommentHandler = () => {
@@ -53,9 +57,6 @@ export const QuestionItem: React.FC<QuestionItemProps> = ({
 				comment,
 				accepted: true,
 			})
-		);
-		setIsDisabled(
-			acceptedQuestions.every((question) => question.accepted === true)
 		);
 	};
 
