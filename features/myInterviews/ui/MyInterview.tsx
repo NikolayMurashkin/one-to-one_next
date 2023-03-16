@@ -25,6 +25,7 @@ export const MyInterview: React.FC<IGetMyInterviewsProps> = ({
 									<InterviewItem
 										key={item.id}
 										date={getDate(item, item.dateTime)}
+										
 										level={item.level}
 										initiatorId={item.initiatorId}
 										stack={item.technology.name}

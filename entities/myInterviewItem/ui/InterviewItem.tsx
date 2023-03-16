@@ -4,7 +4,7 @@ import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 import styles from '../model/InterviewItem.module.scss';
 import { IInterviewItemProps } from '@entities/myInterviewItem/model/interviewItem.props';
-import { useAppDispatch } from '@app/hooks';
+import { useAppDispatch, useAppSelector } from '@app/hooks';
 import { setInterview } from '@entities/myInterviewItem/api';
 import { MyInterviewButton } from '@shared/ui';
 import { MainButton } from '@shared/ui';
@@ -27,6 +27,8 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 	const router = useRouter();
 
 	const dipatch = useAppDispatch();
+
+	const interviewDate = useAppSelector((state) => state.interviewItem.date);
 
 	const { data: user } = useGetUserByIdQuery(initiatorId ?? skipToken);
 
@@ -54,7 +56,8 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 		router.push('/feedback');
 	};
 
-	const timeBeforeInterview = new Date(date);
+	const timeBeforeInterview = new Date(interviewDate);
+	console.log(interviewDate);
 	console.log(timeBeforeInterview);
 
 	return (
