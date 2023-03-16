@@ -55,7 +55,7 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 		router.push('/feedback');
 	};
 
-	const timeBeforeInterview = Date.parse(interviewDate);
+	const timeBeforeInterview = Date.parse(interviewDate) - 300000;
 	const fiveMinutesBeforeInterview =
 		new Date(interviewDate).getMilliseconds() - 300000;
 	console.log(timeBeforeInterview);
