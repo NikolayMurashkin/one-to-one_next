@@ -10,7 +10,8 @@ export const MyInterviewButton: React.FC<IInterviewButton> = ({ status }) => {
 	return (
 		<button
 			className={cx('button', {
-				blue: status === 'not started',
+				blue: status === 'not started' || status === 'waiting',
+				disabled: status === 'waiting',
 				'light-blue': status === 'waiting for your review',
 				'light-green':
 					status === 'waiting for opponent review' ||
