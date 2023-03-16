@@ -31,9 +31,9 @@ const Rating: React.FC<TRatingProps> = ({ readOnly, count = 0, setRating }) => {
 							name='rating'
 							value={ratingValue}
 							onClick={() => {
-								if (!readOnly) {
+								if (!readOnly && setRating) {
 									setInnerRating(ratingValue);
-									setRating && setRating(rating)
+									setRating(ratingValue)
 								}
 							}}
 						/>
