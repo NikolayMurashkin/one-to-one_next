@@ -50,16 +50,12 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 		);
 	};
 
-	const openFeedbackHanlder = () => {
+	const openFeedbackHandler = () => {
 		setInterviewHandler();
 		router.push('/feedback');
 	};
 
 	const timeBeforeInterview = Date.parse(interviewDate) - 300000;
-	const fiveMinutesBeforeInterview =
-		new Date(interviewDate).getMilliseconds() - 300000;
-	console.log(timeBeforeInterview);
-	// console.log(fiveMinutesBeforeInterview);
 
 	return (
 		<li
@@ -92,18 +88,25 @@ export const InterviewItem: React.FC<IInterviewItemProps> = ({
 							? 'green'
 							: 'blue'
 					}
-					onClick={openFeedbackHanlder}
+					onClick={openFeedbackHandler}
 				/>
 			</span>
 			{initiatorFeedback === 'NO_WRITE' &&
 				opponentFeedback === 'NO_WRITE' && (
-					<Link
+					timeBeforeInterview >= Date.now() ? <MyInterviewButton status='waiting' /> : <Link
 						href={'/session'}
-						className={styles.button}
+						// className={styles.button}
 						onClick={setInterviewHandler}
 					>
-						<MyInterviewButton status={timeBeforeInterview >= Date.now() ? 'waiting' : 'not started'} />
+						<MyInterviewButton status='not started' />
 					</Link>
+					// <Link
+					// 	href={'/session'}
+					// 	// className={styles.button}
+					// 	onClick={setInterviewHandler}
+					// >
+					// 	<MyInterviewButton status={timeBeforeInterview >= Date.now() ? 'waiting' : 'not started'} />
+					// </Link>
 				)}
 			{initiatorFeedback === 'WRITE' && opponentFeedback === 'WRITE' && (
 				<MyInterviewButton status='completed' />
