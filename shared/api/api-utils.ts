@@ -20,8 +20,8 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			day: 'numeric',
 			hour: '2-digit',
 			minute: '2-digit',
-			// timeZone: 'Pacific/Samoa',
-			timeZone: 'Asia/Krasnoyarsk',
+			timeZone: 'Pacific/Samoa',
+			// timeZone: 'Asia/Krasnoyarsk',
 			// timeZone: userTimeZone,
 		};
 
