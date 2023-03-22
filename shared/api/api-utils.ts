@@ -1,9 +1,11 @@
 import { IInterviewItem } from '@features/myInterviews/model/interviewItemSliceTypes';
 
-interface Options {
+interface dateOptions {
 	year: 'numeric';
 	month: 'long';
 	day: 'numeric';
+}
+interface timeOptions {
 	hour: '2-digit';
 	minute: '2-digit';
 	timeZone: string;
@@ -14,19 +16,23 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 		const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 		console.log(userTimeZone);
 
-		const options: Options = {
+		const dateOptions: dateOptions = {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric',
+		};
+		const timeOptions: timeOptions = {
 			hour: '2-digit',
 			minute: '2-digit',
-			timeZone: 'Pacific/Samoa',
+			timeZone: userTimeZone,
 			// timeZone: 'Asia/Krasnoyarsk',
 			// timeZone: userTimeZone,
 		};
-
-		const date = new Date(newDate).toLocaleDateString('ru-RU', options);
-		return `${date} MSK`;
+		const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
+		const time = new Date(newDate).toLocaleTimeString('ru-RU', timeOptions);
+		// const date = new Date(newDate).toLocaleDateString('ru-RU', options);
+		const dateTime = `${day} в ${time}`;
+		return `${dateTime}`;
 	} else {
 		return '';
 	}
