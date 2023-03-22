@@ -21,7 +21,7 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			hour: '2-digit',
 			minute: '2-digit',
 			// timeZone: 'Pacific/Samoa',
-			timeZone: 'Europe/Moscow',
+			timeZone: 'Asia/Krasnoyarsk',
 			// timeZone: userTimeZone,
 		};
 
