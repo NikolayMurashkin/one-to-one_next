@@ -18,7 +18,8 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			hour: '2-digit',
 			minute: '2-digit',
 		};
-		const date = new Date(newDate).toLocaleDateString('ru-RU', options);
+		const userLocale = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		const date = new Date(newDate).toLocaleDateString(userLocale, options);
 		return `${date} MSK`;
 	} else {
 		return '';
