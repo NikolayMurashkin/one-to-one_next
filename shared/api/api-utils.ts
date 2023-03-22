@@ -20,7 +20,8 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			hour: '2-digit',
 			minute: '2-digit',
 			// timeZone: 'Pacific/Samoa',
-			timeZone: userTimeZone,
+			timeZone: 'Europe/Moscow',
+			// timeZone: userTimeZone,
 		};
 
 		const date = new Date(newDate).toLocaleDateString('ru-RU', options);
