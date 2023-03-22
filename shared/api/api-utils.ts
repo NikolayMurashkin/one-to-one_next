@@ -12,6 +12,7 @@ interface Options {
 export const getDate = (data: IInterviewItem, newDate: string): string => {
 	if (data) {
 		const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		console.log(userTimeZone);
 
 		const options: Options = {
 			year: 'numeric',
