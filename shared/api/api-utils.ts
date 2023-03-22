@@ -11,16 +11,18 @@ interface Options {
 
 export const getDate = (data: IInterviewItem, newDate: string): string => {
 	if (data) {
+		const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 		const options: Options = {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric',
 			hour: '2-digit',
 			minute: '2-digit',
-			timeZone: 'Pacific/Samoa',
-			// timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+			// timeZone: 'Pacific/Samoa',
+			timeZone: userTimeZone,
 		};
-		// const userLocale = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 		const date = new Date(newDate).toLocaleDateString('ru-RU', options);
 		return `${date} MSK`;
 	} else {
