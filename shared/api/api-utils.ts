@@ -55,6 +55,12 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 				? localDate - recievedDate
 				: recievedDate - localDate;
 		};
+		console.log(anotherDate());
+		console.log(
+			localDate > recievedDate
+				? localDate - anotherDate()
+				: recievedDate - anotherDate()
+		);
 
 		const dateWithTz = new Date(
 			localDate > recievedDate
