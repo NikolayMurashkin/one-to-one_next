@@ -47,9 +47,8 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			day: 'numeric',
 			hour: '2-digit',
 			minute: '2-digit',
-			timeZone: userTimeZone,
-
-		}
+			timeZone: 'Asia/Krasnoyarsk',
+		};
 		// const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
 		// const time = new Date(newDate).toLocaleTimeString('ru-RU', timeOptions);
 		// const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
