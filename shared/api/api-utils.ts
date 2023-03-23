@@ -8,7 +8,7 @@ interface dateOptions {
 interface timeOptions {
 	hour: '2-digit';
 	minute: '2-digit';
-	timeZone: string;
+	// timeZone: string;
 }
 
 export const getDate = (data: IInterviewItem, newDate: string): string => {
@@ -25,7 +25,7 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			hour: '2-digit',
 			minute: '2-digit',
 			// timeZone: 'Pacific/Samoa',
-			timeZone: 'Asia/Krasnoyarsk',
+			// timeZone: 'Asia/Krasnoyarsk',
 			// timeZone: userTimeZone,
 		};
 		const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
