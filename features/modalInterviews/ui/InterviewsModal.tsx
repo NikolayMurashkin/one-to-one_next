@@ -58,13 +58,13 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 		newDate?.setTime(newDate.getTime() + milliseconds);
 
 		const data = {
-			dateTime: newDate?.toUTCString(),
+			dateTime: newDate?.toISOString(),
 			levelId: level,
 			comment,
 			initiatorId: user,
 			technologyId,
 		};
-		console.log(newDate?.toUTCString());
+		console.log(newDate?.toISOString());
 
 		createInterview(data);
 		closeModal();
