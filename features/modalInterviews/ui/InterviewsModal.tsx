@@ -53,7 +53,8 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 		const seconds = +newTime[0] * 60 * 60 + +newTime[1] * 60;
 		const milliseconds = seconds * 1000;
 
-		const newDate = date && new Date(date.toUTCString());
+		// const newDate = date && new Date(date.toUTCString());
+		const newDate = date && new Date(date);
 		newDate?.setDate(newDate.getDate());
 		newDate?.setTime(newDate.getTime() + milliseconds);
 
@@ -64,7 +65,6 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 			initiatorId: user,
 			technologyId,
 		};
-		console.log(newDate?.toISOString());
 
 		createInterview(data);
 		closeModal();
