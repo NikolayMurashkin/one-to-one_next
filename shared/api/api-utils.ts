@@ -18,7 +18,7 @@ interface dateTimeOptions {
 	day: 'numeric';
 	hour: '2-digit';
 	minute: '2-digit';
-	timeZone: string;
+	// timeZone: string;
 }
 
 export const getDate = (data: IInterviewItem, newDate: string): string => {
@@ -46,26 +46,31 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			day: 'numeric',
 			hour: '2-digit',
 			minute: '2-digit',
-			timeZone: 'Pacific/Samoa',
+			// timeZone: 'Pacific/Samoa',
 		};
-		// const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
-		// const time = new Date(newDate).toLocaleTimeString('ru-RU', timeOptions);
-		// const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
-		// const time = new Date(newDate).toLocaleTimeString('ru-RU', timeOptions);
-		// const fullDate = new Date(`${day} ${time}`).toLocaleDateString(
-		// 	'ru-RU',
-		// 	{ timeZone: 'Asia/Krasnoyarsk' }
-		// );
+		const localDate = new Date().getTime();
+		const recievedDate = new Date(newDate).getTime();
+		const anotherDate = () => {
+			return localDate > recievedDate
+				? localDate - recievedDate
+				: recievedDate - localDate;
+		};
+
+		const dateWithTz = new Date(
+			localDate > recievedDate
+				? localDate - anotherDate()
+				: recievedDate - anotherDate()
+		).toLocaleDateString('ru-RU', dateTimeOptions);
 		const date = new Date(newDate).toLocaleDateString(
 			'ru-RU',
 			dateTimeOptions
 		);
-		console.log(date);
+		console.log(dateWithTz);
 		// console.log(time);
 		// console.log(fullDate);
 		// const date = new Date(newDate).toLocaleDateString('ru-RU', options);
 		// const dateTime = `${day} в ${time}`;
-		return `${date}`;
+		return `${dateWithTz}`;
 	} else {
 		return '';
 	}
