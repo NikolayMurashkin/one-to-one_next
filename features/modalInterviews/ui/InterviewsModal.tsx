@@ -61,7 +61,7 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 		console.log(anotherDate);
 
 		const data = {
-			dateTime: newDate?.toISOString(),
+			dateTime: anotherDate?.toISOString(),
 			levelId: level,
 			comment,
 			initiatorId: user,
