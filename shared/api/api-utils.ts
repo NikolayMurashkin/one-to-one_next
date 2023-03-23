@@ -55,18 +55,17 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 				? localDate - recievedDate
 				: recievedDate - localDate;
 		};
-		console.log(anotherDate());
+		console.log(new Date(anotherDate()));
 		console.log(
 			localDate > recievedDate
 				? localDate - anotherDate()
 				: recievedDate - anotherDate()
 		);
 
-		const dateWithTz = new Date(
-			localDate > recievedDate
-				? localDate - anotherDate()
-				: recievedDate - anotherDate()
-		).toLocaleDateString('ru-RU', dateTimeOptions);
+		const dateWithTz = new Date(newDate).toLocaleString(
+			'ru-RU',
+			dateTimeOptions
+		);
 		const date = new Date(newDate).toLocaleDateString(
 			'ru-RU',
 			dateTimeOptions
