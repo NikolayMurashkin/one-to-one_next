@@ -20,12 +20,12 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 	closeModal,
 }) => {
 	const cx = classNames.bind(styles);
-	
+
 	const [user, setUser] = useState<number>();
 	const [date, setDate] = useState<Date | undefined>();
 	const [time, setTime] = useState('');
 	const [comment, setComment] = useState('');
-	
+
 	useEffect(() => {
 		const userIdJson = localStorage.getItem('id');
 		if (userIdJson) {
@@ -50,7 +50,7 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 		e.stopPropagation();
 
 		const newTime = time.split(':');
-		const seconds = (+newTime[0] + 7) * 60 * 60 + +newTime[1] * 60;
+		const seconds = +newTime[0] * 60 * 60 + +newTime[1] * 60;
 		const milliseconds = seconds * 1000;
 
 		const newDate = date && new Date(date.toString());
@@ -64,6 +64,7 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 			initiatorId: user,
 			technologyId,
 		};
+		console.log(newDate?.toISOString());
 
 		createInterview(data);
 		closeModal();
