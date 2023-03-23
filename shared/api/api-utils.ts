@@ -24,9 +24,9 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 		const timeOptions: timeOptions = {
 			hour: '2-digit',
 			minute: '2-digit',
-			timeZone: 'Pacific/Samoa',
+			// timeZone: 'Pacific/Samoa',
 			// timeZone: 'Asia/Krasnoyarsk',
-			// timeZone: userTimeZone,
+			timeZone: userTimeZone,
 		};
 		const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
 		const time = new Date(newDate).toLocaleTimeString('ru-RU', timeOptions);
