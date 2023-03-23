@@ -4,11 +4,12 @@ interface dateOptions {
 	year: 'numeric';
 	month: 'long';
 	day: 'numeric';
+	timeZone: string;
 }
 interface timeOptions {
 	hour: '2-digit';
 	minute: '2-digit';
-	// timeZone: string;
+	timeZone: string;
 }
 
 export const getDate = (data: IInterviewItem, newDate: string): string => {
@@ -20,19 +21,23 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric',
+			timeZone: userTimeZone,
 		};
 		const timeOptions: timeOptions = {
 			hour: '2-digit',
 			minute: '2-digit',
 			// timeZone: 'Pacific/Samoa',
 			// timeZone: 'Asia/Krasnoyarsk',
-			// timeZone: userTimeZone,
+			timeZone: userTimeZone,
 		};
 		// const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
 		// const time = new Date(newDate).toLocaleTimeString('ru-RU', timeOptions);
-		const day = new Date(newDate).toDateString();
-		const time = new Date(newDate);
-		const fullDate = new Date(`${day} ${time}`).toLocaleDateString('ru-RU');
+		const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
+		const time = new Date(newDate).toLocaleTimeString('ru-RU', timeOptions);
+		const fullDate = new Date(`${day} ${time}`).toLocaleDateString(
+			'ru-RU',
+			{ timeZone: 'Asia/Krasnoyarsk' }
+		);
 		console.log(day);
 		console.log(time);
 		console.log(fullDate);
