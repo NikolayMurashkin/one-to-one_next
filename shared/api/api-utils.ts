@@ -14,7 +14,7 @@ interface timeOptions {
 export const getDate = (data: IInterviewItem, newDate: string): string => {
 	if (data) {
 		const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-		console.log(userTimeZone);
+		// console.log(userTimeZone);
 
 		const dateOptions: dateOptions = {
 			year: 'numeric',
@@ -28,11 +28,17 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			// timeZone: 'Asia/Krasnoyarsk',
 			// timeZone: userTimeZone,
 		};
-		const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
-		const time = new Date(newDate).toLocaleTimeString('ru-RU', timeOptions);
+		// const day = new Date(newDate).toLocaleDateString('ru-RU', dateOptions);
+		// const time = new Date(newDate).toLocaleTimeString('ru-RU', timeOptions);
+		const day = new Date(newDate).toDateString();
+		const time = new Date(newDate);
+		const fullDate = new Date(`${day} ${time}`).toLocaleDateString('ru-RU');
+		console.log(day);
+		console.log(time);
+		console.log(fullDate);
 		// const date = new Date(newDate).toLocaleDateString('ru-RU', options);
 		const dateTime = `${day} в ${time}`;
-		return `${dateTime}`;
+		return `${fullDate}`;
 	} else {
 		return '';
 	}
