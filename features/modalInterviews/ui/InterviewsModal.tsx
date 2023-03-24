@@ -57,11 +57,9 @@ export const InterviewsModal: React.FC<IInterviewsModalProps> = ({
 		const newDate = date && new Date(date);
 		newDate?.setDate(newDate.getDate());
 		newDate?.setTime(newDate.getTime() + milliseconds);
-		const anotherDate = new Date(`${newDate} ${time}`);
-		console.log(anotherDate);
 
 		const data = {
-			dateTime: anotherDate?.toISOString(),
+			dateTime: newDate?.toISOString(),
 			levelId: level,
 			comment,
 			initiatorId: user,
