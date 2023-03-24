@@ -18,12 +18,28 @@ interface dateTimeOptions {
 	day: 'numeric';
 	hour: '2-digit';
 	minute: '2-digit';
-	// timeZone: string;
+	timeZone: string;
 }
 
 export const getDate = (data: IInterviewItem, newDate: string): string => {
 	if (data) {
 		const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+		const dateTimeOptions: dateTimeOptions = {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			timeZone: userTimeZone,
+		};
+
+		const recievedDateOffset = new Date(newDate).getTimezoneOffset();
+		const recievedDateTime = Math.abs(new Date(newDate).getTime());
+		const dateTime = new Date(
+			recievedDateOffset + recievedDateTime
+		).toLocaleString('ru-RU', dateTimeOptions);
+
 		// console.log(userTimeZone);
 
 		// const dateOptions: dateOptions = {
@@ -40,29 +56,21 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 		// 	timeZone: userTimeZone,
 		// };
 
-		const dateTimeOptions: dateTimeOptions = {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric',
-			hour: '2-digit',
-			minute: '2-digit',
-			// timeZone: 'Pacific/Samoa',
-		};
-		const localDate = new Date().getTime();
-		const recievedDate = new Date(newDate).getTime();
-		const anotherDate = () => {
-			return localDate > recievedDate
-				? localDate - recievedDate
-				: recievedDate - localDate;
-		};
+		// const localDate = new Date().getTime();
+		// const recievedDate = new Date(newDate).getTime();
+		// const anotherDate = () => {
+		// 	return localDate > recievedDate
+		// 		? localDate - recievedDate
+		// 		: recievedDate - localDate;
+		// };
 		// console.log(new Date(anotherDate()));
 		// console.log(
 		// 	localDate > recievedDate
 		// 		? localDate - anotherDate()
 		// 		: recievedDate - anotherDate()
 		// );
-		const utcDate = new Date(newDate).toUTCString();
-		console.log(`utc date: ${utcDate}`);
+		const utcDate = new Date(newDate);
+		// console.log(`utc date: ${utcDate.getTimezoneOffset()}`);
 
 		const dateWithTz = new Date(utcDate).toLocaleString(
 			'ru-RU',
@@ -72,12 +80,12 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			'ru-RU',
 			dateTimeOptions
 		);
-		console.log(`date with tz ${dateWithTz}`);
+		console.log(`date with tz ${dateTime}`);
 		// console.log(time);
 		// console.log(fullDate);
 		// const date = new Date(newDate).toLocaleDateString('ru-RU', options);
 		// const dateTime = `${day} в ${time}`;
-		return `${dateWithTz}`;
+		return `${dateTime}`;
 	} else {
 		return '';
 	}
