@@ -55,14 +55,14 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 				? localDate - recievedDate
 				: recievedDate - localDate;
 		};
-		console.log(new Date(anotherDate()));
-		console.log(
-			localDate > recievedDate
-				? localDate - anotherDate()
-				: recievedDate - anotherDate()
-		);
+		// console.log(new Date(anotherDate()));
+		// console.log(
+		// 	localDate > recievedDate
+		// 		? localDate - anotherDate()
+		// 		: recievedDate - anotherDate()
+		// );
 		const utcDate = new Date(newDate).toUTCString();
-		console.log(utcDate)
+		console.log(`utc date: ${utcDate}`);
 
 		const dateWithTz = new Date(utcDate).toLocaleString(
 			'ru-RU',
@@ -72,7 +72,7 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			'ru-RU',
 			dateTimeOptions
 		);
-		console.log(dateWithTz);
+		console.log(`date with tz ${dateWithTz}`);
 		// console.log(time);
 		// console.log(fullDate);
 		// const date = new Date(newDate).toLocaleDateString('ru-RU', options);
