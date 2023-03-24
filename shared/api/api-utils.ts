@@ -22,32 +22,29 @@ interface dateTimeOptions {
 }
 
 export const getDate = (data: IInterviewItem, newDate: string): string => {
-	if (data) {
-		const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-		const dateTimeOptions: dateTimeOptions = {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric',
-			hour: '2-digit',
-			minute: '2-digit',
-			timeZone: userTimeZone,
-		};
-
-		const recievedDateOffset = Math.abs(
-			new Date(newDate).getTimezoneOffset() * 60 * 1000
-		);
-		const recievedDateTime = new Date(newDate).getTime();
-		const dateTime = new Date(
-			recievedDateOffset + recievedDateTime
-		).toLocaleString('ru-RU', dateTimeOptions);
-
-		console.log(new Date(recievedDateOffset + recievedDateTime));
-
-		return `${dateTime}`;
-	} else {
+	if (!data) {
 		return '';
 	}
+
+	const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	const dateTimeOptions: dateTimeOptions = {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+		timeZone: userTimeZone,
+	};
+
+	const recievedDateTime = new Date(newDate).getTime();
+	const recievedDateOffset = Math.abs(
+		new Date(newDate).getTimezoneOffset() * 60 * 1000
+	);
+	const dateTime = new Date(
+		recievedDateOffset + recievedDateTime
+	).toLocaleString('ru-RU', dateTimeOptions);
+
+	return `${dateTime}`;
 };
 
 export const fetcher = (url: string) => fetch(url).then((res) => res.json());
