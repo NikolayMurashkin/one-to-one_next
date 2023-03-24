@@ -64,7 +64,7 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 		const utcDate = new Date(newDate).toUTCString();
 		console.log(utcDate)
 
-		const dateWithTz = new Date(newDate).toLocaleString(
+		const dateWithTz = new Date(utcDate).toLocaleString(
 			'ru-RU',
 			dateTimeOptions
 		);
