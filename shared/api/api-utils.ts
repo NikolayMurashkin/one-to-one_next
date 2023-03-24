@@ -34,57 +34,16 @@ export const getDate = (data: IInterviewItem, newDate: string): string => {
 			timeZone: userTimeZone,
 		};
 
-		const recievedDateOffset = new Date(newDate).getTimezoneOffset();
-		const recievedDateTime = Math.abs(new Date(newDate).getTime());
+		const recievedDateOffset = Math.abs(
+			new Date(newDate).getTimezoneOffset() * 60 * 1000
+		);
+		const recievedDateTime = new Date(newDate).getTime();
 		const dateTime = new Date(
 			recievedDateOffset + recievedDateTime
 		).toLocaleString('ru-RU', dateTimeOptions);
 
-		// console.log(userTimeZone);
+		console.log(new Date(recievedDateOffset + recievedDateTime));
 
-		// const dateOptions: dateOptions = {
-		// 	year: 'numeric',
-		// 	month: 'long',
-		// 	day: 'numeric',
-		// 	timeZone: userTimeZone,
-		// };
-		// const timeOptions: timeOptions = {
-		// 	hour: '2-digit',
-		// 	minute: '2-digit',
-		// 	// timeZone: 'Pacific/Samoa',
-		// 	// timeZone: 'Asia/Krasnoyarsk',
-		// 	timeZone: userTimeZone,
-		// };
-
-		// const localDate = new Date().getTime();
-		// const recievedDate = new Date(newDate).getTime();
-		// const anotherDate = () => {
-		// 	return localDate > recievedDate
-		// 		? localDate - recievedDate
-		// 		: recievedDate - localDate;
-		// };
-		// console.log(new Date(anotherDate()));
-		// console.log(
-		// 	localDate > recievedDate
-		// 		? localDate - anotherDate()
-		// 		: recievedDate - anotherDate()
-		// );
-		const utcDate = new Date(newDate);
-		// console.log(`utc date: ${utcDate.getTimezoneOffset()}`);
-
-		const dateWithTz = new Date(utcDate).toLocaleString(
-			'ru-RU',
-			dateTimeOptions
-		);
-		const date = new Date(newDate).toLocaleDateString(
-			'ru-RU',
-			dateTimeOptions
-		);
-		console.log(`date with tz ${dateTime}`);
-		// console.log(time);
-		// console.log(fullDate);
-		// const date = new Date(newDate).toLocaleDateString('ru-RU', options);
-		// const dateTime = `${day} в ${time}`;
 		return `${dateTime}`;
 	} else {
 		return '';
