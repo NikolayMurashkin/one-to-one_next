@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
-import styles from '../model/SearchInterviewItem.module.scss';
+import styles from './RatingItem.module.scss';
 import { IRatingItemProps } from './RatingItemProps';
 
 export const RatingItem: React.FC<IRatingItemProps> = ({

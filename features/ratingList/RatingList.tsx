@@ -1,4 +1,4 @@
-import styles from '../model/SearchInterview.module.scss';
+import styles from './RatingList.module.scss';
 
 import { useEffect, useState } from 'react';
 import { IRatingUser, useGetRatingQuery } from './getRatingAppiSlice';
