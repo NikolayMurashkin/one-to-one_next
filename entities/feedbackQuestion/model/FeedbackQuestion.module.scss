@@ -28,13 +28,14 @@
 		display: flex;
 		column-gap: 20px;
 		&_answer {
-			flex: 0 0 425px;
+			flex: 0 0 725px;
+			font-size: 14px;
 		}
 		&_comment {
 			flex: 0 0 600px;
 			position: relative;
 			&::before {
-				content: "";
+				content: '';
 				position: absolute;
 				top: 0;
 				left: -20px;

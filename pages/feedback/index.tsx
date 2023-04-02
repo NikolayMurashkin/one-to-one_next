@@ -55,7 +55,8 @@ const Feedback = () => {
 		{
 			userId: user,
 			interviewId,
-		}, {skip: !user}
+		},
+		{ skip: !user }
 	);
 
 	const exitHandler = () => {
@@ -86,7 +87,7 @@ const Feedback = () => {
 							<CalendarIcon /> {date}
 						</span>
 						<span className={cx('title__item', 'name')}>
-							<UserIcon /> {initiatorName}
+							ОТ <UserIcon /> {initiatorName}
 						</span>
 						<span className={cx('title__item', 'stack')}>
 							<StackIcon /> {stack}
