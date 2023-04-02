@@ -25,37 +25,49 @@ export const RatingList = () => {
 		return <p>Что-то пошло не так! Мы скоро всё исправим!</p>;
 	}
 
-	function comparePoints(a: IRatingUser, b: IRatingUser) {
-		if (a.totalPoint > b.totalPoint) 1;
-		if (a.totalPoint < b.totalPoint) -1;
-		return 0;
-	}
-
-	const allRatingsArr =
+	const sortedRatings =
 		allRatings &&
-		allRatings.items
-			.sort(
-				(a: IRatingUser, b: IRatingUser) => a.totalPoint - b.totalPoint
-			)
-			.map((item, index) => {
-				return (
-					<RatingItem
-						key={item.id}
-						totalPoint={item.totalPoint}
-						name={item.user.name}
-						surName={item.user.surName}
-						id={item.user.id}
-						totalQuestionCount={item.totalQuestionCount}
-						position={index + 1}
-					/>
-				);
-			});
+		allRatings.items.sort(
+			(a: IRatingUser, b: IRatingUser) => a.totalPoint - b.totalPoint
+		);
+	// const allRatingsArr =
+	// 	allRatings &&
+	// 	allRatings.items
+	// 		.sort(
+	// 			(a: IRatingUser, b: IRatingUser) => a.totalPoint - b.totalPoint
+	// 		)
+	// 		.map((item, index) => {
+	// 			return (
+	// 				<RatingItem
+	// 					key={item.id}
+	// 					totalPoint={item.totalPoint}
+	// 					name={item.user.name}
+	// 					surName={item.user.surName}
+	// 					id={item.user.id}
+	// 					totalQuestionCount={item.totalQuestionCount}
+	// 					position={index + 1}
+	// 				/>
+	// 			);
+	// 		});
 
 	return (
 		<>
 			<SortList tabId={'rating'} />
 			<ul className={styles.list}>
-				{allRatingsArr}
+				{allRatings &&
+					sortedRatings?.map((item, index) => {
+						return (
+							<RatingItem
+								key={item.id}
+								totalPoint={item.totalPoint}
+								name={item.user.name}
+								surName={item.user.surName}
+								id={item.user.id}
+								totalQuestionCount={item.totalQuestionCount}
+								position={index + 1}
+							/>
+						);
+					})}
 				{allRatings && allRatings.totalItems === 0 && (
 					<p>Рейтинг пользователей отсутствует!</p>
 				)}
