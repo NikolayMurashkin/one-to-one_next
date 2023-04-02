@@ -40,7 +40,7 @@ export const RatingItem: React.FC<IRatingItemProps> = ({
 					? positionNumber
 					: position}
 			</span>
-			<span className={cx('text')}>{surName + name}</span>
+			<span className={cx('text')}>{`${surName} ${name}`}</span>
 			<span className={cx('text')}>
 				{+(totalPoint / totalQuestionCount).toFixed(1)}
 			</span>
