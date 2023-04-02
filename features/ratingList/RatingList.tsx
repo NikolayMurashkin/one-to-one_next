@@ -15,9 +15,9 @@ export const RatingList = () => {
 		}
 	}, []);
 
-	const { data: allRatings, error } = useGetRatingQuery();
+	const { data: allRatings, error, isLoading } = useGetRatingQuery();
 
-	if (!allRatings) {
+	if (isLoading) {
 		return <p>Загрузка данных...</p>;
 	}
 
