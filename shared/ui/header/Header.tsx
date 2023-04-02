@@ -16,7 +16,7 @@ export interface IUser {
 
 const Header = () => {
 	const [user, setUser] = useState<number>();
-	const {push} = useRouter();
+	const { push, pathname } = useRouter();
 
 	useEffect(() => {
 		const userIdJson = localStorage.getItem('id');
@@ -31,9 +31,12 @@ const Header = () => {
 		localStorage.clear();
 	};
 
-	const goToRating =() => {
+	const goToRating = () => {
 		push('/rating');
-	}
+	};
+	const goToMain = () => {
+		push('/');
+	};
 
 	if (isLoading) {
 		return <p>Загрузка...</p>;
@@ -46,13 +49,23 @@ const Header = () => {
 					<Link href='/' className={styles.logo}>
 						<LogoWithoutText />
 					</Link>
-					<MainButton
-						color='blue'
-						text='Рейтинг'
-						type='fill'
-						isDisabled={false}
-						
-					/>
+					{pathname === '/rating' ? (
+						<MainButton
+							color='blue'
+							text='Назад'
+							type='fill'
+							isDisabled={false}
+							onClick={goToMain}
+						/>
+					) : (
+						<MainButton
+							color='blue'
+							text='Рейтинг'
+							type='fill'
+							isDisabled={false}
+							onClick={goToRating}
+						/>
+					)}
 				</div>
 				<div className={styles.profile}>
 					<div className={styles.personInfo}>
