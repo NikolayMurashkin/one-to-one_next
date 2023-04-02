@@ -33,25 +33,29 @@ export const RatingList = () => {
 
 	const allRatingsArr =
 		allRatings &&
-		allRatings.items.sort(comparePoints).map((item, index) => {
-			return (
-				<RatingItem
-					key={item.id}
-					totalPoint={item.totalPoint}
-					name={item.user.name}
-					surName={item.user.surName}
-					id={item.user.id}
-					totalQuestionCount={item.totalQuestionCount}
-					position={index + 1}
-				/>
-			);
-		});
+		allRatings.items
+			.sort(
+				(a: IRatingUser, b: IRatingUser) => a.totalPoint - b.totalPoint
+			)
+			.map((item, index) => {
+				return (
+					<RatingItem
+						key={item.id}
+						totalPoint={item.totalPoint}
+						name={item.user.name}
+						surName={item.user.surName}
+						id={item.user.id}
+						totalQuestionCount={item.totalQuestionCount}
+						position={index + 1}
+					/>
+				);
+			});
 
 	return (
 		<>
 			<SortList tabId={'rating'} />
 			<ul className={styles.list}>
-				{/* {allRatingsArr && allRatingsArr.sort(comparePoints())}} */}
+				{allRatingsArr}
 				{allRatings && allRatings.totalItems === 0 && (
 					<p>Рейтинг пользователей отсутствует!</p>
 				)}
