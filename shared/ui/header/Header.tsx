@@ -34,6 +34,7 @@ const Header = () => {
 
 	const goToRating = () => {
 		router.push('/rating');
+		console.log('goToRating')
 	};
 	const goToMain = () => {
 		router.push('/');
