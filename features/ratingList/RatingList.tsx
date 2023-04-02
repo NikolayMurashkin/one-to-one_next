@@ -30,27 +30,8 @@ export const RatingList = () => {
 	const sortedRatings =
 		arrayForSort &&
 		arrayForSort.sort(
-			(a: IRatingUser, b: IRatingUser) => a.totalPoint - b.totalPoint
+			(a: IRatingUser, b: IRatingUser) => b.totalPoint - a.totalPoint
 		);
-	// const allRatingsArr =
-	// 	allRatings &&
-	// 	allRatings.items
-	// 		.sort(
-	// 			(a: IRatingUser, b: IRatingUser) => a.totalPoint - b.totalPoint
-	// 		)
-	// 		.map((item, index) => {
-	// 			return (
-	// 				<RatingItem
-	// 					key={item.id}
-	// 					totalPoint={item.totalPoint}
-	// 					name={item.user.name}
-	// 					surName={item.user.surName}
-	// 					id={item.user.id}
-	// 					totalQuestionCount={item.totalQuestionCount}
-	// 					position={index + 1}
-	// 				/>
-	// 			);
-	// 		});
 
 	return (
 		<>
