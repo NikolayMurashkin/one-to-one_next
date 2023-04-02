@@ -6,8 +6,8 @@
 	border: 1px solid var(--color-light-blue);
 	border-radius: 5px;
 	padding: 10px;
-	font-size: 12px;
-	line-height: 15px;
+	font-size: 14px;
+	line-height: 20px;
 	max-height: 44px;
 	overflow: hidden;
 	transition: all 0.25s ease-in-out;
@@ -29,7 +29,6 @@
 		column-gap: 20px;
 		&_answer {
 			flex: 0 0 725px;
-			font-size: 14px;
 		}
 		&_comment {
 			flex: 0 0 600px;

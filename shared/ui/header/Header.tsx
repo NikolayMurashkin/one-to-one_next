@@ -7,6 +7,8 @@ import styles from './Header.module.scss';
 import { LogOutIcon } from '@shared/ui/icons/LogOutIcon';
 import { LogoWithoutText } from '@shared/ui/icons/LogoWithoutText';
 import { useGetUserQuery } from './api/getUserApiSlice';
+import { MainButton } from '../buttons/main-button/MainButton';
+import { useRouter } from 'next/router';
 
 export interface IUser {
 	id: string;
@@ -14,6 +16,8 @@ export interface IUser {
 
 const Header = () => {
 	const [user, setUser] = useState<number>();
+	const {push} = useRouter();
+
 	useEffect(() => {
 		const userIdJson = localStorage.getItem('id');
 		if (userIdJson) {
@@ -27,6 +31,10 @@ const Header = () => {
 		localStorage.clear();
 	};
 
+	const goToRating =() => {
+		push('/rating');
+	}
+
 	if (isLoading) {
 		return <p>Загрузка...</p>;
 	}
@@ -34,9 +42,18 @@ const Header = () => {
 	if (userData) {
 		return (
 			<header className={styles.header}>
-				<Link href='/' className={styles.logo}>
-					<LogoWithoutText />
-				</Link>
+				<div className={styles.header__left}>
+					<Link href='/' className={styles.logo}>
+						<LogoWithoutText />
+					</Link>
+					<MainButton
+						color='blue'
+						text='Рейтинг'
+						type='fill'
+						isDisabled={false}
+						
+					/>
+				</div>
 				<div className={styles.profile}>
 					<div className={styles.personInfo}>
 						<span
