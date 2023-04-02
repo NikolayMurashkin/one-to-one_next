@@ -25,9 +25,11 @@ export const RatingList = () => {
 		return <p>Что-то пошло не так! Мы скоро всё исправим!</p>;
 	}
 
+	const arrayForSort = allRatings && [...allRatings?.items];
+
 	const sortedRatings =
-		allRatings &&
-		allRatings.items.sort(
+		arrayForSort &&
+		arrayForSort.sort(
 			(a: IRatingUser, b: IRatingUser) => a.totalPoint - b.totalPoint
 		);
 	// const allRatingsArr =
