@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const ratingPage = () => {
+const RatingPage = () => {
   return (
 	<div>Rating Page</div>
   )
 }
+
+export default RatingPage;
