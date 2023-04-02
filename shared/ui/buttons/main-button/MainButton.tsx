@@ -53,6 +53,7 @@ export const MainButton: React.FC<IMainButton> = ({
 				'fill-green': color === 'green' && type === 'fill',
 			})}
 			disabled={isDisabled}
+			onClick={onClick}
 		>
 			{text}
 		</button>
