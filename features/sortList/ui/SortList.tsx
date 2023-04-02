@@ -4,7 +4,7 @@ import styles from '@features/sortList/model/SortList.module.scss';
 import { SortItem } from '@entities/sortItem';
 import { ISortListProps } from '@features/sortList/model/SortList.props';
 
-export const SortList: React.FC<ISortListProps> = ({ tabId}) => {
+export const SortList: React.FC<ISortListProps> = ({ tabId }) => {
 	const cx = classNames.bind(styles);
 
 	return (
@@ -92,6 +92,22 @@ export const SortList: React.FC<ISortListProps> = ({ tabId}) => {
 					</li>
 					<li className={cx('sortItem')}>
 						<SortItem text='Пройдено вопросов' />
+					</li>
+				</ul>
+			)}
+			{tabId == 'rating' && (
+				<ul className={cx('sortList', 'rating')}>
+					<li className={cx('sortItem')}>
+						<SortItem text='№ в рейтинге' />
+					</li>
+					<li className={cx('sortItem')}>
+						<SortItem text='ФИО' />
+					</li>
+					<li className={cx('sortItem')}>
+						<SortItem text='Рейтинг' />
+					</li>
+					<li className={cx('sortItem')}>
+						<SortItem text='Набрано баллов' />
 					</li>
 				</ul>
 			)}

@@ -18,7 +18,7 @@ import { useGetOpponentInterviewsQuery } from '@features/myInterviews/api/getOpp
 
 export const Tabs = () => {
 	const [user, setUser] = useState<number>();
-	const [page, setPage] = useState<number>(2);
+	const [page, setPage] = useState<string>('');
 
 	useEffect(() => {
 		const userIdJson = localStorage.getItem('id');
@@ -71,6 +71,7 @@ export const Tabs = () => {
 				})`,
 			},
 		];
+		
 		return (
 			<section className={styles.interviewTabs}>
 				<TabsButtons tabs={tabs} selectedId={selectedTabId} />

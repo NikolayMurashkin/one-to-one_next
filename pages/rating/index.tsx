@@ -1,9 +1,8 @@
-import React from 'react'
+import { RatingList } from '@features/ratingList/RatingList';
+import React from 'react';
 
 const RatingPage = () => {
-  return (
-	<div>Rating Page</div>
-  )
-}
+	return <RatingList />;
+};
 
 export default RatingPage;
