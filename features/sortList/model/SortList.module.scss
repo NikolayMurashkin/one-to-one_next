@@ -1,12 +1,3 @@
-.wrapper {
-	margin-bottom: 10px;
-	position: fixed;
-	max-width: 100%;
-	height: 40px;
-	margin-top: -10px;
-	background: var(--white);
-}
-
 .sortList {
 	position: absolute;
 	display: flex;
@@ -56,4 +47,8 @@
 .rating {
 	justify-content: space-between;
 	padding-right: 40px;
+	.sortItem {
+		justify-content: center;
+		flex-basis: 25%;
+	}
 }
