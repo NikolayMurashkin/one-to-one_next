@@ -22,7 +22,7 @@ export interface IRatingResponse {
 export const getRatingApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getRating: builder.query<IRatingResponse, void>({
-			query: () => `/statistics/`,
+			query: () => `/statistics/?size=1500`,
 			providesTags: (result) =>
 				result
 					? [
