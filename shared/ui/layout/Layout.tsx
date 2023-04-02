@@ -8,12 +8,10 @@ export default function Layout({ children }: TLayoutProps) {
 	const router = useRouter();
 	const isAuthPage =
 		router.pathname === '/login' || router.pathname === '/register';
-	const isRatingPage =
-		router.pathname === '/rating';
 
 	return (
 		<div>
-			{!isAuthPage && !isRatingPage && <Header />}
+			{!isAuthPage && <Header />}
 			<div className={styles.wrapper}>{children}</div>
 		</div>
 	);

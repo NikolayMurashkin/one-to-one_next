@@ -16,7 +16,8 @@ export interface IUser {
 
 const Header = () => {
 	const [user, setUser] = useState<number>();
-	const { push, pathname } = useRouter();
+	// const { push, pathname } = useRouter();
+	const router = useRouter();
 
 	useEffect(() => {
 		const userIdJson = localStorage.getItem('id');
@@ -32,10 +33,10 @@ const Header = () => {
 	};
 
 	const goToRating = () => {
-		push('/rating');
+		router.push('/rating');
 	};
 	const goToMain = () => {
-		push('/');
+		router.push('/');
 	};
 
 	if (isLoading) {
@@ -49,7 +50,7 @@ const Header = () => {
 					<Link href='/' className={styles.logo}>
 						<LogoWithoutText />
 					</Link>
-					{pathname === '/rating' ? (
+					{router.pathname === '/rating' ? (
 						<MainButton
 							color='blue'
 							text='Назад'
